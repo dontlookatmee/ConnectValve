@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { UserServicesService } from "../user-services.service";
+import { UserServicesService } from "src/app/services/user-services.service";
 
 interface Service {
   title: string;

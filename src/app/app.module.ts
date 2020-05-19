@@ -14,7 +14,6 @@ import { CoreModule } from "./core/core.module";
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-
     CoreModule,
   ],
   providers: [],
