@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { passwordMatch } from '../../custom-validators/passwordValidation';
 import { Router } from '@angular/router';
+import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private auth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private profileService: ProfileService
   ) {}
 
   ngOnInit(): void {
@@ -52,8 +54,22 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       const email = this.registerForm.get('email').value;
       const password = this.registerForm.get('passwords.password').value;
+      const avatar = this.registerForm.get('avatar').value;
 
-      this.auth.createUserWithEmailAndPassword(email, password).then((x) => {
+      this.auth.createUserWithEmailAndPassword(email, password).then((data) => {
+        const uid = data.user.uid;
+
+        const user = {
+          email,
+          password,
+          avatar,
+          description: '',
+          last_changed: new Date(),
+          services: [],
+          status: 'offline',
+          uid,
+        };
+        this.profileService.addUserInDB(user, uid);
         this.router.navigate(['']);
       });
     }

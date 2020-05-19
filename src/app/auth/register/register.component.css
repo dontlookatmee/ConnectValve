@@ -1,5 +1,6 @@
 .main-container {
   color: #1b1b1b;
+  text-align: center;
 }
 
 .header-text-container {
@@ -17,4 +18,17 @@ form {
 
 .btn {
   width: 100%;
+}
+
+.already-member {
+  margin-top: 10px;
+  color: #b8b8b8;
+}
+
+.already-member span {
+  color: #e27d60;
+}
+.already-member span:hover {
+  color: #ce6041;
+  cursor: pointer;
 }
