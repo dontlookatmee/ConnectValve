@@ -23,46 +23,11 @@
     </div>
     <div class="service-grid-container">
       <app-service-card
-        title="dynamic"
-        description="dynamic"
-        img="dynamic"
-        buttonText="dynamic"
-      ></app-service-card>
-      <app-service-card
-        title="dynamic"
-        description="dynamic"
-        img="dynamic"
-        buttonText="dynamic"
-      ></app-service-card>
-      <app-service-card
-        title="dynamic"
-        description="dynamic"
-        img="dynamic"
-        buttonText="dynamic"
-      ></app-service-card>
-      <app-service-card
-        title="dynamic"
-        description="dynamic"
-        img="dynamic"
-        buttonText="dynamic"
-      ></app-service-card>
-      <app-service-card
-        title="dynamic"
-        description="dynamic"
-        img="dynamic"
-        buttonText="dynamic"
-      ></app-service-card>
-      <app-service-card
-        title="dynamic"
-        description="dynamic"
-        img="dynamic"
-        buttonText="dynamic"
-      ></app-service-card>
-      <app-service-card
-        title="dynamic"
-        description="dynamic"
-        img="dynamic"
-        buttonText="dynamic"
+        *ngFor="let service of services"
+        [title]="service.title"
+        [description]="service.description"
+        [imageUrl]="service.imageUrl"
+        buttonText="Learn More"
       ></app-service-card>
     </div>
   </div>
