@@ -1,0 +1,25 @@
+#navbarNav {
+  justify-content: flex-end;
+}
+
+#register-button {
+  color: white;
+  background-color: #e27d60;
+  padding: 8px 20px;
+  border-radius: 90px;
+}
+#register-button:hover {
+  background-color: #ce6041;
+}
+
+ul > li {
+  margin-left: 10px;
+}
+
+ul > li a:hover {
+  color: #ce6041;
+}
+
+.navbar-brand:hover {
+  color: #ce6041;
+}
