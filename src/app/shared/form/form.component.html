@@ -1,0 +1,10 @@
+<div class="main-container">
+  <div class="header-text-container">
+    <h3>{{ headText }}</h3>
+    <p>{{ pText }}</p>
+  </div>
+
+  <form [formGroup]="groupForm">
+    <ng-content></ng-content>
+  </form>
+</div>
