@@ -4,7 +4,7 @@
     <p>Please register to procced.</p>
   </div>
 
-  <form [formGroup]="registerForm">
+  <form [formGroup]="registerForm" (ngSubmit)="handleRegister()">
     <app-input
       name="email"
       type="email"
