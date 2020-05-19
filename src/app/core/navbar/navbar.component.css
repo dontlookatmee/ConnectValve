@@ -12,19 +12,30 @@
 }
 
 #register-button {
-  color: white;
   background-color: #e27d60;
   padding: 0.5rem 1.4rem;
   border-radius: 90px;
 }
-#register-button:hover {
+
+#register-button a {
+  color: white;
+}
+
+#logout-button {
+  background-color: #e27d60;
+  padding: 0.1rem 1.4rem;
+  border-radius: 90px;
+}
+
+#logout-button a {
+  color: white;
+}
+
+#register-button:hover,
+#logout-button:hover {
   background-color: #ce6041;
 }
 
 ul > li {
   margin-left: 10px;
-}
-
-ul > li a:hover {
-  color: #ce6041;
 }

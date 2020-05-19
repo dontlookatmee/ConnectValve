@@ -17,17 +17,26 @@
         <a class="nav-link" href="#">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">FAQ</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Login</a>
+        <a class="nav-link" href="#">Faq</a>
       </li>
       <li *ngIf="!isLoggedIn" class="nav-item">
-        <a routerLink="/auth/register" class="nav-link" id="register-button"
-          >Register</a
-        >
+        <a routerLink="/auth/login" class="nav-link">Login</a>
       </li>
-      <li (click)="handleLogOut()" *ngIf="isLoggedIn" class="nav-item">
+      <li *ngIf="isLoggedIn" class="nav-item">
+        <a routerLink="/auth/login" class="nav-link">Manage</a>
+      </li>
+      <li *ngIf="isLoggedIn" class="nav-item">
+        <a routerLink="/auth/login" class="nav-link">Messages</a>
+      </li>
+      <li routerLink="/auth/register" *ngIf="!isLoggedIn" class="nav-item">
+        <a class="nav-link" id="register-button">Register</a>
+      </li>
+      <li
+        (click)="handleLogOut()"
+        *ngIf="isLoggedIn"
+        class="nav-item"
+        id="logout-button"
+      >
         <a class="nav-link" href="#">Logout</a>
       </li>
     </ul>
