@@ -1,12 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ServiceCardComponent } from "./service-card/service-card.component";
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+  declarations: [ServiceCardComponent],
+  imports: [CommonModule],
+  exports: [ServiceCardComponent],
 })
-export class SharedModule { }
+export class SharedModule {}

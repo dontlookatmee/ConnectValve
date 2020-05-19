@@ -1,11 +1,15 @@
 .home-main-container {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  color: #111111;
+}
+
+.home-header-content {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-color: white;
-  height: 100%;
-  width: 100%;
 }
 
 .jumbotron {
@@ -18,9 +22,38 @@
   border-radius: 90px;
 }
 
+.lead span {
+  font-weight: bold;
+  color: #e27d60;
+}
+
 #illustration img {
   height: 600px;
   width: 600px;
+}
+
+.home-services-container {
+  background-color: #f8f9fa;
+}
+
+.services-header-text {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.services-header-text p {
+  color: #707070;
+}
+
+.service-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 10px;
+  justify-items: center;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 25px;
 }
 
 @media (min-width: 576px) {
