@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { UserServicesService } from "src/app/services/user-services.service";
+import { Component, OnInit } from '@angular/core';
+import { UserServicesService } from '../../services/user-services/user-services.service';
 
 interface Service {
   title: string;
@@ -10,9 +10,9 @@ interface Service {
   user: string;
 }
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
   allServices: Service[];

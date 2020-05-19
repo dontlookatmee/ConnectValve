@@ -26,7 +26,7 @@
         *ngFor="let service of allServices"
         [title]="service.title"
         [description]="service.description"
-        [imageUrl]="service.image"
+        [imageUrl]="service?.image"
         buttonText="Learn More"
       ></app-service-card>
     </div>
