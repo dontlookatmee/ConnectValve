@@ -1,0 +1,34 @@
+.main-container {
+  color: #1b1b1b;
+  text-align: center;
+}
+
+.header-text-container {
+  text-align: center;
+  margin: 50px 0;
+}
+
+form {
+  width: 25%;
+  margin: 0 auto;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.btn {
+  width: 100%;
+}
+
+.already-member {
+  margin-top: 10px;
+  color: #b8b8b8;
+}
+
+.already-member span {
+  color: #e27d60;
+}
+.already-member span:hover {
+  color: #ce6041;
+  cursor: pointer;
+}

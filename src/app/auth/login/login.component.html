@@ -1,1 +1,31 @@
-<p>login works!</p>
+<div class="main-container">
+  <div class="header-text-container">
+    <h3>Login</h3>
+    <p>Please login to procced.</p>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+    <app-input
+      name="email"
+      type="email"
+      placeholder="Enter your email"
+      [control]="loginForm.get('email')"
+    ></app-input>
+    <app-input
+      name="password"
+      type="password"
+      placeholder="Enter your password"
+      [control]="loginForm.get('password')"
+    ></app-input>
+    <button
+      [disabled]="loginForm.invalid"
+      type="submit"
+      class="btn btn-primary"
+    >
+      Login
+    </button>
+  </form>
+  <div class="already-member">
+    Not a member ? <span routerLink="/auth/register">Register</span>
+  </div>
+</div>
