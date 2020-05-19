@@ -1,1 +1,53 @@
-<p>register works!</p>
+<div class="main-container">
+  <div class="header-text-container">
+    <h3>Register</h3>
+    <p>Please register to procced.</p>
+  </div>
+
+  <form>
+    <app-input
+      name="email"
+      type="email"
+      placeholder="Enter your email"
+      [control]="registerForm.get('email')"
+    ></app-input>
+    <app-input
+      name="name"
+      type="text"
+      placeholder="Enter your name"
+      [control]="registerForm.get('name')"
+    ></app-input>
+    <app-input
+      name="avatar"
+      type="text"
+      placeholder="Enter your avatar url"
+      [control]="registerForm.get('avatar')"
+    ></app-input>
+    <app-input
+      name="password"
+      type="password"
+      placeholder="Enter your password"
+      [control]="registerForm.get('passwords.password')"
+    ></app-input>
+    <app-input
+      name="passwordRepeat"
+      type="password"
+      placeholder="Enter your password again"
+      [control]="registerForm.get('passwords.repeatPassword')"
+    ></app-input>
+    <div
+      style="color: 'red'; margin-bottom: '15px';"
+      *ngIf="registerForm.get('passwords').errors?.passwordMatch"
+      class="validation"
+    >
+      Your passwords don't match.
+    </div>
+    <button
+      [disabled]="registerForm.invalid"
+      type="submit"
+      class="btn btn-primary"
+    >
+      Register
+    </button>
+  </form>
+</div>

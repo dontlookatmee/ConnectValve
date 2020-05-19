@@ -1,0 +1,27 @@
+<div class="form-group">
+  <input
+    [formControl]="control"
+    [type]="type"
+    class="form-control"
+    [name]="name"
+    [placeholder]="placeholder"
+  />
+  <ng-container *ngIf="control.errors && (control.touched || control.dirty)">
+    <div *ngIf="control.errors.required" class="validation">
+      Value is required.
+    </div>
+    <div *ngIf="control.errors?.minlength" class="validation">
+      Value you entered is
+      {{ control.errors.minlength.actualLength }} characters long, but it must
+      be at least {{ control.errors.minlength.requiredLength }} characters.
+    </div>
+    <div *ngIf="control.errors?.maxlength" class="validation">
+      Value you entered is
+      {{ control.errors.maxlength.actualLength }} characters long, but it must
+      be less than {{ control.errors.maxlength.requiredLength }} characters.
+    </div>
+    <div *ngIf="control.errors?.pattern" class="validation">
+      Your {{ name === "avatar" ? "avatar url" : name }} is invalid.
+    </div>
+  </ng-container>
+</div>
