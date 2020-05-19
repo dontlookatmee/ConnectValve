@@ -1,10 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { UserServicesService } from "../user-services.service";
 
-interface Services {
+interface Service {
   title: string;
   description: string;
-  imageUrl: string;
+  image: string;
+  category: string;
+  price: number;
+  user: string;
 }
 @Component({
   selector: "app-home",
@@ -12,13 +15,13 @@ interface Services {
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-  services: Services[];
+  allServices: Service[];
 
   constructor(private uServices: UserServicesService) {}
 
   ngOnInit(): void {
-    this.uServices.getServices().subscribe((services) => {
-      this.services = services;
+    this.uServices.getServices().subscribe((services: Service[]) => {
+      this.allServices = services;
     });
   }
 }

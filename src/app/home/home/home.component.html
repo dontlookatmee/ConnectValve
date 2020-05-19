@@ -18,15 +18,15 @@
   </div>
   <div class="home-services-container">
     <div class="services-header-text">
-      <h1>Collabrations available</h1>
+      <h1>Services available</h1>
       <p>Are you interested ?</p>
     </div>
     <div class="service-grid-container">
       <app-service-card
-        *ngFor="let service of services"
+        *ngFor="let service of allServices"
         [title]="service.title"
         [description]="service.description"
-        [imageUrl]="service.imageUrl"
+        [imageUrl]="service.image"
         buttonText="Learn More"
       ></app-service-card>
     </div>

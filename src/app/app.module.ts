@@ -1,8 +1,9 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { AngularFireModule } from "@angular/fire";
-import { environment } from "../environments/environment";
 
+import { AngularFireModule } from "@angular/fire";
+
+import { environment } from "../environments/environment";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { CoreModule } from "./core/core.module";
@@ -13,6 +14,7 @@ import { CoreModule } from "./core/core.module";
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
+
     CoreModule,
   ],
   providers: [],
