@@ -1,0 +1,83 @@
+.main-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 65%;
+  margin: 0 auto;
+  margin-top: 150px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1.7rem;
+  flex-basis: 50%;
+}
+.image-container {
+  flex-basis: 50%;
+}
+.image-container img {
+  width: 100%;
+  height: 500px;
+}
+
+.user-price {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.name p:first-of-type {
+  margin-bottom: 3px;
+}
+
+.name p:last-of-type {
+  color: #bbbbbb;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.user-info img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
+  margin-right: 15px;
+}
+
+.price p:first-of-type {
+  margin-bottom: 3px;
+}
+
+.price p:last-of-type {
+  color: #bbbbbb;
+}
+
+.info-content {
+  text-align: center;
+}
+.info-content h1 {
+  margin-bottom: 15px;
+}
+
+.info-content span {
+  padding: 0.4rem 0.4rem;
+  background-color: #ebebeb;
+}
+
+.info-content p {
+  margin-top: 15px;
+}

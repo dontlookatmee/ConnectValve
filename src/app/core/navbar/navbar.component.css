@@ -17,7 +17,7 @@
   border-radius: 90px;
 }
 
-#register-button a {
+#register-button {
   color: white;
 }
 
@@ -33,6 +33,7 @@
 
 #register-button:hover,
 #logout-button:hover {
+  cursor: pointer;
   background-color: #ce6041;
 }
 
