@@ -46,4 +46,8 @@ export class LoginComponent implements OnInit {
         });
     }
   }
+
+  handleClosePopup() {
+    this.isRegistrationCompleted.showMessage = false;
+  }
 }

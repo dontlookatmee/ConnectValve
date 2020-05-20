@@ -30,6 +30,7 @@
   </div>
 </div>
 <app-popup
+  (closePopup)="handleClosePopup()"
   *ngIf="isRegistrationCompleted.showMessage"
   [message]="isRegistrationCompleted.message"
 ></app-popup>

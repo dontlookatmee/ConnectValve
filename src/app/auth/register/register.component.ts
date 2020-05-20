@@ -89,4 +89,8 @@ export class RegisterComponent implements OnInit {
         });
     }
   }
+
+  handleClosePopup() {
+    this.isRegistrationCompleted.showMessage = false;
+  }
 }
