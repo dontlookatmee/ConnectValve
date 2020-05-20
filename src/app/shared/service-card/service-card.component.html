@@ -5,6 +5,8 @@
     <p class="card-text">
       {{ description }}
     </p>
-    <a href="#" class="btn btn-{{ buttonType }}">{{ buttonText }}</a>
+    <a [routerLink]="['/services', path]" class="btn btn-{{ buttonType }}">{{
+      buttonText
+    }}</a>
   </div>
 </div>

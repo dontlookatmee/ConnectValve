@@ -5,6 +5,7 @@ import { ServiceCardComponent } from './service-card/service-card.component';
 import { InputComponent } from './input/input.component';
 import { FormComponent } from './form/form.component';
 import { PopupComponent } from './popup/popup.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { PopupComponent } from './popup/popup.component';
     FormComponent,
     PopupComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
     ServiceCardComponent,
     InputComponent,

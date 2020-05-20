@@ -15,7 +15,6 @@
     <ul class="navbar-nav">
       <ng-container *ngIf="auth.user$ | async; then atuhenticated; else guest">
       </ng-container>
-
       <ng-template #guest>
         <li class="nav-item">
           <a routerLink="" class="nav-link">Home</a>

@@ -2,13 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { UserServicesService } from '../../services/user-services/user-services.service';
 
 interface Service {
-  title: string;
-  description: string;
-  image: string;
-  category: string;
-  price: number;
-  user: string;
+  id: string;
+  data: {
+    title: string;
+    description: string;
+    image: string;
+    category: string;
+    price: number;
+    user: string;
+  };
 }
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
