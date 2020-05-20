@@ -53,6 +53,7 @@ export class RegisterComponent implements OnInit {
   handleRegister() {
     if (this.registerForm.valid) {
       const email = this.registerForm.get('email').value;
+      const name = this.registerForm.get('name').value;
       const password = this.registerForm.get('passwords.password').value;
       const avatar = this.registerForm.get('avatar').value;
 
@@ -61,6 +62,7 @@ export class RegisterComponent implements OnInit {
 
         const user = {
           email,
+          name,
           password,
           avatar,
           description: '',
