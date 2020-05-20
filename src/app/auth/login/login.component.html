@@ -29,3 +29,7 @@
     Not a member ? <span routerLink="/auth/register">Register</span>
   </div>
 </div>
+<app-popup
+  *ngIf="isRegistrationCompleted.showMessage"
+  [message]="isRegistrationCompleted.message"
+></app-popup>

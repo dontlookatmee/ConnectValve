@@ -10,7 +10,10 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-
+  isRegistrationCompleted: { message: string; showMessage: boolean } = {
+    message: '',
+    showMessage: false,
+  };
   constructor(
     private fb: FormBuilder,
     private fAuth: AngularFireAuth,
@@ -29,9 +32,18 @@ export class LoginComponent implements OnInit {
       const email = this.loginForm.get('email').value;
       const password = this.loginForm.get('password').value;
 
-      this.fAuth.signInWithEmailAndPassword(email, password).then((x) => {
-        this.router.navigate(['']);
-      });
+      this.fAuth
+        .signInWithEmailAndPassword(email, password)
+        .then((x) => {
+          this.router.navigate(['']);
+        })
+        .catch((err) => {
+          this.isRegistrationCompleted.message = err;
+          this.isRegistrationCompleted.showMessage = true;
+          setTimeout(() => {
+            this.isRegistrationCompleted.showMessage = false;
+          }, 2500);
+        });
     }
   }
 }

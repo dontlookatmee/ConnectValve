@@ -54,3 +54,8 @@
     Already a member ? <span routerLink="/auth/login">Login</span>
   </div>
 </div>
+
+<app-popup
+  *ngIf="isRegistrationCompleted.showMessage"
+  [message]="isRegistrationCompleted.message"
+></app-popup>

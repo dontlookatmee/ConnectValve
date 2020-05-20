@@ -12,6 +12,10 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  isRegistrationCompleted: { message: string; showMessage: boolean } = {
+    message: '',
+    showMessage: false,
+  };
 
   constructor(
     private fb: FormBuilder,
@@ -57,23 +61,32 @@ export class RegisterComponent implements OnInit {
       const password = this.registerForm.get('passwords.password').value;
       const avatar = this.registerForm.get('avatar').value;
 
-      this.auth.createUserWithEmailAndPassword(email, password).then((data) => {
-        const uid = data.user.uid;
+      this.auth
+        .createUserWithEmailAndPassword(email, password)
+        .then((data) => {
+          const uid = data.user.uid;
 
-        const user = {
-          email,
-          name,
-          password,
-          avatar,
-          description: '',
-          last_changed: new Date(),
-          services: [],
-          status: 'offline',
-          uid,
-        };
-        this.profileService.addUserInDB(user, uid);
-        this.router.navigate(['']);
-      });
+          const user = {
+            email,
+            name,
+            password,
+            avatar,
+            description: '',
+            last_changed: new Date(),
+            services: [],
+            status: 'offline',
+            uid,
+          };
+          this.profileService.addUserInDB(user, uid);
+          this.router.navigate(['']);
+        })
+        .catch((err) => {
+          this.isRegistrationCompleted.message = err;
+          this.isRegistrationCompleted.showMessage = true;
+          setTimeout(() => {
+            this.isRegistrationCompleted.showMessage = false;
+          }, 2500);
+        });
     }
   }
 }
