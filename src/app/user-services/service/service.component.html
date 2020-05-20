@@ -1,9 +1,6 @@
 <div class="main-container">
   <div class="image-container">
-    <img
-      src="https://verdesbuild.com/images/gallery/verdes-1998726220.jpg"
-      alt=""
-    />
+    <img [src]="service?.image" alt="" />
   </div>
   <div class="content">
     <!--User and Price-->
@@ -15,27 +12,22 @@
           alt=""
         />
         <div class="name">
-          <p>My name</p>
+          <p>{{ service?.name }}</p>
           <p>Owner</p>
         </div>
       </div>
       <!--Charge-->
       <div class="price">
-        <p>$20</p>
+        <p>${{ service?.price }}</p>
         <p>Per Hour</p>
       </div>
     </div>
     <!--Service Info-->
     <div class="info-content">
-      <h1>I will teach programming</h1>
-      <span>programming</span>
+      <h1>{{ service?.title }}</h1>
+      <span>{{ service?.category }}</span>
       <p>
-        I will teach you programming. Programing is awesome.I will teach you
-        programming. Programing is awesome.I will teach you programming.
-        Programing is awesome.I will teach you programming. Programing is
-        awesome.I will teach you programming. Programing is awesome.I will teach
-        you programming. Programing is awesome.I will teach you programming.
-        Programing is awesome.
+        {{ service?.description }}
       </p>
       <button class="btn btn-outline-primary">Make an offer</button>
     </div>

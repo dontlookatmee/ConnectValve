@@ -11,7 +11,7 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: 'services',
+    path: 'services/:id',
     loadChildren: () =>
       import('./user-services/user-services.module').then(
         (m) => m.UserServicesModule

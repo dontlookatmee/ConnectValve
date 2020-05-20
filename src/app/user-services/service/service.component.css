@@ -29,6 +29,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  flex-basis: 20%;
 }
 
 .name {
@@ -68,6 +69,7 @@
 
 .info-content {
   text-align: center;
+  flex-basis: 80%;
 }
 .info-content h1 {
   margin-bottom: 15px;
