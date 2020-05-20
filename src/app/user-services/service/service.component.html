@@ -29,7 +29,55 @@
       <p>
         {{ service?.description }}
       </p>
-      <button class="btn btn-outline-primary">Make an offer</button>
+      <button (click)="handleOffer()" class="btn btn-outline-primary">
+        Make an offer
+      </button>
     </div>
   </div>
 </div>
+
+<!--Popup Deal Form-->
+<app-popup (closePopup)="handleClosePopup($event)" *ngIf="dealPopup">
+  <div class="header-text">
+    <p>Make A Deal</p>
+  </div>
+  <div class="popup-content">
+    <form [formGroup]="dealForm">
+      <div class="message-input">
+        <app-input
+          [control]="dealForm.get('note')"
+          placeholder="Write some catchy note"
+          name="note"
+        ></app-input>
+        <p class="message-note">
+          Note can increase the chance of getting the service
+        </p>
+      </div>
+
+      <div class="time-input">
+        <app-input
+          [control]="dealForm.get('time')"
+          placeholder="How long do you need the service for ?"
+          name="time"
+          type="number"
+        ></app-input>
+        <p class="time-note">
+          Enter time in hours(number)
+        </p>
+      </div>
+
+      <div class="deal-message-container">
+        <p class="deal-message">
+          Upon acceptance {{ service?.title }}, {{ service?.name }} will charge
+          you:
+        </p>
+        <p class="price">100$</p>
+      </div>
+
+      <div class="buttons">
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-warning">Cancel</button>
+      </div>
+    </form>
+  </div>
+</app-popup>

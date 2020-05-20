@@ -1,6 +1,9 @@
 <div class="main-container">
   <span class="helper"></span>
   <div>
-    <p>{{ message }}</p>
+    <ng-content select=".header-text"> </ng-content>
+    <div (click)="handleClosePopup()" class="popupCloseButton">&times;</div>
+    <p class="message">{{ message }}</p>
+    <ng-content select=".popup-content"></ng-content>
   </div>
 </div>

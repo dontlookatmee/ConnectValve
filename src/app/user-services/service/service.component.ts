@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserServicesService } from 'src/app/services/user-services/user-services.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 interface Service {
   category: string;
@@ -19,16 +20,33 @@ interface Service {
 })
 export class ServiceComponent implements OnInit {
   service: Service;
+  dealForm: FormGroup;
+  dealPopup: boolean = false;
 
   constructor(
     private userService: UserServicesService,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    private activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {
+    // Deal form
+    this.dealForm = this.fb.group({
+      note: ['', [Validators.required]],
+      time: ['', [Validators.required]],
+    });
+  }
 
   ngOnInit(): void {
     const currentPathId = this.activatedRoute.snapshot.paramMap.get('id');
     this.userService.getService(currentPathId).subscribe((data: Service) => {
       this.service = data;
     });
+  }
+
+  handleOffer() {
+    this.dealPopup = true;
+  }
+
+  handleClosePopup(value: boolean) {
+    this.dealPopup = value;
   }
 }
