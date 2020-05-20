@@ -10,6 +10,11 @@
 .navbar-brand:hover {
   color: #ce6041;
 }
+.atuhenticated {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
 #register-button {
   background-color: #e27d60;

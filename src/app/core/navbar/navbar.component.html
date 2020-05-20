@@ -13,38 +13,45 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li *ngIf="isLoggedIn" class="nav-item">
-        <a class="nav-link" href="#">Hi, {{ user.name }}</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Faq</a>
-      </li>
-      <ng-container *ngIf="!isLoggedIn; else logged">
-        <li *ngIf="!isLoggedIn" class="nav-item">
+      <ng-container *ngIf="auth.user$ | async; then atuhenticated; else guest">
+      </ng-container>
+
+      <ng-template #guest>
+        <li class="nav-item">
+          <a routerLink="" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Faq</a>
+        </li>
+        <li class="nav-item">
           <a routerLink="/auth/login" class="nav-link">Login</a>
         </li>
-        <li routerLink="/auth/register" *ngIf="!isLoggedIn" class="nav-item">
+        <li routerLink="/auth/register" class="nav-item">
           <a class="nav-link" id="register-button">Register</a>
         </li>
-      </ng-container>
-      <ng-template #logged>
-        <li *ngIf="isLoggedIn" class="nav-item">
-          <a class="nav-link">Manage</a>
-        </li>
-        <li *ngIf="isLoggedIn" class="nav-item">
-          <a class="nav-link">Messages</a>
-        </li>
-        <li
-          (click)="handleLogOut()"
-          *ngIf="isLoggedIn"
-          class="nav-item"
-          id="logout-button"
-        >
-          <a class="nav-link" href="#">Logout</a>
-        </li>
+      </ng-template>
+      <ng-template #atuhenticated>
+        <div class="atuhenticated" *ngIf="auth.user$ | async as user">
+          <li class="nav-item">
+            <a class="nav-link">Hi, {{ user.name }}</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Faq</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Manage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Messages</a>
+          </li>
+
+          <li (click)="handleLogOut()" class="nav-item" id="logout-button">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
+        </div>
       </ng-template>
     </ul>
   </div>

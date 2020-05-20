@@ -26,16 +26,7 @@ export class NavbarComponent implements OnInit {
   isLoggedIn: boolean;
   user: User;
 
-  constructor(private auth: AuthService, private fAuth: AngularFireAuth) {
-    this.auth.getUser().subscribe((user) => {
-      if (user === null) {
-        this.isLoggedIn = false;
-      } else {
-        this.user = user;
-        this.isLoggedIn = true;
-      }
-    });
-  }
+  constructor(public auth: AuthService, private fAuth: AngularFireAuth) {}
 
   ngOnInit(): void {}
 
