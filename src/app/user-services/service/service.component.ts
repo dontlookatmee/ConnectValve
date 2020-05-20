@@ -49,4 +49,18 @@ export class ServiceComponent implements OnInit {
   handleClosePopup(value: boolean) {
     this.dealPopup = value;
   }
+
+  calculateDealPrice() {
+    let result: number;
+
+    const time = this.dealForm.get('time').value
+      ? this.dealForm.get('time').value
+      : 0;
+    const price = this.service.price ? this.service.price : 0;
+
+    if (!isNaN(time) && !isNaN(price)) {
+      result = Number(time) * Number(price);
+    }
+    return result;
+  }
 }
