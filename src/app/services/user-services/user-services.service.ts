@@ -24,6 +24,16 @@ export class UserServicesService {
   }
 
   getService(uid: string) {
-    return this.afs.collection('services').doc(uid).valueChanges();
+    return this.afs
+      .collection('services')
+      .doc(uid)
+      .snapshotChanges()
+      .pipe(
+        map((values) => {
+          const data = values.payload.data();
+          const id = values.payload.id;
+          return { id, data };
+        })
+      );
   }
 }

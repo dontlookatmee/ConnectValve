@@ -20,11 +20,13 @@ interface User {
 })
 export class AuthService implements OnInit {
   user$: Observable<User>;
+  userId: string;
 
   constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap((user) => {
         if (user) {
+          this.userId = user.uid;
           return this.afs.doc<User>(`profiles/${user.uid}`).valueChanges();
         } else {
           return of(null);
@@ -34,4 +36,8 @@ export class AuthService implements OnInit {
   }
 
   ngOnInit() {}
+
+  getUserId() {
+    return this.userId;
+  }
 }

@@ -1,16 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { UserServicesService } from 'src/app/services/user-services/user-services.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { OffersService } from 'src/app/services/offers/offers.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 interface Service {
-  category: string;
-  description: string;
-  image: string;
-  price: number;
-  title: string;
-  user: string;
-  name: string;
+  id: string;
+  data: {
+    category: string;
+    description: string;
+    image: string;
+    price: number;
+    title: string;
+    uid: string;
+    name: string;
+  };
 }
 
 @Component({
@@ -22,9 +27,13 @@ export class ServiceComponent implements OnInit {
   service: Service;
   dealForm: FormGroup;
   dealPopup: boolean = false;
+  totalPrice: number;
+  canMakeOffer: boolean = false;
 
   constructor(
     private userService: UserServicesService,
+    private offerService: OffersService,
+    private authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {
@@ -40,27 +49,61 @@ export class ServiceComponent implements OnInit {
     this.userService.getService(currentPathId).subscribe((data: Service) => {
       this.service = data;
     });
+
+    // Just making 100% sure that unregistered users cannot
+    // make offers even tho we have guard
+    this.authService.user$.subscribe((user) => {
+      if (user) {
+        this.canMakeOffer = true;
+      } else {
+        this.canMakeOffer = false;
+      }
+    });
   }
 
   handleOffer() {
+    const toUser = this.service?.data.uid;
+    const fromUser = this.authService.getUserId();
+    const note = this.dealForm.get('note').value;
+    const time = this.dealForm.get('time').value;
+    const price = this.calculateDealPrice();
+    const serviceId = this.service?.id;
+
+    if (this.dealForm.valid) {
+      const data = {
+        collaborationCreated: false,
+        fromUser: fromUser,
+        toUser: toUser,
+        note: note,
+        price: price,
+        time: time,
+        service: `services/${serviceId}`,
+        status: 'pending',
+      };
+
+      this.offerService.addOfferToDB(data);
+      this.handleClosePopup(false);
+    }
+  }
+
+  handleOfferPopup() {
     this.dealPopup = true;
   }
 
   handleClosePopup(value: boolean) {
     this.dealPopup = value;
+    this.dealForm.reset();
   }
 
   calculateDealPrice() {
-    let result: number;
-
     const time = this.dealForm.get('time').value
       ? this.dealForm.get('time').value
       : 0;
-    const price = this.service.price ? this.service.price : 0;
+    const price = this.service?.data.price ? this.service?.data.price : 0;
 
     if (!isNaN(time) && !isNaN(price)) {
-      result = Number(time) * Number(price);
+      this.totalPrice = Number(time) * Number(price);
     }
-    return result;
+    return this.totalPrice;
   }
 }

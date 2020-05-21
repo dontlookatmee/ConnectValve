@@ -1,6 +1,6 @@
 <div class="main-container">
   <div class="image-container">
-    <img [src]="service?.image" alt="" />
+    <img [src]="service?.data.image" alt="" />
   </div>
   <div class="content">
     <!--User and Price-->
@@ -12,24 +12,28 @@
           alt=""
         />
         <div class="name">
-          <p>{{ service?.name }}</p>
+          <p>{{ service?.data.name }}</p>
           <p>Owner</p>
         </div>
       </div>
       <!--Charge-->
       <div class="price">
-        <p>${{ service?.price }}</p>
+        <p>${{ service?.data.price }}</p>
         <p>Per Hour</p>
       </div>
     </div>
     <!--Service Info-->
     <div class="info-content">
-      <h1>{{ service?.title }}</h1>
-      <span>{{ service?.category }}</span>
+      <h1>{{ service?.data.title }}</h1>
+      <span>{{ service?.data.category }}</span>
       <p>
-        {{ service?.description }}
+        {{ service?.data.description }}
       </p>
-      <button (click)="handleOffer()" class="btn btn-outline-primary">
+      <button
+        [disabled]="!canMakeOffer"
+        (click)="handleOfferPopup()"
+        class="btn btn-outline-primary"
+      >
         Make an offer
       </button>
     </div>
@@ -42,7 +46,7 @@
     <p>Make A Deal</p>
   </div>
   <div class="popup-content">
-    <form [formGroup]="dealForm">
+    <form [formGroup]="dealForm" (ngSubmit)="handleOffer()">
       <div class="message-input">
         <app-input
           [control]="dealForm.get('note')"
@@ -68,15 +72,21 @@
 
       <div class="deal-message-container">
         <p class="deal-message">
-          Upon acceptance {{ service?.title }}, {{ service?.name }} will charge
-          you:
+          Upon acceptance {{ service?.data.title }},
+          {{ service?.data.name }} will charge you:
         </p>
         <p class="price">${{ calculateDealPrice() }}</p>
       </div>
 
       <div class="buttons">
         <button type="submit" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-warning">Cancel</button>
+        <button
+          (click)="handleClosePopup()"
+          type="button"
+          class="btn btn-warning"
+        >
+          Cancel
+        </button>
       </div>
     </form>
   </div>
