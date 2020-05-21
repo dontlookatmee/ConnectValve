@@ -7,7 +7,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class ProfileService {
   constructor(private afs: AngularFirestore) {}
 
-  addUserInDB(user: {}, uid: any): void {
-    this.afs.collection('profiles').doc(uid).set(user);
+  addUserInDB(user: {}, uid: any) {
+    return this.afs.collection('profiles').doc(uid).set(user);
   }
 }

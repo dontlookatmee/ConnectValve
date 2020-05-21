@@ -65,7 +65,7 @@ export class ServiceComponent implements OnInit {
     const toUser = this.service?.data.uid;
     const fromUser = this.authService.getUserId();
     const note = this.dealForm.get('note').value;
-    const time = this.dealForm.get('time').value;
+    const time = parseFloat(this.dealForm.get('time').value);
     const price = this.calculateDealPrice();
     const serviceId = this.service?.id;
 
@@ -81,8 +81,9 @@ export class ServiceComponent implements OnInit {
         status: 'pending',
       };
 
-      this.offerService.addOfferToDB(data);
-      this.handleClosePopup(false);
+      this.offerService.addOfferToDB(data).then((x) => {
+        this.handleClosePopup(false);
+      });
     }
   }
 

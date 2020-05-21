@@ -77,8 +77,18 @@ export class RegisterComponent implements OnInit {
             status: 'offline',
             uid,
           };
-          this.profileService.addUserInDB(user, uid);
-          this.router.navigate(['']);
+          this.profileService
+            .addUserInDB(user, uid)
+            .then((x) => {
+              this.router.navigate(['']);
+            })
+            .catch((err) => {
+              this.isRegistrationCompleted.message = err;
+              this.isRegistrationCompleted.showMessage = true;
+              setTimeout(() => {
+                this.isRegistrationCompleted.showMessage = false;
+              }, 2500);
+            });
         })
         .catch((err) => {
           this.isRegistrationCompleted.message = err;

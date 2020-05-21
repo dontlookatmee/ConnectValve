@@ -8,6 +8,6 @@ export class OffersService {
   constructor(private afs: AngularFirestore) {}
 
   addOfferToDB(offer: {}) {
-    this.afs.collection('offers').add(offer);
+    return this.afs.collection('offers').add(offer);
   }
 }

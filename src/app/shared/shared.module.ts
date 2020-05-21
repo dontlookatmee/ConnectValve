@@ -6,6 +6,7 @@ import { InputComponent } from './input/input.component';
 import { FormComponent } from './form/form.component';
 import { PopupComponent } from './popup/popup.component';
 import { RouterModule } from '@angular/router';
+import { SuccessPopupComponent } from './success-popup/success-popup.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { RouterModule } from '@angular/router';
     InputComponent,
     FormComponent,
     PopupComponent,
+    SuccessPopupComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
