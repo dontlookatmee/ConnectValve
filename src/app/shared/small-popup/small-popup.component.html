@@ -1,0 +1,19 @@
+<div *ngIf="type === 'info'" class="info-msg">
+  <i class="fa fa-info-circle"></i>
+  {{ message }}
+</div>
+
+<div *ngIf="type === 'success'" class="success-msg">
+  <i class="fa fa-check"></i>
+  {{ message }}
+</div>
+
+<div *ngIf="type === 'warning'" class="warning-msg">
+  <i class="fa fa-warning"></i>
+  {{ message }}
+</div>
+
+<div *ngIf="type === 'error'" class="error-msg">
+  <i class="fa fa-times-circle"></i>
+  {{ message }}
+</div>
