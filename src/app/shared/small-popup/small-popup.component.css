@@ -3,12 +3,13 @@
 .warning-msg,
 .error-msg {
   position: absolute;
-  top: 52px;
-  right: 1px;
+  left: 50%;
+  top: 50%;
   margin: 10px 0;
   padding: 10px;
   border-radius: 3px 3px 3px 3px;
   width: 20%;
+  transform: translate(-50%, -50%);
 }
 .info-msg {
   color: #059;
