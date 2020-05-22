@@ -36,7 +36,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .name p:first-of-type {

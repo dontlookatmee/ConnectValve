@@ -22,6 +22,7 @@ import { SmallPopupComponent } from './small-popup/small-popup.component';
     InputComponent,
     FormComponent,
     PopupComponent,
+    SmallPopupComponent,
   ],
 })
 export class SharedModule {}

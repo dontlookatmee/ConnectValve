@@ -2,6 +2,9 @@
 .success-msg,
 .warning-msg,
 .error-msg {
+  position: absolute;
+  top: 52px;
+  right: 1px;
   margin: 10px 0;
   padding: 10px;
   border-radius: 3px 3px 3px 3px;

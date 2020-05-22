@@ -29,6 +29,7 @@ export class ServiceComponent implements OnInit {
   dealPopup: boolean = false;
   totalPrice: number;
   canMakeOffer: boolean = false;
+  offerSent: boolean = false;
 
   constructor(
     private userService: UserServicesService,
@@ -83,6 +84,10 @@ export class ServiceComponent implements OnInit {
 
       this.offerService.addOfferToDB(data).then((x) => {
         this.handleClosePopup(false);
+        this.offerSent = true;
+        setTimeout(() => {
+          this.offerSent = false;
+        }, 3000);
       });
     }
   }

@@ -40,6 +40,13 @@
   </div>
 </div>
 
+<!--Small PopUp-->
+<app-small-popup
+  *ngIf="offerSent"
+  message="Offer was successfuly created!"
+  type="success"
+></app-small-popup>
+
 <!--Popup Deal Form-->
 <app-popup (closePopup)="handleClosePopup($event)" *ngIf="dealPopup">
   <div class="header-text">
@@ -81,7 +88,7 @@
       <div class="buttons">
         <button type="submit" class="btn btn-primary">Save changes</button>
         <button
-          (click)="handleClosePopup()"
+          (click)="handleClosePopup(false)"
           type="button"
           class="btn btn-warning"
         >
