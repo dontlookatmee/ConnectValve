@@ -71,4 +71,11 @@ export class OfferCardComponent implements OnInit {
   declineOffer() {
     this.offerService.updateOffer(this.offerId, { status: 'declined' });
   }
+
+  deleteOffer() {
+    const confirmation = confirm('Are you sure ?');
+    if (confirmation) {
+      this.offerService.deleteOffer(this.offerId);
+    }
+  }
 }

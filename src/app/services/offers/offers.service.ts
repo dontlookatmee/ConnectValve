@@ -57,7 +57,10 @@ export class OffersService {
   }
 
   updateOffer(offerId: string, data: {}) {
-    console.log('update offer service fired');
     this.afs.collection('offers').doc(offerId).update(data);
+  }
+
+  deleteOffer(offerId: string) {
+    this.afs.collection('offers').doc(offerId).delete();
   }
 }
