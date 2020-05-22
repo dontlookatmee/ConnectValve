@@ -2,6 +2,16 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 
+interface Service {
+  category: string;
+  description: string;
+  image: string;
+  name: string;
+  price: number;
+  title: string;
+  uid: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -35,5 +45,9 @@ export class UserServicesService {
           return { id, data };
         })
       );
+  }
+
+  createService(data: Service) {
+    return this.afs.collection('services').add(data);
   }
 }
