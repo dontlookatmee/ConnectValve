@@ -24,6 +24,9 @@ img {
 .pending {
   background-color: orange;
 }
+.decline {
+  background-color: red;
+}
 
 .label {
   font-weight: bold;

@@ -2,14 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { OffersService } from 'src/app/services/offers/offers.service';
 
 interface Offer {
-  collaborationCreated: boolean;
-  fromUser: string;
-  note: string;
-  price: number;
-  service: string;
-  status: string;
-  time: number;
-  toUser: string;
+  id: string;
+  data: {
+    collaborationCreated: boolean;
+    fromUser: string;
+    note: string;
+    price: number;
+    service: string;
+    status: string;
+    time: number;
+    toUser: string;
+  };
 }
 
 @Component({

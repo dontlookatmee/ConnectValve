@@ -2,12 +2,13 @@
 <div class="main-container">
   <app-offer-card
     *ngFor="let offer of offersToMe"
-    [note]="offer.note"
-    [price]="offer.price"
-    [status]="offer.status"
-    [time]="offer.time"
-    [service]="offer.service"
-    [fromUser]="offer.fromUser"
-    [toUser]="offer.toUser"
+    [note]="offer?.data.note"
+    [price]="offer?.data.price"
+    [status]="offer?.data.status"
+    [time]="offer?.data.time"
+    [service]="offer?.data.service"
+    [fromUser]="offer?.data.fromUser"
+    [toUser]="offer?.data.toUser"
+    [offerId]="offer?.id"
   ></app-offer-card>
 </div>

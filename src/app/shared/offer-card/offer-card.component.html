@@ -6,7 +6,16 @@
       alt=""
     />
     <p>{{ offerServiceInfo?.data.description }}</p>
-    <p class="status pending">{{ status }}</p>
+    <p
+      [ngClass]="{
+        pending: status === 'pending',
+        accepted: status === 'accepted',
+        decline: status === 'declined'
+      }"
+      class="status pending"
+    >
+      {{ status }}
+    </p>
     <hr />
     <div class="from-user">
       <p class="label">From User:</p>
@@ -26,8 +35,10 @@
     </div>
     <hr />
     <div class="button">
-      <button class="btn btn-primary">Accept</button>
-      <button class="btn btn-danger">Decline</button>
+      <button (click)="accepOffer()" class="btn btn-primary">
+        Accept
+      </button>
+      <button (click)="declineOffer()" class="btn btn-danger">Decline</button>
     </div>
   </div>
 </div>

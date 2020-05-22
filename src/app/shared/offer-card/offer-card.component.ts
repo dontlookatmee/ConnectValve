@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { UserServicesService } from 'src/app/services/user-services/user-services.service';
+import { OffersService } from 'src/app/services/offers/offers.service';
 
 interface User {
   avatar: string;
@@ -40,13 +41,15 @@ export class OfferCardComponent implements OnInit {
   @Input('time') time: string;
   @Input('toUser') toUser: string;
   @Input('fromUser') fromUser: string;
+  @Input('offerId') offerId: string;
 
   userProfile: User;
   offerServiceInfo: Service;
 
   constructor(
     private profileService: ProfileService,
-    private userServices: UserServicesService
+    private userServices: UserServicesService,
+    private offerService: OffersService
   ) {}
 
   ngOnInit(): void {
@@ -59,5 +62,13 @@ export class OfferCardComponent implements OnInit {
     this.userServices.getService(this.service).subscribe((service: Service) => {
       this.offerServiceInfo = service;
     });
+  }
+
+  accepOffer() {
+    this.offerService.updateOffer(this.offerId, { status: 'accepted' });
+  }
+
+  declineOffer() {
+    this.offerService.updateOffer(this.offerId, { status: 'declined' });
   }
 }
