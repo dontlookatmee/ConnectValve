@@ -1,0 +1,84 @@
+<div class="main-container">
+  <h3>Create Service</h3>
+  <form [formGroup]="createForm" (ngSubmit)="handleServiceCreate()">
+    <div class="category-container field">
+      <label class="my-1 mr-2" for="category">Category</label>
+      <select
+        class="custom-select my-1 mr-sm-2"
+        id="category"
+        formControlName="category"
+      >
+        <option disabled [selected]="true == true" value="choose"
+          >Choose...</option
+        >
+        <option value="programming">Programming</option>
+        <option value="web design">Web Design</option>
+        <option value="art">Art</option>
+        <option value="others">Others</option>
+      </select>
+    </div>
+    <div class="title field">
+      <label>Title</label>
+      <app-input
+        [control]="createForm.get('title')"
+        placeholder="Enter title"
+      ></app-input>
+    </div>
+
+    <div class="desc field">
+      <label for="desc">Description</label>
+      <textarea
+        id="desc"
+        cols="70"
+        rows="10"
+        placeholder="Enter description"
+        formControlName="description"
+      ></textarea>
+      <div
+        *ngIf="createForm.get('description').errors?.maxlength"
+        style="color: 'red';"
+      >
+        Value you entered is
+        {{ createForm.get('description').errors.maxlength.actualLength }}
+        characters long, but it must be less than
+        {{ createForm.get('description').errors.maxlength.requiredLength }}
+        characters.
+      </div>
+    </div>
+
+    <div class="image field">
+      <label>Image Url</label>
+      <app-input
+        [control]="createForm.get('image')"
+        placeholder="Enter image url"
+        name="image url"
+      ></app-input>
+    </div>
+
+    <div class="price field">
+      <label>Price per hour</label>
+      <app-input
+        [control]="createForm.get('price')"
+        placeholder="Enter price per hour"
+        name="value type"
+      ></app-input>
+    </div>
+    <div class="buttons field">
+      <button [disabled]="createForm.invalid" class="btn btn-primary">
+        Create
+      </button>
+      <button
+        (click)="handleCancelCreate()"
+        type="button"
+        class="btn btn-outline-secondary"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+<app-small-popup
+  *ngIf="feedback?.visible"
+  [type]="feedback?.status"
+  [message]="feedback?.msg"
+></app-small-popup>
