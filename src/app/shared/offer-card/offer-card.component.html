@@ -1,0 +1,33 @@
+<div class="offer-card">
+  <div class="offer-content">
+    <h4>{{ offerServiceInfo?.data.title }}</h4>
+    <img
+      src="https://images.unsplash.com/photo-1497215842964-222b430dc094?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
+      alt=""
+    />
+    <p>{{ offerServiceInfo?.data.description }}</p>
+    <p class="status">{{ status }}</p>
+    <hr />
+    <div class="from-user">
+      <p class="label">From User:</p>
+      <p>{{ userProfile?.name }}</p>
+    </div>
+    <div class="note">
+      <p class="label">Note:</p>
+      <p>{{ note }}</p>
+    </div>
+    <div class="price">
+      <p class="label">Price:</p>
+      <p>${{ price }}</p>
+    </div>
+    <div class="time">
+      <p class="label">Time:</p>
+      <p>{{ time }} hours</p>
+    </div>
+    <hr />
+    <div class="button">
+      <button class="btn btn-primary">Accept</button>
+      <button class="btn btn-danger">Decline</button>
+    </div>
+  </div>
+</div>
