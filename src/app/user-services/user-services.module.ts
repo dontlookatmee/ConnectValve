@@ -4,9 +4,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserServicesRoutingModule } from './user-services-routing.module';
 import { ServiceComponent } from './service/service.component';
 import { SharedModule } from '../shared/shared.module';
+import { CreateComponent } from './create/create.component';
 
 @NgModule({
-  declarations: [ServiceComponent],
+  declarations: [ServiceComponent, CreateComponent],
   imports: [
     CommonModule,
     UserServicesRoutingModule,
