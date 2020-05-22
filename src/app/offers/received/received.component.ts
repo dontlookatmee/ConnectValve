@@ -4,7 +4,7 @@ import { OffersService } from 'src/app/services/offers/offers.service';
 interface Offer {
   collaborationCreated: boolean;
   fromUser: string;
-  note: 'asd';
+  note: string;
   price: number;
   service: string;
   status: string;

@@ -78,7 +78,7 @@ export class ServiceComponent implements OnInit {
         note: note,
         price: price,
         time: time,
-        service: `services/${serviceId}`,
+        service: serviceId,
         status: 'pending',
       };
 

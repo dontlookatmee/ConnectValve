@@ -7,6 +7,7 @@ import { FormComponent } from './form/form.component';
 import { PopupComponent } from './popup/popup.component';
 import { RouterModule } from '@angular/router';
 import { SmallPopupComponent } from './small-popup/small-popup.component';
+import { OfferCardComponent } from './offer-card/offer-card.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SmallPopupComponent } from './small-popup/small-popup.component';
     FormComponent,
     PopupComponent,
     SmallPopupComponent,
+    OfferCardComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
@@ -23,6 +25,7 @@ import { SmallPopupComponent } from './small-popup/small-popup.component';
     FormComponent,
     PopupComponent,
     SmallPopupComponent,
+    OfferCardComponent,
   ],
 })
 export class SharedModule {}

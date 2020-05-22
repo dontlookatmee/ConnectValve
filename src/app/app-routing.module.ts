@@ -19,6 +19,12 @@ const routes: Routes = [
         (m) => m.UserServicesModule
       ),
   },
+  {
+    path: 'offers',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./offers/offers.module').then((m) => m.OffersModule),
+  },
 ];
 
 @NgModule({
