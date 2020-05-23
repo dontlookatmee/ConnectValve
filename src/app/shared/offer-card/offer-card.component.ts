@@ -42,6 +42,7 @@ export class OfferCardComponent implements OnInit {
   @Input('toUser') toUser: string;
   @Input('fromUser') fromUser: string;
   @Input('offerId') offerId: string;
+  @Input('isReceiver') isReceiver: boolean = false;
 
   userProfile: User;
   offerServiceInfo: Service;

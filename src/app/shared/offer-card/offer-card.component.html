@@ -33,15 +33,37 @@
       <p class="label">Time:</p>
       <p>{{ time }} hours</p>
     </div>
-    <hr />
-    <div class="button">
-      <button (click)="accepOffer()" class="btn btn-success">
-        Accept
-      </button>
-      <button (click)="declineOffer()" class="btn btn-secondary">
-        Decline
-      </button>
-      <button (click)="deleteOffer()" class="btn btn-danger">Delete</button>
-    </div>
+    <ng-container *ngIf="isReceiver; then receiver; else sender"></ng-container>
+    <ng-template #receiver>
+      <hr />
+      <div
+        [ngClass]="{
+          'less-butons': status === 'accepted' || 'declined
+        14'
+        }"
+        class="button"
+      >
+        <button
+          *ngIf="status !== 'accepted'"
+          (click)="accepOffer()"
+          class="btn btn-success"
+        >
+          Accept
+        </button>
+        <button
+          *ngIf="status !== 'declined'"
+          (click)="declineOffer()"
+          class="btn btn-secondary"
+        >
+          Decline
+        </button>
+        <button (click)="deleteOffer()" class="btn btn-danger">Delete</button>
+      </div>
+    </ng-template>
+
+    <ng-template #sender>
+      <hr />
+      <button class="btn btn-success">Collaborate</button>
+    </ng-template>
   </div>
 </div>
