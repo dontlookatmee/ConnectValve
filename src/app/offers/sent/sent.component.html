@@ -1,1 +1,18 @@
-<p>sent works!</p>
+<h1>Sent Offers</h1>
+<div class="main-container">
+  <app-offer-card
+    *ngFor="let offer of offersSent"
+    [collaboration]="offer?.data.collaborationCreated"
+    [note]="offer?.data.note"
+    [price]="offer?.data.price"
+    [status]="offer?.data.status"
+    [time]="offer?.data.time"
+    [service]="offer?.data.service"
+    [fromUser]="offer?.data.fromUser"
+    [toUser]="offer?.data.toUser"
+    [offerId]="offer?.id"
+    [isReceiver]="false"
+  >
+    ></app-offer-card
+  >
+</div>

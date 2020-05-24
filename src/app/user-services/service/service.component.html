@@ -1,6 +1,10 @@
 <div class="main-container">
   <div class="image-container">
-    <img [src]="service?.data.image" alt="" />
+    <img
+      [src]="service?.data.image"
+      alt=""
+      onerror="this.src='../../../assets/error/broken-image.jpg'"
+    />
   </div>
   <div class="content">
     <!--User and Price-->
