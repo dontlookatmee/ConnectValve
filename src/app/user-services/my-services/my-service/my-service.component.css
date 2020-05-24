@@ -28,14 +28,39 @@ li:hover {
 .content {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 45%;
 }
 
 .buttons {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
   margin-top: auto;
-  width: 41%;
+  width: 29%;
+  justify-content: space-between;
+}
+
+.category-container {
+  width: 25%;
+}
+.desc {
+  display: flex;
+  flex-direction: column;
+}
+
+.desc textarea {
+  padding: 0.5rem;
+}
+
+.field {
+  margin-bottom: 15px;
+}
+
+.edit-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 30%;
 }
