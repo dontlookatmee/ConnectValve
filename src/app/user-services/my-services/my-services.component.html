@@ -1,0 +1,19 @@
+<div class="main-container">
+  <div class="header-text">
+    <h1>My Services</h1>
+    <p>If you don't see any services, you can create one</p>
+    <button routerLink="/services/create" class="btn btn-primary">
+      Create Service
+    </button>
+  </div>
+  <ul>
+    <app-my-service
+      *ngFor="let service of myServices"
+      [title]="service?.data.title"
+      [category]="service?.data.category"
+      [description]="service?.data.description"
+      [image]="service?.data.image"
+      [id]="service?.id"
+    ></app-my-service>
+  </ul>
+</div>

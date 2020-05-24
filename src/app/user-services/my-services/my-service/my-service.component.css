@@ -1,0 +1,26 @@
+li {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+li img {
+  float: left;
+  margin: 0 15px 0 0;
+  width: 250px;
+  height: 250px;
+}
+
+li p {
+  font-weight: 15px;
+}
+
+li {
+  padding: 10px;
+  overflow: auto;
+}
+
+li:hover {
+  background: #eee;
+  cursor: pointer;
+}

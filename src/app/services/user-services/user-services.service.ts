@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 interface Service {
   category: string;
@@ -12,11 +13,27 @@ interface Service {
   uid: string;
 }
 
+interface ServicesMeta {
+  id: string;
+  data: {
+    category: string;
+    description: string;
+    image: string;
+    name: string;
+    price: number;
+    title: string;
+    uid: string;
+  };
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class UserServicesService {
-  constructor(private afs: AngularFirestore) {}
+  constructor(
+    private afs: AngularFirestore,
+    private authService: AuthService
+  ) {}
 
   getServices() {
     return this.afs
@@ -43,6 +60,28 @@ export class UserServicesService {
           const data = values.payload.data();
           const id = values.payload.id;
           return { id, data };
+        })
+      );
+  }
+
+  getMyServices() {
+    const userId = this.authService.getUserId();
+
+    return this.afs
+      .collectionGroup('services')
+      .snapshotChanges()
+      .pipe(
+        map((data) => {
+          return data.map((values) => {
+            const data = values.payload.doc.data();
+            const id = values.payload.doc.id;
+            return { id, data };
+          });
+        }),
+        map((services: ServicesMeta[]) => {
+          return services.filter((service: ServicesMeta) => {
+            return service.data.uid === userId;
+          });
         })
       );
   }
