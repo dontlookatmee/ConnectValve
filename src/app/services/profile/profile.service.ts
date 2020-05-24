@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 interface User {
   avatar: string;
@@ -39,5 +40,11 @@ export class ProfileService {
           }
         })
       );
+  }
+
+  updateUserProfile(uid: string, status: string) {
+    return this.afs.collection<User>('profiles').doc(uid).update({
+      status,
+    });
   }
 }

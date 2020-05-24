@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { ProfileService } from 'src/app/services/profile/profile.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private fAuth: AngularFireAuth,
+    private profileService: ProfileService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
@@ -34,6 +38,10 @@ export class LoginComponent implements OnInit {
 
       this.fAuth
         .signInWithEmailAndPassword(email, password)
+        .then((x) => {
+          const uid = this.authService.getUserId();
+          this.profileService.updateUserProfile(uid, 'online');
+        })
         .then((x) => {
           this.router.navigate(['']);
         })

@@ -53,9 +53,7 @@ export class OfferCardComponent implements OnInit {
     private profileService: ProfileService,
     private userServices: UserServicesService,
     private offerService: OffersService
-  ) {
-    console.log('feedback ' + this.feedback);
-  }
+  ) {}
 
   ngOnInit(): void {
     this.profileService
