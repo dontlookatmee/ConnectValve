@@ -35,9 +35,6 @@
             id="category"
             formControlName="category"
           >
-            <option disabled [selected]="true == true" value="choose"
-              >Choose...</option
-            >
             <option value="programming">Programming</option>
             <option value="web design">Web Design</option>
             <option value="art">Art</option>
@@ -120,7 +117,10 @@
           >
             Cancel
           </button>
-          <button class="btn btn-outline-danger">
+          <button
+            (click)="handleDeleteService()"
+            class="btn btn-outline-danger"
+          >
             Delete
           </button>
         </div>

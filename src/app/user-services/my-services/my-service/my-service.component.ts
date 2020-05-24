@@ -1,6 +1,19 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserServicesService } from 'src/app/services/user-services/user-services.service';
 
+interface ServicesMeta {
+  id: string;
+  data: {
+    category: string;
+    description: string;
+    image: string;
+    name: string;
+    price: number;
+    title: string;
+    uid: string;
+  };
+}
 @Component({
   selector: 'app-my-service',
   templateUrl: './my-service.component.html',
@@ -16,8 +29,12 @@ export class MyServiceComponent implements OnInit {
 
   editForm: FormGroup;
   editMode: boolean = false;
+  service: ServicesMeta;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private userServices: UserServicesService
+  ) {}
 
   ngOnInit(): void {
     this.editForm = this.fb.group({
@@ -42,12 +59,40 @@ export class MyServiceComponent implements OnInit {
       ],
       price: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
     });
+
+    this.userServices.getService(this.id).subscribe((service: ServicesMeta) => {
+      this.editForm.patchValue({
+        category: service.data.category,
+        title: service.data.title,
+        description: service.data.description,
+        image: service.data.image,
+        price: service.data.price,
+      });
+    });
   }
 
-  handleServiceEdit() {}
+  handleServiceEdit() {
+    if (this.editForm.valid) {
+      const data = {
+        category: this.editForm.get('category').value,
+        title: this.editForm.get('title').value,
+        description: this.editForm.get('description').value,
+        image: this.editForm.get('image').value,
+        price: this.editForm.get('price').value,
+      };
+      this.userServices.updateService(this.id, data);
+    }
+  }
+
+  handleDeleteService() {
+    const con = confirm('Are you sure you want to the delete the service ?');
+
+    if (con) {
+      this.userServices.deleteService(this.id);
+    }
+  }
 
   handleCancelEdit() {
-    this.editForm.reset();
     this.editMode = false;
   }
 
