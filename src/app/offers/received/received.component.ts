@@ -21,13 +21,13 @@ interface Offer {
   styleUrls: ['./received.component.css'],
 })
 export class ReceivedComponent implements OnInit {
-  offersToMe: Offer[];
+  offersReceived: Offer[];
 
   constructor(private offersService: OffersService) {}
 
   ngOnInit(): void {
-    this.offersService.getOffers().subscribe((offer: Offer[]) => {
-      this.offersToMe = offer;
+    this.offersService.getReceivedOffers().subscribe((offer: Offer[]) => {
+      this.offersReceived = offer;
     });
   }
 }

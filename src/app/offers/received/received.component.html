@@ -1,7 +1,7 @@
 <h1>Received Offers</h1>
 <div class="main-container">
   <app-offer-card
-    *ngFor="let offer of offersToMe"
+    *ngFor="let offer of offersReceived"
     [note]="offer?.data.note"
     [price]="offer?.data.price"
     [status]="offer?.data.status"
