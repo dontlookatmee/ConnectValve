@@ -22,8 +22,22 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
     this.createForm = this.fb.group({
       category: ['', [Validators.required]],
-      title: ['', [Validators.required, Validators.maxLength(35)]],
-      description: ['', [Validators.required, Validators.maxLength(350)]],
+      title: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(35),
+        ],
+      ],
+      description: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(20),
+          Validators.maxLength(350),
+        ],
+      ],
       image: [
         '',
         [

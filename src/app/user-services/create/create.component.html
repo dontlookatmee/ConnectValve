@@ -35,13 +35,32 @@
         formControlName="description"
       ></textarea>
       <div
+        *ngIf="
+          createForm.get('description').errors?.required &&
+          createForm.get('description').touched
+        "
+        style="color: 'red';"
+      >
+        Value is required.
+      </div>
+      <div
+        *ngIf="createForm.get('description').errors?.minlength"
+        style="color: 'red';"
+      >
+        Value you entered is
+        {{ createForm.get('description').errors?.minlength.actualLength }}
+        characters long, but it must be at least
+        {{ createForm.get('description').errors?.minlength.requiredLength }}
+        characters.
+      </div>
+      <div
         *ngIf="createForm.get('description').errors?.maxlength"
         style="color: 'red';"
       >
         Value you entered is
-        {{ createForm.get('description').errors.maxlength.actualLength }}
+        {{ createForm.get('description').errors?.maxlength.actualLength }}
         characters long, but it must be less than
-        {{ createForm.get('description').errors.maxlength.requiredLength }}
+        {{ createForm.get('description').errors?.maxlength.requiredLength }}
         characters.
       </div>
     </div>
