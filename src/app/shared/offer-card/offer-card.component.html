@@ -62,8 +62,17 @@
     </ng-template>
 
     <ng-template #sender>
-      <hr />
-      <button class="btn btn-success">Collaborate</button>
+      <ng-container *ngIf="status === 'accepted' && !collaboration">
+        <hr />
+        <button (click)="handleCollaborate()" class="btn btn-success">
+          Collaborate
+        </button>
+      </ng-container>
     </ng-template>
   </div>
 </div>
+<!-- <app-small-popup
+  *ngIf="feedback?.visible"
+  [type]="feedback?.status"
+  [message]="feedback?.msg"
+></app-small-popup> -->

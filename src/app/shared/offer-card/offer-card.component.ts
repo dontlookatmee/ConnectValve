@@ -34,6 +34,7 @@ interface Service {
   styleUrls: ['./offer-card.component.css'],
 })
 export class OfferCardComponent implements OnInit {
+  @Input('collaboration') collaboration: boolean;
   @Input('note') note: string;
   @Input('price') price: number;
   @Input('service') service: string;
@@ -46,12 +47,15 @@ export class OfferCardComponent implements OnInit {
 
   userProfile: User;
   offerServiceInfo: Service;
+  feedback: { visible?: boolean; status?: string; msg?: string };
 
   constructor(
     private profileService: ProfileService,
     private userServices: UserServicesService,
     private offerService: OffersService
-  ) {}
+  ) {
+    console.log('feedback ' + this.feedback);
+  }
 
   ngOnInit(): void {
     this.profileService
@@ -78,5 +82,21 @@ export class OfferCardComponent implements OnInit {
     if (confirmation) {
       this.offerService.deleteOffer(this.offerId);
     }
+  }
+
+  handleCollaborate() {
+    this.offerService.updateOffer(this.offerId, {
+      collaborationCreated: true,
+    });
+  }
+
+  updateFeedback(visible: boolean, status?: string, msg?: string): {} {
+    const data = {
+      visible,
+      status,
+      msg,
+    };
+
+    return data;
   }
 }
