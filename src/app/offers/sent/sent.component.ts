@@ -25,7 +25,7 @@ export class SentComponent implements OnInit {
   constructor(private offersService: OffersService) {}
 
   ngOnInit(): void {
-    this.offersService.getReceivedOffers().subscribe((offers: Offer[]) => {
+    this.offersService.getSentOffers().subscribe((offers: Offer[]) => {
       this.offersSent = offers;
     });
   }
