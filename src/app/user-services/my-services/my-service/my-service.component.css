@@ -24,3 +24,18 @@ li:hover {
   background: #eee;
   cursor: pointer;
 }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: auto;
+  width: 41%;
+}

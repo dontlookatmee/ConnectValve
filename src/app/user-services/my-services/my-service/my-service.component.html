@@ -1,4 +1,4 @@
-<li [routerLink]="['/services/my-services/', id]">
+<li>
   <div>
     <img [src]="image" />
   </div>
@@ -6,5 +6,11 @@
     <h3>{{ title }}</h3>
     <p>{{ category }}</p>
     <p>{{ description }}</p>
+    <div class="buttons">
+      <button [routerLink]="['/services/', id]" class="btn btn-primary">
+        Check service
+      </button>
+      <button class="btn btn-warning">Update service</button>
+    </div>
   </div>
 </li>
