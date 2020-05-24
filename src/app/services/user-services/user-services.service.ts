@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map, filter } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
+import * as firebase from 'firebase';
 
 interface Service {
   category: string;
@@ -30,10 +31,11 @@ interface ServicesMeta {
   providedIn: 'root',
 })
 export class UserServicesService {
-  constructor(
-    private afs: AngularFirestore,
-    private authService: AuthService
-  ) {}
+  userId: string;
+
+  constructor(private afs: AngularFirestore, private authService: AuthService) {
+    this.userId = this.authService.getUserId();
+  }
 
   getServices() {
     return this.afs
@@ -65,8 +67,6 @@ export class UserServicesService {
   }
 
   getMyServices() {
-    const userId = this.authService.getUserId();
-
     return this.afs
       .collectionGroup('services')
       .snapshotChanges()
@@ -80,15 +80,28 @@ export class UserServicesService {
         }),
         map((services: ServicesMeta[]) => {
           return services.filter((service: ServicesMeta) => {
-            return service.data.uid === userId;
+            return service.data.uid === this.userId;
           });
         })
       );
   }
 
   createService(data: Service) {
+    console.log('created service');
     return this.afs.collection('services').add(data);
   }
+
+  // I may store the services in each user DB profile later
+
+  // addServiceToUserDbProfile(data: {}) {
+  //   console.log('service added to profile');
+  //   return this.afs
+  //     .collection('profiles')
+  //     .doc(this.userId)
+  //     .update({
+  //       services: firebase.firestore.FieldValue.arrayUnion(data),
+  //     });
+  // }
 
   updateService(id: string, data: {}) {
     return this.afs.collection('services').doc(id).update(data);

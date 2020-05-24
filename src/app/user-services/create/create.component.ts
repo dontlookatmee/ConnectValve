@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { isValueNumber } from '../../custom-validators/isNumber';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserServicesService } from 'src/app/services/user-services/user-services.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create',
@@ -59,7 +60,7 @@ export class CreateComponent implements OnInit {
     const image = this.createForm.get('image').value;
     const price = parseFloat(this.createForm.get('price').value);
 
-    this.authService.user$.subscribe((user) => {
+    this.authService.user$.pipe(take(1)).subscribe((user) => {
       const data = {
         category,
         title,
@@ -72,6 +73,10 @@ export class CreateComponent implements OnInit {
 
       this.userServices
         .createService(data)
+        // I may store user service in DB profile service array
+        // .then((x) => {
+        //   this.userServices.addServiceToUserDbProfile(data);
+        // })
         .then((x) => {
           this.feedback = this.showPopupMsg(
             true,
@@ -85,6 +90,7 @@ export class CreateComponent implements OnInit {
           this.createForm.reset();
         })
         .catch((err) => {
+          console.log(err);
           this.feedback = this.showPopupMsg(
             true,
             'error',
