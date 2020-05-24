@@ -6,7 +6,7 @@
     [name]="name"
     [placeholder]="placeholder"
   />
-  <ng-container *ngIf="control.errors && control.touched">
+  <ng-container *ngIf="control.errors && (control.touched || control.dirty)">
     <div *ngIf="control.errors.required" class="validation">
       Value is required.
     </div>
