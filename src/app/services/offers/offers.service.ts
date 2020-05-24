@@ -36,7 +36,7 @@ export class OffersService {
     return this.afs.collection('offers').add(offer);
   }
 
-  getOffers() {
+  getReceivedOffers() {
     const userId = this.auth.getUserId();
 
     return this.afs
@@ -56,11 +56,31 @@ export class OffersService {
       );
   }
 
+  getSentOffers() {
+    const userId = this.auth.getUserId();
+
+    return this.afs
+      .collection('offers')
+      .snapshotChanges()
+      .pipe(
+        map((data) => {
+          return data.map((offers) => {
+            const data = offers.payload.doc.data();
+            const id = offers.payload.doc.id;
+            return { id, data };
+          });
+        }),
+        map((offers: OfferMetadata[]) =>
+          offers.filter((offer) => offer.data.fromUser === userId)
+        )
+      );
+  }
+
   updateOffer(offerId: string, data: {}) {
-    this.afs.collection('offers').doc(offerId).update(data);
+    return this.afs.collection('offers').doc(offerId).update(data);
   }
 
   deleteOffer(offerId: string) {
-    this.afs.collection('offers').doc(offerId).delete();
+    return this.afs.collection('offers').doc(offerId).delete();
   }
 }
