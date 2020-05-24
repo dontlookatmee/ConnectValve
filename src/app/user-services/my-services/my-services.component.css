@@ -12,14 +12,6 @@
   margin: 0 auto;
 }
 
-ul {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  list-style-type: none;
-  width: 90%;
-}
-
 @media screen and (max-width: 830px) {
   .main-container {
     height: auto;
