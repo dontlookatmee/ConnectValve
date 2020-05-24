@@ -89,4 +89,12 @@ export class UserServicesService {
   createService(data: Service) {
     return this.afs.collection('services').add(data);
   }
+
+  updateService(id: string, data: {}) {
+    return this.afs.collection('services').doc(id).update(data);
+  }
+
+  deleteService(id: string) {
+    return this.afs.collection('services').doc(id).delete();
+  }
 }
