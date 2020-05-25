@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { UserServicesService } from 'src/app/services/user-services/user-services.service';
 import { OffersService } from 'src/app/services/offers/offers.service';
+import { CollaborationService } from 'src/app/services/collaboration/collaboration.service';
 
 interface User {
   avatar: string;
@@ -37,7 +38,7 @@ export class OfferCardComponent implements OnInit {
   @Input('collaboration') collaboration: boolean;
   @Input('note') note: string;
   @Input('price') price: number;
-  @Input('service') service: string;
+  @Input('serviceId') serviceId: string;
   @Input('status') status: string;
   @Input('time') time: string;
   @Input('toUser') toUser: string;
@@ -52,7 +53,8 @@ export class OfferCardComponent implements OnInit {
   constructor(
     private profileService: ProfileService,
     private userServices: UserServicesService,
-    private offerService: OffersService
+    private offerService: OffersService,
+    private cbService: CollaborationService
   ) {}
 
   ngOnInit(): void {
@@ -62,9 +64,11 @@ export class OfferCardComponent implements OnInit {
         this.userProfile = user;
       });
 
-    this.userServices.getService(this.service).subscribe((service: Service) => {
-      this.offerServiceInfo = service;
-    });
+    this.userServices
+      .getService(this.serviceId)
+      .subscribe((service: Service) => {
+        this.offerServiceInfo = service;
+      });
   }
 
   accepOffer() {
@@ -83,9 +87,28 @@ export class OfferCardComponent implements OnInit {
   }
 
   handleCollaborate() {
-    this.offerService.updateOffer(this.offerId, {
-      collaborationCreated: true,
-    });
+    const data = {
+      allowedPeople: [this.fromUser, this.toUser],
+      createdAt: '',
+      expiresAt: '',
+      fromOffer: this.offerId,
+      fromUser: this.fromUser,
+      image: this.offerServiceInfo.data.image,
+      joinedPeople: [],
+      serviceId: this.offerServiceInfo.id,
+      status: 'pending',
+      time: this.time,
+      title: this.offerServiceInfo.data.title,
+      toUser: this.toUser,
+    };
+
+    this.offerService
+      .updateOffer(this.offerId, {
+        collaborationCreated: true,
+      })
+      .then((x) => {
+        this.cbService.createCollaboration(data);
+      });
   }
 
   updateFeedback(visible: boolean, status?: string, msg?: string): {} {
