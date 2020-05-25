@@ -25,6 +25,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('./offers/offers.module').then((m) => m.OffersModule),
   },
+  {
+    path: 'collaborations',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./collaborations/collaborations.module').then(
+        (m) => m.CollaborationsModule
+      ),
+  },
 ];
 
 @NgModule({
