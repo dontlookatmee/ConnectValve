@@ -19,6 +19,7 @@ export class CollaborationChatComponent implements OnInit {
   fromUser: User;
   toUser: User;
   loggedUser: User;
+  userOnline: boolean;
 
   constructor(
     private activatedRouter: ActivatedRoute,
