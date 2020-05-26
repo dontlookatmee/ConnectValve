@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-collaboration',
@@ -10,8 +11,13 @@ export class CollaborationComponent implements OnInit {
   @Input('date') date: Date;
   @Input('status') status: string;
   @Input('img') img: string;
+  @Input('id') id: string;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
+
+  handleEnterCb() {
+    this.router.navigate(['collaborations', this.id]);
+  }
 }

@@ -9,7 +9,9 @@
       <p id="pending">{{ status }}</p>
     </div>
     <div class="button">
-      <button class="btn btn-outline-primary">Enter</button>
+      <button (click)="handleEnterCb()" class="btn btn-outline-primary">
+        Enter
+      </button>
     </div>
   </div>
 </li>
