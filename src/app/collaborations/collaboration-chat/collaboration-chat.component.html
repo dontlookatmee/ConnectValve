@@ -8,8 +8,10 @@
             alt="avatar"
           />
           <div class="about">
-            <div class="name">Vincent Porter</div>
-            <div class="status"><i class="fa fa-circle online"></i> online</div>
+            <div class="name">{{ fromUser?.name }}</div>
+            <div class="status">
+              <i class="fa fa-circle online"></i>{{ fromUser?.status }}
+            </div>
           </div>
         </li>
 
@@ -19,9 +21,9 @@
             alt="avatar"
           />
           <div class="about">
-            <div class="name">Aiden Chavez</div>
+            <div class="name">{{ toUser?.name }}</div>
             <div class="status">
-              <i class="fa fa-circle offline"></i> offline
+              <i class="fa fa-circle offline"></i> {{ toUser?.status }}
             </div>
           </div>
         </li>
@@ -36,7 +38,7 @@
         />
 
         <div class="chat-about">
-          <div class="chat-with">Vincent Porter</div>
+          <div class="chat-with">{{ loggedUser?.name }}</div>
         </div>
       </div>
       <!-- end chat-header -->

@@ -4,14 +4,14 @@ import { Observable, of } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 
-interface User {
+export interface User {
   avatar: string;
   description: string;
   email: string;
   name: string;
   last_changed: Date;
   password: string;
-  services: [];
+  services: string[];
   status: string;
   uid: string;
 }

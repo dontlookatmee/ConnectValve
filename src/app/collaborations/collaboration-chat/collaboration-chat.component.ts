@@ -1,21 +1,76 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CollaborationService } from 'src/app/services/collaboration/collaboration.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import {
+  CollaborationService,
+  Collaboration,
+} from 'src/app/services/collaboration/collaboration.service';
+import { ProfileService, User } from 'src/app/services/profile/profile.service';
+import { switchMap } from 'rxjs/operators';
+import { from, of, Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
+interface CollaborationDB {
+  allowedPeople: string[];
+  createdAt: string;
+  expiresAt: string;
+  fromOffer: string;
+  fromUser: string;
+  image: string;
+  joinedPeople: string[];
+  serviceId: string;
+  status: string;
+  time: number;
+  title: string;
+  toUser: string;
+}
 @Component({
   selector: 'app-collaboration-chat',
   templateUrl: './collaboration-chat.component.html',
   styleUrls: ['./collaboration-chat.component.css'],
 })
 export class CollaborationChatComponent implements OnInit {
+  collaboration: Collaboration;
+  fromUser: User;
+  toUser: User;
+  loggedUser: User;
+
   constructor(
     private activatedRouter: ActivatedRoute,
-    private cb: CollaborationService
+    private router: Router,
+    private cb: CollaborationService,
+    public profileService: ProfileService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     const path = this.activatedRouter.snapshot.paramMap.get('id');
+    const cb = this.cb.getCollaboration(path);
 
-    this.cb.getCollaboration(path).subscribe((x) => console.log(x));
+    cb.subscribe((cb: Collaboration) => {
+      this.collaboration = cb;
+    });
+
+    cb.pipe(
+      switchMap((collaboration: CollaborationDB) => {
+        const fromUser = this.profileService.getUserProfile(
+          collaboration.fromUser
+        );
+        const toUser = this.profileService.getUserProfile(collaboration.toUser);
+        return of([fromUser, toUser]);
+      })
+    ).subscribe((user: Observable<User>[]) => {
+      user[0].subscribe((fUser: User) => {
+        this.fromUser = fUser;
+      });
+
+      user[1].subscribe((tUser: User) => {
+        this.toUser = tUser;
+      });
+    });
+
+    const userId = this.authService.getUserId();
+    this.profileService.getUserProfile(userId).subscribe((user: User) => {
+      this.loggedUser = user;
+    });
   }
 }
