@@ -6,23 +6,9 @@ import {
 } from 'src/app/services/collaboration/collaboration.service';
 import { ProfileService, User } from 'src/app/services/profile/profile.service';
 import { switchMap } from 'rxjs/operators';
-import { from, of, Observable } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
-interface CollaborationDB {
-  allowedPeople: string[];
-  createdAt: string;
-  expiresAt: string;
-  fromOffer: string;
-  fromUser: string;
-  image: string;
-  joinedPeople: string[];
-  serviceId: string;
-  status: string;
-  time: number;
-  title: string;
-  toUser: string;
-}
 @Component({
   selector: 'app-collaboration-chat',
   templateUrl: './collaboration-chat.component.html',
@@ -51,11 +37,13 @@ export class CollaborationChatComponent implements OnInit {
     });
 
     cb.pipe(
-      switchMap((collaboration: CollaborationDB) => {
+      switchMap((collaboration: Collaboration) => {
         const fromUser = this.profileService.getUserProfile(
-          collaboration.fromUser
+          collaboration.data.fromUser
         );
-        const toUser = this.profileService.getUserProfile(collaboration.toUser);
+        const toUser = this.profileService.getUserProfile(
+          collaboration.data.toUser
+        );
         return of([fromUser, toUser]);
       })
     ).subscribe((user: Observable<User>[]) => {
@@ -72,5 +60,11 @@ export class CollaborationChatComponent implements OnInit {
     this.profileService.getUserProfile(userId).subscribe((user: User) => {
       this.loggedUser = user;
     });
+  }
+
+  ngOnDestroy() {
+    const userId = this.authService.getUserId();
+    console.log('user removed');
+    this.cb.removeUserFromCollaboration(this.collaboration.id, userId);
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { map, filter } from 'rxjs/operators';
-import { of } from 'rxjs';
+import * as firebase from 'firebase';
+import { map, tap } from 'rxjs/operators';
 
 export interface Collaboration {
   id: string;
@@ -52,6 +52,34 @@ export class CollaborationService {
   }
 
   getCollaboration(id: string) {
-    return this.afs.collection('collaborations').doc(id).valueChanges();
+    return this.afs
+      .collection('collaborations')
+      .doc(id)
+      .snapshotChanges()
+      .pipe(
+        map((value) => {
+          const data = value.payload.data();
+          const id = value.payload.id;
+          return { id, data };
+        })
+      );
+  }
+
+  addUserToCollaboration(id: string, user: string) {
+    return this.afs
+      .collection('collaborations')
+      .doc(id)
+      .update({
+        joinedPeople: firebase.firestore.FieldValue.arrayUnion(user),
+      });
+  }
+
+  removeUserFromCollaboration(id: string, user: string) {
+    return this.afs
+      .collection('collaborations')
+      .doc(id)
+      .update({
+        joinedPeople: firebase.firestore.FieldValue.arrayRemove(user),
+      });
   }
 }
