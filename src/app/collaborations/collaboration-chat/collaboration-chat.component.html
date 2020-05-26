@@ -9,12 +9,20 @@
             <div class="status">
               <i
                 [ngClass]="{
-                  online: fromUser?.status === 'online',
-                  offline: fromUser?.status === 'offline'
+                  online: collaboration?.data.joinedPeople.includes(
+                    fromUser?.uid
+                  ),
+                  offline: !collaboration?.data.joinedPeople.includes(
+                    fromUser?.uid
+                  )
                 }"
                 class="fa fa-circle"
               ></i
-              >{{ fromUser?.status }}
+              >{{
+                collaboration?.data.joinedPeople.includes(fromUser?.uid)
+                  ? 'online'
+                  : 'offline'
+              }}
             </div>
           </div>
         </li>
@@ -26,12 +34,20 @@
             <div class="status">
               <i
                 [ngClass]="{
-                  online: toUser?.status === 'online',
-                  offline: toUser?.status === 'offline'
+                  online: collaboration?.data.joinedPeople.includes(
+                    toUser?.uid
+                  ),
+                  offline: !collaboration?.data.joinedPeople.includes(
+                    toUser?.uid
+                  )
                 }"
                 class="fa fa-circle"
               ></i>
-              {{ toUser?.status }}
+              {{
+                collaboration?.data.joinedPeople.includes(toUser?.uid)
+                  ? 'online'
+                  : 'offline'
+              }}
             </div>
           </div>
         </li>

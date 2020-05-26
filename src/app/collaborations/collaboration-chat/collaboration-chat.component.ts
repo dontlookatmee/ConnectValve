@@ -64,7 +64,6 @@ export class CollaborationChatComponent implements OnInit {
 
   ngOnDestroy() {
     const userId = this.authService.getUserId();
-    console.log('user removed');
     this.cb.removeUserFromCollaboration(this.collaboration.id, userId);
   }
 }
