@@ -12,7 +12,7 @@ export interface Collaboration {
     fromOffer: string;
     fromUser: string;
     image: string;
-    joinedPeople: [];
+    joinedPeople: string[];
     serviceId: string;
     status: string;
     time: number;
@@ -49,5 +49,9 @@ export class CollaborationService {
           });
         })
       );
+  }
+
+  getCollaboration(id: string) {
+    return this.afs.collection('collaborations').doc(id).valueChanges();
   }
 }
