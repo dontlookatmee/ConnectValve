@@ -38,6 +38,9 @@
   padding-bottom: 20px;
 }
 .people-list img {
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
   float: left;
 }
 .people-list .about {
@@ -63,6 +66,9 @@
 }
 .chat .chat-header img {
   float: left;
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
 }
 .chat .chat-header .chat-about {
   float: left;
