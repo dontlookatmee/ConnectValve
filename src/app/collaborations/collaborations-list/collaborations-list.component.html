@@ -3,28 +3,11 @@
   <div class="content">
     <ul>
       <app-collaboration
-        title="I will teach you angularfire"
-        date="6"
-        status="pending"
-        img="https://media.kasperskydaily.com/wp-content/uploads/sites/92/2019/04/10111128/ms-office-vulnerabilities-sas-2019-featured.jpg"
-      ></app-collaboration>
-      <app-collaboration
-        title="I will teach you angularfire"
-        date="6"
-        status="pending"
-        img="https://media.kasperskydaily.com/wp-content/uploads/sites/92/2019/04/10111128/ms-office-vulnerabilities-sas-2019-featured.jpg"
-      ></app-collaboration>
-      <app-collaboration
-        title="I will teach you angularfire"
-        date="6"
-        status="pending"
-        img="https://media.kasperskydaily.com/wp-content/uploads/sites/92/2019/04/10111128/ms-office-vulnerabilities-sas-2019-featured.jpg"
-      ></app-collaboration>
-      <app-collaboration
-        title="I will teach you angularfire"
-        date="6"
-        status="pending"
-        img="https://media.kasperskydaily.com/wp-content/uploads/sites/92/2019/04/10111128/ms-office-vulnerabilities-sas-2019-featured.jpg"
+        *ngFor="let cb of myCollaborations"
+        [title]="cb?.data.title"
+        [date]="cb?.data.time"
+        [status]="cb?.data.status"
+        [img]="cb?.data.image"
       ></app-collaboration>
     </ul>
   </div>

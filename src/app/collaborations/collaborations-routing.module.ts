@@ -3,7 +3,7 @@ import { CollaborationsListComponent } from './collaborations-list/collaboration
 
 const routes: Routes = [
   {
-    path: 'created',
+    path: 'recived',
     component: CollaborationsListComponent,
   },
 ];
