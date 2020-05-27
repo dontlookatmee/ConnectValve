@@ -28,7 +28,16 @@ export class CollaborationService {
   constructor(private afs: AngularFirestore) {}
 
   createCollaboration(data: {}) {
-    this.afs.collection('collaborations').add(data);
+    this.afs
+      .collection('collaborations')
+      .add(data)
+      .then((collection) => {
+        this.afs
+          .collection('collaborations')
+          .doc(collection.id)
+          .collection('messages')
+          .add({});
+      });
   }
 
   getMyCollaborations(id: string) {
