@@ -78,8 +78,16 @@ export class CollaborationService {
     return this.afs
       .collection('collaborations')
       .doc(id)
-      .collection('messages')
+      .collection('messages', (ref) => ref.orderBy('date', 'asc'))
       .valueChanges();
+  }
+
+  addCollaborationMessage(id: string, msg: {}) {
+    return this.afs
+      .collection('collaborations')
+      .doc(id)
+      .collection('messages')
+      .add(msg);
   }
 
   addUserToCollaboration(id: string, user: string) {

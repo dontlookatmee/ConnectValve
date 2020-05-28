@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   CollaborationService,
@@ -8,6 +8,7 @@ import { ProfileService, User } from 'src/app/services/profile/profile.service';
 import { switchMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { FormGroup } from '@angular/forms';
 
 interface Messages {
   name: string;
@@ -21,6 +22,8 @@ interface Messages {
   styleUrls: ['./collaboration-chat.component.css'],
 })
 export class CollaborationChatComponent implements OnInit {
+  @ViewChild('msgContainer') scroller: ElementRef;
+
   collaboration: Collaboration;
   messages: Messages[];
   fromUser: User;
@@ -48,6 +51,9 @@ export class CollaborationChatComponent implements OnInit {
         .getCollaborationMessages(cb.id)
         .subscribe((messages: Messages[]) => {
           this.messages = messages;
+          setTimeout(() => {
+            this.scrollToBottom();
+          }, 500);
         });
     });
 
@@ -75,6 +81,8 @@ export class CollaborationChatComponent implements OnInit {
     this.profileService.getUserProfile(userId).subscribe((user: User) => {
       this.loggedUser = user;
     });
+
+    this.scrollToBottom();
   }
 
   ngOnDestroy() {
@@ -82,7 +90,24 @@ export class CollaborationChatComponent implements OnInit {
     this.cb.removeUserFromCollaboration(this.collaboration.id, userId);
   }
 
-  handleSendMessage() {
-    console.log(this.userMessage);
+  handleSendMessage(msgForm: FormGroup) {
+    const cbId = this.collaboration.id;
+    const msg = {
+      name: this.loggedUser.name,
+      message: this.userMessage,
+      date: Date.now(),
+    };
+    this.cb.addCollaborationMessage(cbId, msg).then((x) => {
+      this.scrollToBottom();
+      msgForm.reset();
+    });
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.scroller.nativeElement.scrollTop = this.scroller.nativeElement.scrollHeight;
+    } catch (err) {
+      console.log(err);
+    }
   }
 }

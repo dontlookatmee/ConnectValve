@@ -64,12 +64,12 @@
       </div>
       <!-- end chat-header -->
 
-      <div class="chat-history">
+      <div #msgContainer class="chat-history">
         <ul>
           <ng-container *ngFor="let message of messages; let idx = index">
             <ng-container *ngIf="idx % 2 === 0">
               <app-chat-message
-                *ngIf="messages.length"
+                *ngIf="messages[idx]"
                 [name]="messages[idx]?.name"
                 [message]="messages[idx]?.message"
                 [date]="messages[idx]?.date"
@@ -80,7 +80,7 @@
               ></app-chat-message>
 
               <app-chat-message
-                *ngIf="messages.length > 1"
+                *ngIf="messages[idx + 1]"
                 [name]="messages[idx + 1]?.name"
                 [message]="messages[idx + 1]?.message"
                 [date]="messages[idx + 1]?.date"
@@ -96,7 +96,7 @@
       <!-- end chat-history -->
 
       <div class="chat-message clearfix">
-        <form #f="ngForm" (ngSubmit)="handleSendMessage()">
+        <form #msgForm="ngForm" (ngSubmit)="handleSendMessage(msgForm)">
           <textarea
             name="message-to-send"
             id="message-to-send"
@@ -114,7 +114,11 @@
           >
             Value is required.
           </div>
-          <button class="btn btn-primary" [disabled]="!f.valid" type="submit">
+          <button
+            class="btn btn-primary"
+            [disabled]="!msgForm.valid"
+            type="submit"
+          >
             Send
           </button>
         </form>

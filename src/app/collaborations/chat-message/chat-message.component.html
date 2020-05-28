@@ -1,6 +1,7 @@
 <li *ngIf="position === 'right'" class="clearfix">
   <div class="message-data align-right">
-    <span class="message-data-time">{{ date }}</span> &nbsp; &nbsp;
+    <span class="message-data-time">{{ date | date: 'shortTime' }}</span> &nbsp;
+    &nbsp;
     <span class="message-data-name">{{ name }}</span>
     <i
       class="fa fa-circle"
@@ -21,7 +22,7 @@
       ></i
       >{{ name }}</span
     >
-    <span class="message-data-time">{{ date }}</span>
+    <span class="message-data-time">{{ date | date: 'shortTime' }}</span>
   </div>
   <div class="message my-message">
     {{ message }}
