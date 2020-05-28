@@ -9,6 +9,12 @@ import { switchMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
+interface Messages {
+  name: string;
+  message: string;
+  date: Date;
+}
+
 @Component({
   selector: 'app-collaboration-chat',
   templateUrl: './collaboration-chat.component.html',
@@ -16,6 +22,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class CollaborationChatComponent implements OnInit {
   collaboration: Collaboration;
+  messages: Messages[];
   fromUser: User;
   toUser: User;
   loggedUser: User;
@@ -35,6 +42,12 @@ export class CollaborationChatComponent implements OnInit {
 
     cb.subscribe((cb: Collaboration) => {
       this.collaboration = cb;
+
+      this.cb
+        .getCollaborationMessages(cb.id)
+        .subscribe((messages: Messages[]) => {
+          this.messages = messages;
+        });
     });
 
     cb.pipe(
