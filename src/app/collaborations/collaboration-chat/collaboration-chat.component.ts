@@ -27,6 +27,7 @@ export class CollaborationChatComponent implements OnInit {
   toUser: User;
   loggedUser: User;
   userOnline: boolean;
+  userMessage: string;
 
   constructor(
     private activatedRouter: ActivatedRoute,
@@ -79,5 +80,9 @@ export class CollaborationChatComponent implements OnInit {
   ngOnDestroy() {
     const userId = this.authService.getUserId();
     this.cb.removeUserFromCollaboration(this.collaboration.id, userId);
+  }
+
+  handleSendMessage() {
+    console.log(this.userMessage);
   }
 }

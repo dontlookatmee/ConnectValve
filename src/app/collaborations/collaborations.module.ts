@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { CollaborationsRoutingModule } from './collaborations-routing.module';
 import { CollaborationsListComponent } from './collaborations-list/collaborations-list.component';
@@ -14,6 +15,6 @@ import { ChatMessageComponent } from './chat-message/chat-message.component';
     CollaborationChatComponent,
     ChatMessageComponent,
   ],
-  imports: [CommonModule, CollaborationsRoutingModule],
+  imports: [CommonModule, CollaborationsRoutingModule, FormsModule],
 })
 export class CollaborationsModule {}
