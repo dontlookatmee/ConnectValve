@@ -1,0 +1,29 @@
+<li *ngIf="position === 'right'" class="clearfix">
+  <div class="message-data align-right">
+    <span class="message-data-time">{{ date | date }}</span> &nbsp; &nbsp;
+    <span class="message-data-name">{{ name }}</span>
+    <i
+      class="fa fa-circle"
+      [ngClass]="{ online: isOnline, offline: !isOnline }"
+    ></i>
+  </div>
+  <div class="message other-message float-right">
+    {{ message }}
+  </div>
+</li>
+
+<li *ngIf="position === 'left'">
+  <div class="message-data">
+    <span class="message-data-name"
+      ><i
+        class="fa fa-circle"
+        [ngClass]="{ online: isOnline, offline: !isOnline }"
+      ></i
+      >{{ name }}</span
+    >
+    <span class="message-data-time">{{ date | date }}</span>
+  </div>
+  <div class="message my-message">
+    {{ message }}
+  </div>
+</li>
