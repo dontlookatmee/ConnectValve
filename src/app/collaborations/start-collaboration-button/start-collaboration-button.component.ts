@@ -11,6 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./start-collaboration-button.component.css'],
 })
 export class StartCollaborationButtonComponent implements OnInit {
+  collaboration: Collaboration;
   canStartCb: boolean = false;
   path: string;
   constructor(
@@ -22,7 +23,7 @@ export class StartCollaborationButtonComponent implements OnInit {
     this.path = this.activatedRoute.snapshot.paramMap.get('id');
 
     this.cb.getCollaboration(this.path).subscribe((cb: Collaboration) => {
-      console.log('called button subscribe');
+      this.collaboration = cb;
       if (cb.data.joinedPeople.length === 2) {
         this.canStartCb = true;
       } else {

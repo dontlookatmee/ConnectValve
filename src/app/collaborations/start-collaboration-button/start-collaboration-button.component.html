@@ -1,7 +1,12 @@
 <button
+  *ngIf="collaboration?.data.status === 'pending'"
   (click)="handleStartCb()"
   class="btn btn-success"
   [disabled]="!canStartCb"
 >
   Start Collaboration
 </button>
+
+<div *ngIf="collaboration?.data.status === 'active'">
+  time
+</div>
