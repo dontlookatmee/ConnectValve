@@ -74,6 +74,10 @@ export class CollaborationService {
       );
   }
 
+  updateCollaboration(id: string, data: {}) {
+    this.afs.collection('collaborations').doc(id).update(data);
+  }
+
   getCollaborationMessages(id: string) {
     return this.afs
       .collection('collaborations')

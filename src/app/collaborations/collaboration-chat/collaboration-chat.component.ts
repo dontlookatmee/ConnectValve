@@ -6,7 +6,7 @@ import {
 } from 'src/app/services/collaboration/collaboration.service';
 import { ProfileService, User } from 'src/app/services/profile/profile.service';
 import { switchMap } from 'rxjs/operators';
-import { of, Observable } from 'rxjs';
+import { of, Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 interface Messages {
@@ -24,7 +24,6 @@ export class CollaborationChatComponent implements OnInit {
   @ViewChild('msgContainer') scroller: ElementRef;
 
   collaboration: Collaboration;
-  cbOnInit: Observable<any>;
   messages: Messages[];
   fromUser: User;
   toUser: User;
@@ -44,9 +43,7 @@ export class CollaborationChatComponent implements OnInit {
     const path = this.activatedRouter.snapshot.paramMap.get('id');
     const userId = this.authService.getUserId();
 
-    this.cbOnInit = this.cb.getCollaboration(path);
-
-    this.cbOnInit.subscribe((cb: Collaboration) => {
+    this.cb.getCollaboration(path).subscribe((cb: Collaboration) => {
       this.collaboration = cb;
 
       this.cb
@@ -61,7 +58,8 @@ export class CollaborationChatComponent implements OnInit {
       this.cb.addUserToCollaboration(this.collaboration?.id, userId);
     });
 
-    this.cbOnInit
+    this.cb
+      .getCollaboration(path)
       .pipe(
         switchMap((collaboration: Collaboration) => {
           const fromUser = this.profileService.getUserProfile(
@@ -93,7 +91,6 @@ export class CollaborationChatComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    const userId = this.authService.getUserId();
     this.cb.removeUserFromCollaboration(
       this.collaboration.id,
       this.loggedUser?.uid
