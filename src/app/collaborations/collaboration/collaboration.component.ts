@@ -6,7 +6,7 @@ import {
 } from 'src/app/services/collaboration/collaboration.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { switchMap, mergeMap, take } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { of, interval, Subscribable, Subscription } from 'rxjs';
 
 interface Messages {
   name: string;
@@ -26,6 +26,7 @@ export class CollaborationComponent implements OnInit {
   @Input('img') img: string;
   @Input('id') id: string;
   lastRep: string;
+  repliedInt: Subscription;
 
   constructor(
     private router: Router,
@@ -34,14 +35,11 @@ export class CollaborationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cbService
-      .getCollaborationMessages(this.id)
-      .subscribe((cb: Messages[]) => {
-        const timeNow = Number(Date.now());
-        const lastRep = Number(cb[cb.length - 1].date);
-
-        this.lastRep = this.calcTime(timeNow, lastRep);
-      });
+    this.getMessageTime();
+    this.repliedInt = interval(100000).subscribe((x) => {
+      console.log('subscribed');
+      this.getMessageTime();
+    });
   }
 
   handleEnterCb() {
@@ -64,6 +62,17 @@ export class CollaborationComponent implements OnInit {
     // const userId = this.auth.getUserId();
     // this.cbService.addUserToCollaboration(this.id, userId).then((x) => {
     // });
+  }
+
+  getMessageTime() {
+    this.cbService
+      .getCollaborationMessages(this.id)
+      .subscribe((cb: Messages[]) => {
+        const timeNow = Number(Date.now());
+        const lastRep = Number(cb[cb.length - 1].date);
+
+        this.lastRep = this.calcTime(timeNow, lastRep);
+      });
   }
 
   calcTime(current: number, previous: number) {
@@ -90,5 +99,9 @@ export class CollaborationComponent implements OnInit {
     } else {
       return 'approximately ' + Math.round(elapsed / msPerYear) + ' years ago';
     }
+  }
+
+  ngOnDestroy() {
+    this.repliedInt.unsubscribe();
   }
 }
