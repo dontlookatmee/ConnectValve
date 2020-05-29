@@ -66,30 +66,19 @@
 
       <div #msgContainer class="chat-history">
         <ul>
-          <ng-container *ngFor="let message of messages; let idx = index">
-            <ng-container *ngIf="idx % 2 === 0">
-              <app-chat-message
-                *ngIf="messages[idx]"
-                [name]="messages[idx]?.name"
-                [message]="messages[idx]?.message"
-                [date]="messages[idx]?.date"
-                position="right"
-                [isOnline]="
-                  collaboration?.data.joinedPeople.includes(toUser?.uid)
-                "
-              ></app-chat-message>
-
-              <app-chat-message
-                *ngIf="messages[idx + 1]"
-                [name]="messages[idx + 1]?.name"
-                [message]="messages[idx + 1]?.message"
-                [date]="messages[idx + 1]?.date"
-                position="left"
-                [isOnline]="
-                  collaboration?.data.joinedPeople.includes(fromUser?.uid)
-                "
-              ></app-chat-message>
-            </ng-container>
+          <ng-container *ngFor="let message of messages">
+            <app-chat-message
+              *ngIf="messages.length"
+              [name]="message?.name"
+              [message]="message?.message"
+              [date]="message?.date"
+              [position]="message?.name === loggedUser?.name ? 'left' : 'right'"
+              [isOnline]="
+                message?.name === fromUser?.name
+                  ? collaboration?.data.joinedPeople.includes(fromUser?.uid)
+                  : collaboration?.data.joinedPeople.includes(toUser?.uid)
+              "
+            ></app-chat-message>
           </ng-container>
         </ul>
       </div>

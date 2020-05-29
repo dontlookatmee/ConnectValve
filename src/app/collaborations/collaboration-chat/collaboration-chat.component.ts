@@ -8,7 +8,6 @@ import { ProfileService, User } from 'src/app/services/profile/profile.service';
 import { switchMap } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { FormGroup } from '@angular/forms';
 
 interface Messages {
   name: string;
@@ -90,7 +89,7 @@ export class CollaborationChatComponent implements OnInit {
     this.cb.removeUserFromCollaboration(this.collaboration.id, userId);
   }
 
-  handleSendMessage(msgForm: FormGroup) {
+  handleSendMessage(msgForm: any) {
     const cbId = this.collaboration.id;
     const msg = {
       name: this.loggedUser.name,
