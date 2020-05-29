@@ -7,6 +7,7 @@ import { CollaborationsListComponent } from './collaborations-list/collaboration
 import { CollaborationComponent } from './collaboration/collaboration.component';
 import { CollaborationChatComponent } from './collaboration-chat/collaboration-chat.component';
 import { ChatMessageComponent } from './chat-message/chat-message.component';
+import { StartCollaborationButtonComponent } from './start-collaboration-button/start-collaboration-button.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ChatMessageComponent } from './chat-message/chat-message.component';
     CollaborationComponent,
     CollaborationChatComponent,
     ChatMessageComponent,
+    StartCollaborationButtonComponent,
   ],
   imports: [CommonModule, CollaborationsRoutingModule, FormsModule],
 })

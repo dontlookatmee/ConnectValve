@@ -64,6 +64,18 @@
   padding: 20px;
   border-bottom: 2px solid white;
 }
+
+.chat .chat-header .header-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.chat .chat-header .header-content .header-button {
+  align-self: center;
+}
+
 .chat .chat-header img {
   float: left;
   width: 60px;

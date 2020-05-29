@@ -11,17 +11,17 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./start-collaboration-button.component.css'],
 })
 export class StartCollaborationButtonComponent implements OnInit {
-  @Input('cbId') cbId: string;
   canStartCb: boolean = false;
+  path: string;
   constructor(
     private cb: CollaborationService,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    const path = this.activatedRoute.snapshot.paramMap.get('id');
+    this.path = this.activatedRoute.snapshot.paramMap.get('id');
 
-    this.cb.getCollaboration(path).subscribe((cb: Collaboration) => {
+    this.cb.getCollaboration(this.path).subscribe((cb: Collaboration) => {
       console.log('called button subscribe');
       if (cb.data.joinedPeople.length === 2) {
         this.canStartCb = true;
@@ -32,6 +32,6 @@ export class StartCollaborationButtonComponent implements OnInit {
   }
 
   handleStartCb() {
-    this.cb.updateCollaboration(this.cbId, { status: 'active' });
+    this.cb.updateCollaboration(this.path, { status: 'active' });
   }
 }

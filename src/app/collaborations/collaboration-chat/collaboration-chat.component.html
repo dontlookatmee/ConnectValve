@@ -56,10 +56,17 @@
 
     <div class="chat">
       <div class="chat-header clearfix">
-        <img [src]="loggedUser?.avatar" alt="avatar" />
+        <div class="header-content">
+          <div class="header-user">
+            <img [src]="loggedUser?.avatar" alt="avatar" />
 
-        <div class="chat-about">
-          <div class="chat-with">{{ loggedUser?.name }}</div>
+            <div class="chat-about">
+              <div class="chat-with">{{ loggedUser?.name }}</div>
+            </div>
+          </div>
+          <div class="header-button">
+            <app-start-collaboration-button></app-start-collaboration-button>
+          </div>
         </div>
       </div>
       <!-- end chat-header -->

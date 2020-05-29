@@ -57,6 +57,12 @@ export class CollaborationChatComponent implements OnInit {
         })
       )
       .subscribe((cbId: string) => {
+        if (this.collaboration.data.status === 'active') {
+          this.canSendMessage = true;
+        } else {
+          this.canSendMessage = false;
+        }
+
         this.cbOnInit = this.cb
           .getCollaborationMessages(cbId)
           .subscribe((messages: Messages[]) => {
@@ -81,7 +87,6 @@ export class CollaborationChatComponent implements OnInit {
         })
       )
       .subscribe((user: Observable<User>[]) => {
-        console.log('user subsc');
         user[0].subscribe((fUser: User) => {
           this.fromUser = fUser;
         });
@@ -105,7 +110,6 @@ export class CollaborationChatComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    console.log('unsubscribed');
     this.cbOnInit.unsubscribe();
     this.cb.removeUserFromCollaboration(
       this.collaboration.id,
