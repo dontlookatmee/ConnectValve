@@ -24,10 +24,10 @@ export class CollaborationComponent implements OnInit {
   ngOnInit(): void {}
 
   handleEnterCb() {
-    const userId = this.auth.getUserId();
+    this.router.navigate(['collaborations', this.id]);
 
-    this.cbService.addUserToCollaboration(this.id, userId).then((x) => {
-      this.router.navigate(['collaborations', this.id]);
-    });
+    // const userId = this.auth.getUserId();
+    // this.cbService.addUserToCollaboration(this.id, userId).then((x) => {
+    // });
   }
 }
