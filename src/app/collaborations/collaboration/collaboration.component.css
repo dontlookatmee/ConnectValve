@@ -21,7 +21,7 @@ li {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
-  width: 21%;
+  width: 24%;
 }
 
 .info p {
@@ -34,10 +34,16 @@ li {
   height: 35px;
 }
 
-#pending {
+.status {
   font-size: 0.8rem;
   padding: 0.3rem 0.4rem;
-  background-color: gainsboro;
+  color: white;
+}
+.active {
+  background-color: #218838;
+}
+.pending {
+  background-color: #e0a800;
 }
 
 .button {

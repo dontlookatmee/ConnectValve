@@ -5,8 +5,16 @@
   <div class="content">
     <div class="info">
       <img *ngIf="img" [src]="img" alt="" />
-      <p id="date">replied {{ date }} days ago</p>
-      <p id="pending">{{ status }}</p>
+      <p id="date">replied {{ lastRep }}</p>
+      <p
+        class="status"
+        [ngClass]="{
+          pending: status === 'pending',
+          active: status === 'active'
+        }"
+      >
+        {{ status }}
+      </p>
     </div>
     <div class="button">
       <button (click)="handleEnterCb()" class="btn btn-outline-primary">
