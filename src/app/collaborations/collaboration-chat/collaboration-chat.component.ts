@@ -24,6 +24,7 @@ export class CollaborationChatComponent implements OnInit {
   @ViewChild('msgContainer') scroller: ElementRef;
 
   collaboration: Collaboration;
+  cbOnInit: Observable<any>;
   messages: Messages[];
   fromUser: User;
   toUser: User;
@@ -41,9 +42,11 @@ export class CollaborationChatComponent implements OnInit {
 
   ngOnInit(): void {
     const path = this.activatedRouter.snapshot.paramMap.get('id');
-    const cb = this.cb.getCollaboration(path);
+    const userId = this.authService.getUserId();
 
-    cb.subscribe((cb: Collaboration) => {
+    this.cbOnInit = this.cb.getCollaboration(path);
+
+    this.cbOnInit.subscribe((cb: Collaboration) => {
       this.collaboration = cb;
 
       this.cb
@@ -54,39 +57,47 @@ export class CollaborationChatComponent implements OnInit {
             this.scrollToBottom();
           }, 500);
         });
+
+      this.cb.addUserToCollaboration(this.collaboration?.id, userId);
     });
 
-    cb.pipe(
-      switchMap((collaboration: Collaboration) => {
-        const fromUser = this.profileService.getUserProfile(
-          collaboration.data.fromUser
-        );
-        const toUser = this.profileService.getUserProfile(
-          collaboration.data.toUser
-        );
-        return of([fromUser, toUser]);
-      })
-    ).subscribe((user: Observable<User>[]) => {
-      user[0].subscribe((fUser: User) => {
-        this.fromUser = fUser;
+    this.cbOnInit
+      .pipe(
+        switchMap((collaboration: Collaboration) => {
+          const fromUser = this.profileService.getUserProfile(
+            collaboration.data.fromUser
+          );
+          const toUser = this.profileService.getUserProfile(
+            collaboration.data.toUser
+          );
+          return of([fromUser, toUser]);
+        })
+      )
+      .subscribe((user: Observable<User>[]) => {
+        user[0].subscribe((fUser: User) => {
+          this.fromUser = fUser;
+        });
+
+        user[1].subscribe((tUser: User) => {
+          this.toUser = tUser;
+        });
       });
 
-      user[1].subscribe((tUser: User) => {
-        this.toUser = tUser;
-      });
-    });
-
-    const userId = this.authService.getUserId();
     this.profileService.getUserProfile(userId).subscribe((user: User) => {
       this.loggedUser = user;
     });
+  }
 
+  ngAfterViewInit() {
     this.scrollToBottom();
   }
 
   ngOnDestroy() {
     const userId = this.authService.getUserId();
-    this.cb.removeUserFromCollaboration(this.collaboration.id, userId);
+    this.cb.removeUserFromCollaboration(
+      this.collaboration.id,
+      this.loggedUser?.uid
+    );
   }
 
   handleSendMessage(msgForm: any) {
