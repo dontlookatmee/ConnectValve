@@ -37,7 +37,6 @@ export class CollaborationComponent implements OnInit {
   ngOnInit(): void {
     this.getMessageTime();
     this.repliedInt = interval(100000).subscribe((x) => {
-      console.log('subscribed');
       this.getMessageTime();
     });
   }
@@ -45,19 +44,15 @@ export class CollaborationComponent implements OnInit {
   handleEnterCb() {
     this.cbService
       .getCollaboration(this.id)
-      .pipe(
-        take(1),
-        switchMap((collaboration: Collaboration) => {
-          const toUser = collaboration.data.toUser;
-          return of(toUser);
-        })
-      )
-      .subscribe((userId: string) => {
-        if (userId === this.auth.getUserId()) {
+      .pipe(take(1))
+      .subscribe((cb: Collaboration) => {
+        if (cb.data.toUser === this.auth.getUserId()) {
           this.cbService.updateCollaboration(this.id, { status: 'active' });
         }
+        this.cbService.addUserToCollaboration(cb.id, this.auth.getUserId());
+
+        this.router.navigate(['collaborations', this.id]);
       });
-    this.router.navigate(['collaborations', this.id]);
 
     // const userId = this.auth.getUserId();
     // this.cbService.addUserToCollaboration(this.id, userId).then((x) => {

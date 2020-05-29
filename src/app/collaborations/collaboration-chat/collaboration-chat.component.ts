@@ -5,7 +5,7 @@ import {
   Collaboration,
 } from 'src/app/services/collaboration/collaboration.service';
 import { ProfileService, User } from 'src/app/services/profile/profile.service';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, take } from 'rxjs/operators';
 import { of, Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
@@ -24,6 +24,7 @@ export class CollaborationChatComponent implements OnInit {
   @ViewChild('msgContainer') scroller: ElementRef;
 
   collaboration: Collaboration;
+  cbOnInit: Subscription;
   messages: Messages[];
   fromUser: User;
   toUser: User;
@@ -43,24 +44,29 @@ export class CollaborationChatComponent implements OnInit {
     const path = this.activatedRouter.snapshot.paramMap.get('id');
     const userId = this.authService.getUserId();
 
-    this.cb.getCollaboration(path).subscribe((cb: Collaboration) => {
-      this.collaboration = cb;
+    const cb = this.cb.getCollaboration(path);
 
-      this.cb
-        .getCollaborationMessages(cb.id)
-        .subscribe((messages: Messages[]) => {
-          this.messages = messages;
-          setTimeout(() => {
-            this.scrollToBottom();
-          }, 500);
-        });
-
-      this.cb.addUserToCollaboration(this.collaboration?.id, userId);
-    });
-
-    this.cb
-      .getCollaboration(path)
+    this.cbOnInit = cb
       .pipe(
+        switchMap((cb: Collaboration) => {
+          this.collaboration = cb;
+          return of(cb.id);
+        })
+      )
+      .subscribe((cbId: string) => {
+        this.cbOnInit = this.cb
+          .getCollaborationMessages(cbId)
+          .subscribe((messages: Messages[]) => {
+            this.messages = messages;
+            setTimeout(() => {
+              this.scrollToBottom();
+            }, 500);
+          });
+      });
+
+    this.cbOnInit = cb
+      .pipe(
+        take(1),
         switchMap((collaboration: Collaboration) => {
           const fromUser = this.profileService.getUserProfile(
             collaboration.data.fromUser
@@ -72,6 +78,7 @@ export class CollaborationChatComponent implements OnInit {
         })
       )
       .subscribe((user: Observable<User>[]) => {
+        console.log('user subsc');
         user[0].subscribe((fUser: User) => {
           this.fromUser = fUser;
         });
@@ -91,6 +98,8 @@ export class CollaborationChatComponent implements OnInit {
   }
 
   ngOnDestroy() {
+    console.log('unsubscribed');
+    this.cbOnInit.unsubscribe();
     this.cb.removeUserFromCollaboration(
       this.collaboration.id,
       this.loggedUser?.uid
