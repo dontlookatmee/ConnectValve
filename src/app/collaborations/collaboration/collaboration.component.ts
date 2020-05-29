@@ -42,21 +42,21 @@ export class CollaborationComponent implements OnInit {
   }
 
   handleEnterCb() {
-    this.cbService
-      .getCollaboration(this.id)
-      .pipe(take(1))
-      .subscribe((cb: Collaboration) => {
-        if (cb.data.toUser === this.auth.getUserId()) {
-          this.cbService.updateCollaboration(this.id, { status: 'active' });
-        }
-        this.cbService.addUserToCollaboration(cb.id, this.auth.getUserId());
+    // this.cbService
+    //   .getCollaboration(this.id)
+    //   .pipe(take(1))
+    //   .subscribe((cb: Collaboration) => {
+    //     if (cb.data.toUser === this.auth.getUserId()) {
+    //       this.cbService.updateCollaboration(this.id, { status: 'active' });
+    //     }
+    //     this.cbService.addUserToCollaboration(cb.id, this.auth.getUserId());
 
-        this.router.navigate(['collaborations', this.id]);
-      });
+    //   });
 
-    // const userId = this.auth.getUserId();
-    // this.cbService.addUserToCollaboration(this.id, userId).then((x) => {
-    // });
+    const userId = this.auth.getUserId();
+    this.cbService.addUserToCollaboration(this.id, userId).then((x) => {
+      this.router.navigate(['collaborations', this.id]);
+    });
   }
 
   getMessageTime() {

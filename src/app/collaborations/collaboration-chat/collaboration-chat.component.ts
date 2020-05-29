@@ -8,6 +8,7 @@ import { ProfileService, User } from 'src/app/services/profile/profile.service';
 import { switchMap, take } from 'rxjs/operators';
 import { of, Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { FormGroup, NgForm } from '@angular/forms';
 
 interface Messages {
   name: string;
@@ -22,6 +23,7 @@ interface Messages {
 })
 export class CollaborationChatComponent implements OnInit {
   @ViewChild('msgContainer') scroller: ElementRef;
+  @ViewChild('msgForm') from: NgForm;
 
   collaboration: Collaboration;
   cbOnInit: Subscription;
@@ -31,6 +33,7 @@ export class CollaborationChatComponent implements OnInit {
   loggedUser: User;
   userOnline: boolean;
   userMessage: string;
+  canSendMessage: boolean = true;
 
   constructor(
     private activatedRouter: ActivatedRoute,
@@ -95,6 +98,10 @@ export class CollaborationChatComponent implements OnInit {
 
   ngAfterViewInit() {
     this.scrollToBottom();
+    // setTimeout(() => {
+    //   this.from.form.disable();
+    //   this.canSendMessage = false;
+    // }, 500);
   }
 
   ngOnDestroy() {
