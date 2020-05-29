@@ -7,8 +7,8 @@ export interface Collaboration {
   id: string;
   data: {
     allowedPeople: string[];
-    createdAt: string;
-    expiresAt: string;
+    createdAt: number;
+    expiresAt: number;
     fromOffer: string;
     fromUser: string;
     image: string;

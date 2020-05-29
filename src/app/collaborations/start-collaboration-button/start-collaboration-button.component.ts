@@ -4,6 +4,7 @@ import {
   Collaboration,
 } from 'src/app/services/collaboration/collaboration.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-start-collaboration-button',
@@ -12,6 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class StartCollaborationButtonComponent implements OnInit {
   collaboration: Collaboration;
+  timeLeft: number;
   canStartCb: boolean = false;
   path: string;
   constructor(
@@ -24,6 +26,7 @@ export class StartCollaborationButtonComponent implements OnInit {
 
     this.cb.getCollaboration(this.path).subscribe((cb: Collaboration) => {
       this.collaboration = cb;
+      this.timeLeft = cb.data.expiresAt;
       if (cb.data.joinedPeople.length === 2) {
         this.canStartCb = true;
       } else {
@@ -33,6 +36,15 @@ export class StartCollaborationButtonComponent implements OnInit {
   }
 
   handleStartCb() {
-    this.cb.updateCollaboration(this.path, { status: 'active' });
+    this.cb.updateCollaboration(this.path, {
+      status: 'active',
+      createdAt: Date.now(),
+      expiresAt:
+        Date.now() + this.converHoursToMillsc(this.collaboration?.data.time),
+    });
+  }
+
+  converHoursToMillsc(hours: number): number {
+    return hours * 60 * 60 * 1000;
   }
 }

@@ -7,6 +7,13 @@
   Start Collaboration
 </button>
 
-<div *ngIf="collaboration?.data.status === 'active'">
-  time
+<div *ngIf="canStartCb && collaboration?.data.status === 'active'">
+  <div class="time-now">
+    Collaboration started at:
+    {{ collaboration?.data.createdAt | date: 'HH:mm:ss' }}
+  </div>
+  <div class="time-expires">
+    Collaboration expires at:
+    {{ collaboration?.data.expiresAt | date: 'HH:mm:ss' }}
+  </div>
 </div>
