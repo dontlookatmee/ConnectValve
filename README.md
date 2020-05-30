@@ -1,3 +1,5 @@
+Hi, thanks for visiting my Github. I will update the readme after app is finished.
+
 # ConnectValve
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
