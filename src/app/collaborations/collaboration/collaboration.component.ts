@@ -42,17 +42,6 @@ export class CollaborationComponent implements OnInit {
   }
 
   handleEnterCb() {
-    // this.cbService
-    //   .getCollaboration(this.id)
-    //   .pipe(take(1))
-    //   .subscribe((cb: Collaboration) => {
-    //     if (cb.data.toUser === this.auth.getUserId()) {
-    //       this.cbService.updateCollaboration(this.id, { status: 'active' });
-    //     }
-    //     this.cbService.addUserToCollaboration(cb.id, this.auth.getUserId());
-
-    //   });
-
     const userId = this.auth.getUserId();
     this.cbService.addUserToCollaboration(this.id, userId).then((x) => {
       this.router.navigate(['collaborations', this.id]);
@@ -63,10 +52,14 @@ export class CollaborationComponent implements OnInit {
     this.cbService
       .getCollaborationMessages(this.id)
       .subscribe((cb: Messages[]) => {
-        const timeNow = Number(Date.now());
-        const lastRep = Number(cb[cb.length - 1].date);
+        if (cb.length) {
+          const timeNow = Number(Date.now());
+          const lastRep = Number(cb[cb.length - 1].date);
 
-        this.lastRep = this.calcTime(timeNow, lastRep);
+          this.lastRep = `replied ${this.calcTime(timeNow, lastRep)}`;
+        } else {
+          this.lastRep = 'no replies yet';
+        }
       });
   }
 

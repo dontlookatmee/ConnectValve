@@ -31,11 +31,10 @@ interface ServicesMeta {
   providedIn: 'root',
 })
 export class UserServicesService {
-  userId: string;
-
-  constructor(private afs: AngularFirestore, private authService: AuthService) {
-    this.userId = this.authService.getUserId();
-  }
+  constructor(
+    private afs: AngularFirestore,
+    private authService: AuthService
+  ) {}
 
   getServices() {
     return this.afs
@@ -67,6 +66,7 @@ export class UserServicesService {
   }
 
   getMyServices() {
+    const userId = this.authService.getUserId();
     return this.afs
       .collectionGroup('services')
       .snapshotChanges()
@@ -80,7 +80,7 @@ export class UserServicesService {
         }),
         map((services: ServicesMeta[]) => {
           return services.filter((service: ServicesMeta) => {
-            return service.data.uid === this.userId;
+            return service.data.uid === userId;
           });
         })
       );
