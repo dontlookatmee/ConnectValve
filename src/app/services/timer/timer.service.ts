@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Collaboration } from '../../services/collaboration/collaboration.service';
+import {
+  Collaboration,
+  CollaborationService,
+} from '../../services/collaboration/collaboration.service';
 import { Subscription, interval } from 'rxjs';
 
 @Injectable({
@@ -10,7 +13,7 @@ export class TimerService {
   public timer: string;
   timerSub: Subscription;
 
-  constructor() {}
+  constructor(private cbService: CollaborationService) {}
 
   startTimer(cb: Collaboration) {
     // const updateCb = (cb: Collaboration, path) => {
@@ -39,6 +42,7 @@ export class TimerService {
 
       if (difference < 0) {
         this.timerSub.unsubscribe();
+        this.cbService.updateCollaboration(cb.id, { status: 'finished' });
         return 'Collaboration has been finished';
       } else {
         this.timePassed = timePassed;

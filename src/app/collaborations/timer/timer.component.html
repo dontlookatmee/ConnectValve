@@ -1,10 +1,4 @@
-<div *ngIf="canStartCb && collaboration?.data.status === 'active'">
-  <div class="time-now">
-    Collaboration started at:
-    {{ collaboration?.data.createdAt | date: 'HH:mm:ss' }}
-  </div>
-  <div class="time-expires">
-    Collaboration expires after:
-    {{ timer }}
-  </div>
+<div class="time-expires">
+  Collaboration expires after:
+  {{ timerService.timer }}
 </div>
