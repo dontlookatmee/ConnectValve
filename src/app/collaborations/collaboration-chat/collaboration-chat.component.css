@@ -75,6 +75,12 @@
 .chat .chat-header .header-content .header-button {
   align-self: center;
 }
+.chat .chat-header .header-content .header-button .finish-cb-message {
+  background-color: #e38968;
+  color: white;
+  padding: 0.5rem;
+  margin-bottom: 0;
+}
 
 .chat .chat-header img {
   float: left;

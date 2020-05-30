@@ -71,6 +71,9 @@
             <app-timer
               *ngIf="collaboration?.data.status === 'active'"
             ></app-timer>
+            <div *ngIf="collaboration?.data.status === 'finished'">
+              <p class="finish-cb-message">Collaboration has been finished</p>
+            </div>
           </div>
         </div>
       </div>

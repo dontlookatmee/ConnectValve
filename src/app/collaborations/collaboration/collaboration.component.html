@@ -10,14 +10,19 @@
         class="status"
         [ngClass]="{
           pending: status === 'pending',
-          active: status === 'active'
+          active: status === 'active',
+          finished: status === 'finished'
         }"
       >
         {{ status }}
       </p>
     </div>
     <div class="button">
-      <button (click)="handleEnterCb()" class="btn btn-outline-primary">
+      <button
+        (click)="handleEnterCb()"
+        class="btn btn-outline-primary"
+        [disabled]="status === 'finished'"
+      >
         Enter
       </button>
     </div>

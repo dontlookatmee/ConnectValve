@@ -45,6 +45,9 @@ li {
 .pending {
   background-color: #e0a800;
 }
+.finished {
+  background-color: #e38968;
+}
 
 .button {
   height: 100%;

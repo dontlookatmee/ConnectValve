@@ -43,7 +43,7 @@ export class TimerService {
       if (difference < 0) {
         this.timerSub.unsubscribe();
         this.cbService.updateCollaboration(cb.id, { status: 'finished' });
-        return 'Collaboration has been finished';
+        return '';
       } else {
         this.timePassed = timePassed;
         console.log(this.timer);
