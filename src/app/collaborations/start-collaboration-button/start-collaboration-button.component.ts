@@ -5,6 +5,7 @@ import {
 } from 'src/app/services/collaboration/collaboration.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { TimerService } from 'src/app/services/timer/timer.service';
 
 @Component({
   selector: 'app-start-collaboration-button',
@@ -18,7 +19,8 @@ export class StartCollaborationButtonComponent implements OnInit {
 
   constructor(
     private cb: CollaborationService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private timerService: TimerService
   ) {}
 
   ngOnInit(): void {
@@ -36,12 +38,16 @@ export class StartCollaborationButtonComponent implements OnInit {
   }
 
   handleStartCb() {
-    this.cb.updateCollaboration(this.path, {
-      status: 'active',
-      createdAt: Date.now(),
-      expiresAt:
-        Date.now() + this.converHoursToMillsc(this.collaboration?.data.time),
-    });
+    this.cb
+      .updateCollaboration(this.path, {
+        status: 'active',
+        createdAt: Date.now(),
+        expiresAt:
+          Date.now() + this.converHoursToMillsc(this.collaboration?.data.time),
+      })
+      .then((x) => {
+        this.timerService.startTimer(this.collaboration);
+      });
   }
 
   converHoursToMillsc(hours: number): number {
