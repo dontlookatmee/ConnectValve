@@ -65,7 +65,12 @@
             </div>
           </div>
           <div class="header-button">
-            <app-start-collaboration-button></app-start-collaboration-button>
+            <app-start-collaboration-button
+              *ngIf="collaboration?.data.status === 'pending'"
+            ></app-start-collaboration-button>
+            <app-timer
+              *ngIf="collaboration?.data.status === 'active'"
+            ></app-timer>
           </div>
         </div>
       </div>
