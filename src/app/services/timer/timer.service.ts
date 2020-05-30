@@ -9,11 +9,16 @@ import { Subscription, interval } from 'rxjs';
   providedIn: 'root',
 })
 export class TimerService {
-  timePassed: number;
   public timer: string;
   timerSub: Subscription;
 
   constructor(private cbService: CollaborationService) {}
+
+  hasTimerChanged() {
+    if (this.timer) {
+      return true;
+    }
+  }
 
   startTimer(cb: Collaboration) {
     if (cb.data.status === 'active') {
@@ -40,7 +45,6 @@ export class TimerService {
         this.cbService.updateCollaboration(cb.id, { status: 'finished' });
         return '';
       } else {
-        this.timePassed = timePassed;
         console.log(this.timer);
         return `${hours}:${minutes}:${seconds}`;
       }

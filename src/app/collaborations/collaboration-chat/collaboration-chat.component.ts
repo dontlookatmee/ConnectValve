@@ -44,6 +44,7 @@ export class CollaborationChatComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log('cb chat cp ngoninit');
     const path = this.activatedRouter.snapshot.paramMap.get('id');
     const userId = this.authService.getUserId();
 

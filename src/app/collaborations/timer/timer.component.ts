@@ -9,11 +9,14 @@ import { Collaboration } from '../../services/collaboration/collaboration.servic
 })
 export class TimerComponent implements OnInit {
   @Input('collaboration') collaboration: Collaboration;
+  cbStarted: boolean = false;
 
   constructor(public timerService: TimerService) {}
 
   ngOnInit(): void {
-    this.timerService.startTimer(this.collaboration);
+    if (!this.timerService.hasTimerChanged()) {
+      this.timerService.startTimer(this.collaboration);
+    }
   }
 
   ngOnDestroy() {}
