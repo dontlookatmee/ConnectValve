@@ -38,16 +38,12 @@ export class StartCollaborationButtonComponent implements OnInit {
   }
 
   handleStartCb() {
-    this.cb
-      .updateCollaboration(this.path, {
-        status: 'active',
-        createdAt: Date.now(),
-        expiresAt:
-          Date.now() + this.converHoursToMillsc(this.collaboration?.data.time),
-      })
-      .then((x) => {
-        this.timerService.startTimer(this.collaboration);
-      });
+    this.cb.updateCollaboration(this.path, {
+      status: 'active',
+      createdAt: Date.now(),
+      expiresAt:
+        Date.now() + this.converHoursToMillsc(this.collaboration?.data.time),
+    });
   }
 
   converHoursToMillsc(hours: number): number {

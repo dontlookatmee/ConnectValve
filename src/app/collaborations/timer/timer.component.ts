@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TimerService } from 'src/app/services/timer/timer.service';
+import { Collaboration } from '../../services/collaboration/collaboration.service';
 
 @Component({
   selector: 'app-timer',
@@ -7,9 +8,13 @@ import { TimerService } from 'src/app/services/timer/timer.service';
   styleUrls: ['./timer.component.css'],
 })
 export class TimerComponent implements OnInit {
+  @Input('collaboration') collaboration: Collaboration;
+
   constructor(public timerService: TimerService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.timerService.startTimer(this.collaboration);
+  }
 
   ngOnDestroy() {}
 }

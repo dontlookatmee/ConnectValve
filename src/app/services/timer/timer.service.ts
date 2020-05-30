@@ -16,11 +16,6 @@ export class TimerService {
   constructor(private cbService: CollaborationService) {}
 
   startTimer(cb: Collaboration) {
-    // const updateCb = (cb: Collaboration, path) => {
-    //   this.cb.updateCollaboration(this.path, {
-    //     expiresAt: this.timePassed || this.cb.data.expiresAt,
-    //   });
-    // }
     if (cb.data.status === 'active') {
       this.timerSub = interval(1000).subscribe((x) => {
         this.timer = countDown(cb);
