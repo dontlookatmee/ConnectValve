@@ -25,8 +25,8 @@ export class MyServicesComponent implements OnInit {
   constructor(private userServices: UserServicesService) {}
 
   ngOnInit(): void {
-    this.userServices
-      .getMyServices()
-      .subscribe((services: ServicesMeta[]) => (this.myServices = services));
+    this.userServices.getMyServices().subscribe((services: ServicesMeta[]) => {
+      this.myServices = services;
+    });
   }
 }

@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  HostListener,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   CollaborationService,
@@ -24,6 +30,14 @@ interface Messages {
 export class CollaborationChatComponent implements OnInit {
   @ViewChild('msgContainer') scroller: ElementRef;
   @ViewChild('msgForm') from: NgForm;
+  @HostListener('window:unload', ['$event'])
+  unloadHandler() {
+    this.cbOnInit.unsubscribe();
+    this.cb.removeUserFromCollaboration(
+      this.collaboration.id,
+      this.loggedUser?.uid
+    );
+  }
 
   collaboration: Collaboration;
   cbOnInit: Subscription;

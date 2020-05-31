@@ -87,7 +87,6 @@ export class UserServicesService {
   }
 
   createService(data: Service) {
-    console.log('created service');
     return this.afs.collection('services').add(data);
   }
 

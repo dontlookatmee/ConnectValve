@@ -45,7 +45,6 @@ export class TimerService {
         this.cbService.updateCollaboration(cb.id, { status: 'finished' });
         return '';
       } else {
-        console.log(this.timer);
         return `${hours}:${minutes}:${seconds}`;
       }
     };

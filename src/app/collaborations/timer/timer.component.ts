@@ -9,7 +9,6 @@ import { Collaboration } from '../../services/collaboration/collaboration.servic
 })
 export class TimerComponent implements OnInit {
   @Input('collaboration') collaboration: Collaboration;
-  cbStarted: boolean = false;
 
   constructor(public timerService: TimerService) {}
 
@@ -18,6 +17,4 @@ export class TimerComponent implements OnInit {
       this.timerService.startTimer(this.collaboration);
     }
   }
-
-  ngOnDestroy() {}
 }
