@@ -21,7 +21,6 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit(): void {
     const userId = this.authService.getUserId();
-    console.log(userId);
     this.cbService
       .getMyCollaborations(userId)
       .subscribe((collaborations: Collaboration[]) => {
