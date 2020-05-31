@@ -19,8 +19,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {}
 
   handleLogOut() {
-    const uid = this.authService.getUserId();
-
     this.profileService
       .updateUserProfile('offline')
       .then((x) => {
