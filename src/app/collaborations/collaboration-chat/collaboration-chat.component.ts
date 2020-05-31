@@ -118,10 +118,6 @@ export class CollaborationChatComponent implements OnInit {
 
   ngAfterViewInit() {
     this.scrollToBottom();
-    // setTimeout(() => {
-    //   this.from.form.disable();
-    //   this.canSendMessage = false;
-    // }, 500);
   }
 
   ngOnDestroy() {

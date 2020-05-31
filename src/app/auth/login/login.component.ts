@@ -32,18 +32,17 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin() {
-    if (this.loginForm.valid) {
-      const email = this.loginForm.get('email').value;
-      const password = this.loginForm.get('password').value;
+    const email = this.loginForm.get('email').value;
+    const password = this.loginForm.get('password').value;
 
+    if (this.loginForm.valid) {
       this.fAuth
         .signInWithEmailAndPassword(email, password)
         .then((x) => {
-          const uid = this.authService.getUserId();
-          this.profileService.updateUserProfile(uid, 'online');
+          this.router.navigate(['']);
         })
         .then((x) => {
-          this.router.navigate(['']);
+          this.profileService.updateUserProfile('online');
         })
         .catch((err) => {
           this.isRegistrationCompleted.message = err;

@@ -20,7 +20,10 @@ export interface User {
   providedIn: 'root',
 })
 export class ProfileService {
-  constructor(private afs: AngularFirestore) {}
+  constructor(
+    private afs: AngularFirestore,
+    private authService: AuthService
+  ) {}
 
   addUserInDB(user: {}, uid: any) {
     return this.afs.collection('profiles').doc(uid).set(user);
@@ -42,8 +45,9 @@ export class ProfileService {
       );
   }
 
-  updateUserProfile(uid: string, status: string) {
-    return this.afs.collection<User>('profiles').doc(uid).update({
+  updateUserProfile(status: string) {
+    const userId = this.authService.getUserId();
+    return this.afs.collection<User>('profiles').doc(userId).update({
       status,
     });
   }
