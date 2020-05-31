@@ -64,3 +64,14 @@ ul > li {
 #dropdownMenuLink:hover {
   color: rgb(0, 0, 0, 0.9);
 }
+
+@media screen and (max-width: 991px) {
+  .atuhenticated {
+    flex-direction: column;
+    text-align: center;
+  }
+  #logout-button {
+    width: 100px;
+    margin: 0 auto;
+  }
+}
