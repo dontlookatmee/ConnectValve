@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
     const uid = this.authService.getUserId();
 
     this.profileService
-      .updateUserProfile(uid, 'offline')
+      .updateUserProfile('offline')
       .then((x) => {
         this.fAuth.signOut();
       })
