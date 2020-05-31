@@ -1,0 +1,29 @@
+.msg-container {
+  width: 250px;
+}
+
+.from {
+  padding: 5px;
+  background-color: rgb(245, 245, 245);
+}
+
+.from p {
+  margin: 0;
+}
+
+.message {
+  padding: 0.5rem;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0.5rem;
+  width: 60%;
+}
+
+hr {
+  margin: 5px 0;
+}
