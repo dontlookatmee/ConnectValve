@@ -13,6 +13,7 @@
 .atuhenticated {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   flex-wrap: wrap;
 }
 
@@ -50,4 +51,13 @@ ul > li {
 .navbar-light .navbar-nav .nav-link.show,
 .navbar-light .navbar-nav .show > .nav-link {
   color: rgb(0, 0, 0, 0.5);
+}
+
+.navbar-nav {
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+  padding: 0;
 }

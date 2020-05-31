@@ -53,6 +53,7 @@ export class ServiceComponent implements OnInit {
 
     // Just making 100% sure that unregistered users cannot
     // make offers even tho we have guard
+    // and cannot offer own services
     this.authService.user$.subscribe((user) => {
       if (user && user.uid !== this.service.data.uid) {
         this.canMakeOffer = true;

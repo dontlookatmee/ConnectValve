@@ -12,8 +12,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     public auth: AuthService,
     private fAuth: AngularFireAuth,
-    private profileService: ProfileService,
-    private authService: AuthService
+    private profileService: ProfileService
   ) {}
 
   ngOnInit(): void {}
