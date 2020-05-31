@@ -4,3 +4,9 @@
 .no-messages p {
   margin: 0;
 }
+#dropdownMenuLink {
+  color: rgb(0, 0, 0, 0.5);
+}
+#dropdownMenuLink:hover {
+  color: rgb(0, 0, 0, 0.9);
+}

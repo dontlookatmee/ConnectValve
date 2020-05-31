@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
+    path: 'faq',
+    loadChildren: () => import('./faq/faq.module').then((m) => m.FaqModule),
+  },
+  {
     path: 'services',
     canActivate: [AuthGuard],
     loadChildren: () =>
