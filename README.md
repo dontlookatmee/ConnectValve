@@ -1,29 +1,108 @@
-Hi, thanks for visiting my Github. I will update the readme after app is finished.
-
 # ConnectValve
+
+  
+
+ConnectValve is an extensive open-source project. The purpose of the app is to teach, learn, connect based on people needs. It is made for educational purposes only and nothing else!
+
+  
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
 
-## Development server
+  
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Screenshots
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**App Home Page:** 
+![Home Page](https://i.imgur.com/OG6GVXZ.png)
 
-## Build
+**App Collaboration Page:** 
+![enter image description here](https://i.imgur.com/vX73U7b.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Technologies
 
-## Running unit tests
+### Frontend
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+-   Javascript framework for building User Interfaces:  `Angular`
+-   CSS-in-JS library for handling ConnectValve's styles:  `Bootstrap`
 
-## Running end-to-end tests
+### Backend
+-   A comprehensive app  development platform : `Firebase`
+-   The NoSQL database for modern applications:  `Firebase Firestore`
+-   Authentication system:  `Firebase Authentication`
+-   Hoisting system:  `Firebase Hoisting`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Login / Register
 
-## Further help
+-   You can  `login`  or  `register`  easily, and if something goes wrong there are cool validations to help you get on ( every input is validated on the app )
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Create Service
+
+-   You can create a service
+-   You can set a category
+-   You can set a title
+-   You can set a description
+-   You can set a image URL
+-   You can set a price per hour in $
+
+### Your Services
+
+-   You can see all the services you've created
+-   You can see how your service looks like to other people
+-   You can edit your service field/s
+-   You can cancel the edit mode
+-   You can delete your service
+
+### Send Offer
+
+-   You can send a offer
+-   You can set a note that will be visible to the service owner and yourself
+-   You can set time for how long you need the service
+
+### Sent Offers
+
+-   You can see all offers you've sent
+-   You can see service information
+-   You can create a collaboration if service owner has accepted your offer
+
+### Received Offers
+
+-  You can see all received offers
+-  You can see offer information
+-  You can accept offer
+-  You can decline temporary offer
+-  You can delete permanently offer
+
+-   Navbar
+-   Consists of the single post that the notification is pointing to
+
+### Received Collaborations
+
+-   You can see all received/created collaborations
+-   You can see collaboration image
+-   You can see collaboration user last send message time
+-   You can see collaboration status
+-   You can enter collaboration
+
+### Messages
+
+-   You can see all collaborations that are pending(created, but not started yet)
+
+### Navbar
+
+-   You can login/register/logout , manage services/offers/collaborations, see messages, read FAQ
+
+#### You've read most of the features, go to  [ConnectValve](https://connectvalve.web.app/) and then check in real time the features that I'm explaining. You can find more detailed information on the FAQ page.
+
+## Setup a local environment
+
+-   Download or clone the project to your local environment
+-   Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. 
+
+## Contribute
+
+Contribution is accepted and I encourage you to do so as long as you follow my Github workflow
+
+## Issues / Problems
+
+Check out  `Issuses`  tab and if you don't find that issue that you are having, better create one and I will make sure everything is alright!
