@@ -1,3 +1,10 @@
 <div class="grid-container">
-  <app-user></app-user>
+  <app-user
+    *ngFor="let user of users"
+    [name]="user?.data.name"
+    [avatar]="user?.data.avatar"
+    [desc]="user?.data.description"
+    [status]="user?.data.status"
+    [userId]="user?.id"
+  ></app-user>
 </div>

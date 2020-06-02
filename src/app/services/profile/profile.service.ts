@@ -62,7 +62,7 @@ export class ProfileService {
 
   getUsersProfiles() {
     return this.afs
-      .collectionGroup('profiles')
+      .collection('profiles')
       .stateChanges()
       .pipe(
         map((data) => {
@@ -71,7 +71,8 @@ export class ProfileService {
             const id = values.payload.doc.id;
             return { id, data };
           });
-        })
+        }),
+        tap((x) => console.log(x))
       );
   }
 
