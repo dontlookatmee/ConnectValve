@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { UsersModule } from './users/users.module';
 
 const routes: Routes = [
   {
@@ -36,6 +37,11 @@ const routes: Routes = [
       import('./collaborations/collaborations.module').then(
         (m) => m.CollaborationsModule
       ),
+  },
+  {
+    path: 'users',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./users/users.module').then((m) => UsersModule),
   },
 ];
 
