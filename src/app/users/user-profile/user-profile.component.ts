@@ -19,6 +19,7 @@ export class UserProfileComponent implements OnInit {
   canEditProfile: boolean;
   canSendMessages: boolean;
   editMode: boolean = false;
+  feedback: { visible: boolean; type?: string; message?: string };
 
   editProfileForm = this.fb.group({
     avatar: [
@@ -85,9 +86,28 @@ export class UserProfileComponent implements OnInit {
         .updateUserProfile(data)
         .then((x) => {
           this.editMode = false;
+          this.feedback = {
+            visible: true,
+            type: 'success',
+            message: 'Profile updated successful',
+          };
+          setTimeout(() => {
+            this.feedback = {
+              visible: false,
+            };
+          }, 2500);
         })
         .catch((err) => {
-          alert('Something went wrong, please try again...');
+          this.feedback = {
+            visible: true,
+            type: 'error',
+            message: 'Please try again',
+          };
+          setTimeout(() => {
+            this.feedback = {
+              visible: false,
+            };
+          }, 2500);
         });
     }
   }

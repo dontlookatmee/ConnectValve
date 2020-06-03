@@ -97,3 +97,9 @@
     </div>
   </div>
 </div>
+
+<app-small-popup
+  *ngIf="feedback?.visible"
+  [message]="feedback?.message"
+  [type]="feedback?.type"
+></app-small-popup>
