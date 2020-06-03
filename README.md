@@ -88,9 +88,16 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 -   You can see all collaborations that are pending(created, but not started yet)
 
+### Users
+
+-   You can see all registered users
+-   You can see user profile
+-   You can see all user services
+-   User message option stil not implemented
+
 ### Navbar
 
--   You can login/register/logout , manage services/offers/collaborations, see messages, read FAQ
+-   You can login/register/logout , manage services/offers/collaborations, see messages, see registered users, read FAQ
 
 #### You've read most of the features, go to  [ConnectValve](https://connectvalve.web.app/) and then check in real time the features that I'm explaining. You can find more detailed information on the FAQ page.
 
