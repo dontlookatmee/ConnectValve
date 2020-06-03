@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { UserServicesService } from 'src/app/services/user-services/user-services.service';
 
 interface ServicesMeta {
@@ -13,7 +13,6 @@ interface ServicesMeta {
     uid: string;
   };
 }
-
 @Component({
   selector: 'app-my-services',
   templateUrl: './my-services.component.html',

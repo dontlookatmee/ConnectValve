@@ -3,14 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users/users.component';
-import { UserComponent } from './user/user.component';
-
+import { UserCardComponent } from './user-card/user-card.component';
 
 @NgModule({
-  declarations: [UsersComponent, UserComponent],
-  imports: [
-    CommonModule,
-    UsersRoutingModule
-  ]
+  declarations: [UsersComponent, UserCardComponent],
+  imports: [CommonModule, UsersRoutingModule],
 })
-export class UsersModule { }
+export class UsersModule {}

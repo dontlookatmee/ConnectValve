@@ -1,11 +1,11 @@
 import { Component, OnInit, HostBinding, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css'],
+  selector: 'app-user-card',
+  templateUrl: './user-card.component.html',
+  styleUrls: ['./user-card.component.css'],
 })
-export class UserComponent implements OnInit {
+export class UserCardComponent implements OnInit {
   @HostBinding('style.margin')
   margin: string = '0 auto';
 
