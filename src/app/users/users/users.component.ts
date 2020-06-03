@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   ProfileService,
   UsersMeta,
+  User,
 } from 'src/app/services/profile/profile.service';
 
 @Component({
@@ -10,12 +11,12 @@ import {
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
-  users: UsersMeta[];
+  users: User[];
 
   constructor(private profileService: ProfileService) {}
 
   ngOnInit(): void {
-    this.profileService.getUsersProfiles().subscribe((users: UsersMeta[]) => {
+    this.profileService.getUsersProfiles().subscribe((users: User[]) => {
       this.users = users;
     });
   }
