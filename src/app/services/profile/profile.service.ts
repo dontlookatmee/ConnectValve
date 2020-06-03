@@ -61,19 +61,7 @@ export class ProfileService {
   }
 
   getUsersProfiles() {
-    return this.afs
-      .collection('profiles')
-      .stateChanges()
-      .pipe(
-        map((data) => {
-          return data.map((values) => {
-            const data = values.payload.doc.data();
-            const id = values.payload.doc.id;
-            return { id, data };
-          });
-        }),
-        tap((x) => console.log(x))
-      );
+    return this.afs.collectionGroup('profiles').valueChanges();
   }
 
   updateUserProfile(status: string) {
