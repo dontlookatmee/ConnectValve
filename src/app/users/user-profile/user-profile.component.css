@@ -9,7 +9,9 @@
   padding: 20px 0 10px 0;
   background: #fff;
 }
-
+.profile-userpic {
+  text-align: center;
+}
 .profile-userpic img {
   display: flex;
   float: none;
@@ -146,6 +148,7 @@ ul {
 .profile-desc-text {
   color: #7e8c9e;
   font-size: 14px;
+  word-wrap: break-word;
 }
 .margin-top-20 {
   margin-top: 20px !important;
