@@ -31,7 +31,7 @@ export class UserProfileComponent implements OnInit {
         ),
       ],
     ],
-    description: ['', [Validators.maxLength(100), Validators.minLength(3)]],
+    description: ['', [Validators.maxLength(120), Validators.minLength(5)]],
     email: ['', [Validators.required, Validators.pattern(/\S+@\S+\.\S+/)]],
   });
 
