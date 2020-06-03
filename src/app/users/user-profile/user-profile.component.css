@@ -59,6 +59,10 @@
 }
 
 /* Profile Content */
+.services-container h3 {
+  margin: 20px auto;
+  text-align: center;
+}
 .profile-content {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
