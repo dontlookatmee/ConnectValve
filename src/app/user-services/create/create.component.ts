@@ -67,6 +67,7 @@ export class CreateComponent implements OnInit {
         description,
         image,
         price,
+        avatar: user.avatar,
         uid,
         name: user.name,
       };

@@ -15,6 +15,7 @@ interface Service {
     title: string;
     uid: string;
     name: string;
+    avatar: string;
   };
 }
 
@@ -55,7 +56,7 @@ export class ServiceComponent implements OnInit {
     // make offers even tho we have guard
     // and cannot offer own services
     this.authService.user$.subscribe((user) => {
-      if (user && user.uid !== this.service.data.uid) {
+      if (user && user.uid !== this.service?.data.uid) {
         this.canMakeOffer = true;
       } else {
         this.canMakeOffer = false;

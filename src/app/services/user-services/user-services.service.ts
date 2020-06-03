@@ -12,6 +12,7 @@ export interface Service {
   price: number;
   title: string;
   uid: string;
+  avatar: string;
 }
 
 export interface ServicesMeta {
