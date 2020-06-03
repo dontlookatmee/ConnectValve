@@ -64,10 +64,8 @@ export class ProfileService {
     return this.afs.collectionGroup('profiles').valueChanges();
   }
 
-  updateUserProfile(status: string) {
+  updateUserProfile(data: {}) {
     const userId = this.authService.getUserId();
-    return this.afs.collection<User>('profiles').doc(userId).update({
-      status,
-    });
+    return this.afs.collection<User>('profiles').doc(userId).update(data);
   }
 }
