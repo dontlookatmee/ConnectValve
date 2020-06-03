@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -39,10 +40,10 @@ export class LoginComponent implements OnInit {
       this.fAuth
         .signInWithEmailAndPassword(email, password)
         .then((x) => {
+          this.authService.user$.pipe(take(1)).subscribe((x) => {
+            this.profileService.updateUserProfile('online');
+          });
           this.router.navigate(['']);
-        })
-        .then((x) => {
-          this.profileService.updateUserProfile('online');
         })
         .catch((err) => {
           this.isRegistrationCompleted.message = err;
