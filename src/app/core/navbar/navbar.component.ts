@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
 
   handleLogOut() {
     this.profileService
-      .updateUserProfile('offline')
+      .updateUserProfile({ status: 'offline' })
       .then((x) => {
         this.fAuth.signOut();
       })

@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
         .signInWithEmailAndPassword(email, password)
         .then((x) => {
           this.authService.user$.pipe(take(1)).subscribe((x) => {
-            this.profileService.updateUserProfile('online');
+            this.profileService.updateUserProfile({ status: 'online' });
           });
           this.router.navigate(['']);
         })
