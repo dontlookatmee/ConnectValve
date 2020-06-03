@@ -4,7 +4,7 @@ import { map, filter, tap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import * as firebase from 'firebase';
 
-interface Service {
+export interface Service {
   category: string;
   description: string;
   image: string;
@@ -14,7 +14,7 @@ interface Service {
   uid: string;
 }
 
-interface ServicesMeta {
+export interface ServicesMeta {
   id: string;
   data: {
     category: string;
@@ -67,6 +67,26 @@ export class UserServicesService {
 
   getMyServices() {
     const userId = this.authService.getUserId();
+    return this.afs
+      .collectionGroup('services')
+      .snapshotChanges()
+      .pipe(
+        map((data) => {
+          return data.map((values) => {
+            const data = values.payload.doc.data();
+            const id = values.payload.doc.id;
+            return { id, data };
+          });
+        }),
+        map((services: ServicesMeta[]) => {
+          return services.filter((service: ServicesMeta) => {
+            return service.data.uid === userId;
+          });
+        })
+      );
+  }
+
+  getUserServices(userId: string) {
     return this.afs
       .collectionGroup('services')
       .snapshotChanges()
