@@ -56,7 +56,7 @@
           aria-controls="tab5"
           aria-selected="false"
         >
-          <i class="fa fa-commenting" aria-hidden="true"></i> Messages
+          <i class="fa fa-commenting" aria-hidden="true"></i> Service Messages
         </a>
         <a
           href="#tab6"
@@ -64,6 +64,16 @@
           data-toggle="pill"
           role="tab"
           aria-controls="tab6"
+          aria-selected="false"
+        >
+          <i class="fa fa-user" aria-hidden="true"></i> Users
+        </a>
+        <a
+          href="#tab7"
+          class="nav-link"
+          data-toggle="pill"
+          role="tab"
+          aria-controls="tab7"
           aria-selected="false"
         >
           <i class="fa fa-question" aria-hidden="true"></i> General help
@@ -795,7 +805,13 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane" id="tab6" role="tabpanel" aria-labelledby="tab6">
+        <!--User-->
+        <div
+          class="tab-pane show active"
+          id="tab6"
+          role="tabpanel"
+          aria-labelledby="tab6"
+        >
           <div class="accordion" id="accordion-tab-6">
             <div class="card">
               <div class="card-header" id="accordion-tab-6-heading-1">
@@ -808,7 +824,7 @@
                     aria-expanded="false"
                     aria-controls="accordion-tab-6-content-1"
                   >
-                    Can I use it all the time ?
+                    Where can I see registered users ?
                   </button>
                 </h5>
               </div>
@@ -820,8 +836,9 @@
               >
                 <div class="card-body">
                   <p>
-                    Of course the app is free, you can use it whenever you want.
+                    You can find registered users at "Users" navbar link.
                   </p>
+                  <p><strong>Example: </strong> Image here</p>
                 </div>
               </div>
             </div>
@@ -836,7 +853,7 @@
                     aria-expanded="false"
                     aria-controls="accordion-tab-6-content-2"
                   >
-                    Does this app have what I want ?
+                    Can I see a user's profile ?
                   </button>
                 </h5>
               </div>
@@ -848,9 +865,10 @@
               >
                 <div class="card-body">
                   <p>
-                    We have a large choice of services, so the chance is big to
-                    find what are you searching for.
+                    Yes you can see user's profile if you go to navbar "Users"
+                    and click the "Profile" button.
                   </p>
+                  <p><strong>Example: </strong>Image here</p>
                 </div>
               </div>
             </div>
@@ -865,7 +883,7 @@
                     aria-expanded="false"
                     aria-controls="accordion-tab-6-content-3"
                   >
-                    Are there any restrictions ?
+                    Where can I find user's services ?
                   </button>
                 </h5>
               </div>
@@ -877,8 +895,10 @@
               >
                 <div class="card-body">
                   <p>
-                    Only the sky is your limit. :)
+                    You can find all users services at the main home page or at
+                    user's profile page.
                   </p>
+                  <p><strong>Example: </strong>Image here</p>
                 </div>
               </div>
             </div>
@@ -893,7 +913,7 @@
                     aria-expanded="false"
                     aria-controls="accordion-tab-6-content-4"
                   >
-                    How can I contact you ?
+                    How can I send message to a user ?
                   </button>
                 </h5>
               </div>
@@ -902,6 +922,127 @@
                 id="accordion-tab-6-content-4"
                 aria-labelledby="accordion-tab-6-heading-4"
                 data-parent="#accordion-tab-6"
+              >
+                <div class="card-body">
+                  <p>
+                    You can send a message to a user at the user's profile page,
+                    which you can find at navbar link Users -> Profile ->
+                    Message red button.
+                  </p>
+                  <p><strong>Example: </strong>Image here</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--User-->
+        <div class="tab-pane" id="tab7" role="tabpanel" aria-labelledby="tab7">
+          <div class="accordion" id="accordion-tab-7">
+            <div class="card">
+              <div class="card-header" id="accordion-tab-7-heading-1">
+                <h5>
+                  <button
+                    class="btn btn-link"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#accordion-tab-7-content-1"
+                    aria-expanded="false"
+                    aria-controls="accordion-tab-7-content-1"
+                  >
+                    Can I use it all the time ?
+                  </button>
+                </h5>
+              </div>
+              <div
+                class="collapse show"
+                id="accordion-tab-7-content-1"
+                aria-labelledby="accordion-tab-7-heading-1"
+                data-parent="#accordion-tab-7"
+              >
+                <div class="card-body">
+                  <p>
+                    Of course the app is free, you can use it whenever you want.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="accordion-tab-7-heading-2">
+                <h5>
+                  <button
+                    class="btn btn-link"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#accordion-tab-7-content-2"
+                    aria-expanded="false"
+                    aria-controls="accordion-tab-7-content-2"
+                  >
+                    Does this app have what I want ?
+                  </button>
+                </h5>
+              </div>
+              <div
+                class="collapse"
+                id="accordion-tab-7-content-2"
+                aria-labelledby="accordion-tab-7-heading-2"
+                data-parent="#accordion-tab-7"
+              >
+                <div class="card-body">
+                  <p>
+                    We have a large choice of services, so the chance is big to
+                    find what are you searching for.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="accordion-tab-7-heading-3">
+                <h5>
+                  <button
+                    class="btn btn-link"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#accordion-tab-7-content-3"
+                    aria-expanded="false"
+                    aria-controls="accordion-tab-7-content-3"
+                  >
+                    Are there any restrictions ?
+                  </button>
+                </h5>
+              </div>
+              <div
+                class="collapse"
+                id="accordion-tab-7-content-3"
+                aria-labelledby="accordion-tab-7-heading-3"
+                data-parent="#accordion-tab-7"
+              >
+                <div class="card-body">
+                  <p>
+                    Only the sky is your limit. :)
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="accordion-tab-7-heading-4">
+                <h5>
+                  <button
+                    class="btn btn-link"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#accordion-tab-7-content-4"
+                    aria-expanded="false"
+                    aria-controls="accordion-tab-7-content-4"
+                  >
+                    How can I contact you ?
+                  </button>
+                </h5>
+              </div>
+              <div
+                class="collapse"
+                id="accordion-tab-7-content-4"
+                aria-labelledby="accordion-tab-7-heading-4"
+                data-parent="#accordion-tab-7"
               >
                 <div class="card-body">
                   <p>
