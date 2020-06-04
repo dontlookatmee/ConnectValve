@@ -1,0 +1,29 @@
+<section id="contact-form">
+  <form #form="ngForm" (ngSubmit)="handleMessage()">
+    <textarea
+      [(ngModel)]="message"
+      #msg="ngModel"
+      name="message"
+      placeholder="Message"
+      required
+      minlength="20"
+      class="form-control"
+    ></textarea>
+    <div *ngIf="msg.invalid && (msg.dirty || msg.touched)">
+      <div style="color: 'red';" *ngIf="msg.errors.require">
+        Message is required.
+      </div>
+      <div style="color: 'red';" *ngIf="msg.errors.minlength">
+        Message you entered is
+        {{ msg.errors.minlength.actualLength }} characters long, but it must be
+        at least {{ msg.errors.minlength.requiredLength }} characters.
+      </div>
+    </div>
+    <button [disabled]="msg.invalid" class="btn btn-primary">Send</button>
+  </form>
+</section>
+<app-small-popup
+  *ngIf="feedback?.visible"
+  [type]="feedback?.type"
+  [message]="feedback?.message"
+></app-small-popup>

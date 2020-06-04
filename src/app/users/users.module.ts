@@ -6,8 +6,9 @@ import { UsersComponent } from './users/users.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ProfileServiceCardComponent } from './profile-service-card/profile-service-card.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { MessageFormComponent } from './message-form/message-form.component';
 
 @NgModule({
   declarations: [
@@ -15,11 +16,13 @@ import { SharedModule } from '../shared/shared.module';
     UserCardComponent,
     UserProfileComponent,
     ProfileServiceCardComponent,
+    MessageFormComponent,
   ],
   imports: [
     CommonModule,
     UsersRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     SharedModule,
   ],
 })
