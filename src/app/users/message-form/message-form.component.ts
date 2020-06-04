@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ProfileService, User } from 'src/app/services/profile/profile.service';
 import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-message-form',
@@ -30,41 +31,43 @@ export class MessageFormComponent implements OnInit {
     this.userId = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
-  handleMessage() {
-    const data = {
-      fromUser: this.user.name,
-      fromUserAvatar: this.user.avatar,
-      fromUserId: this.user.uid,
-      date: Date.now(),
-      subject: this.subject,
-      message: this.message,
-    };
+  handleMessage(form: NgForm) {
+    if (form.valid) {
+      const data = {
+        fromUser: this.user.name,
+        fromUserAvatar: this.user.avatar,
+        fromUserId: this.user.uid,
+        date: Date.now(),
+        subject: this.subject,
+        message: this.message,
+      };
 
-    this.profileService
-      .sendMessage(this.userId, data)
-      .then((x) => {
-        this.subject = '';
-        this.message = '';
-        this.feedback = {
-          visible: true,
-          type: 'success',
-          message: 'Message sent',
-        };
+      this.profileService
+        .sendMessage(this.userId, data)
+        .then((x) => {
+          this.subject = '';
+          this.message = '';
+          this.feedback = {
+            visible: true,
+            type: 'success',
+            message: 'Message sent',
+          };
 
-        setTimeout(() => {
-          this.feedback.visible = false;
-        }, 2500);
-      })
-      .catch((err) => {
-        this.feedback = {
-          visible: true,
-          type: 'error',
-          message: 'Message not sent, please try again',
-        };
+          setTimeout(() => {
+            this.feedback.visible = false;
+          }, 2500);
+        })
+        .catch((err) => {
+          this.feedback = {
+            visible: true,
+            type: 'error',
+            message: 'Message not sent, please try again',
+          };
 
-        setTimeout(() => {
-          this.feedback.visible = false;
-        }, 2500);
-      });
+          setTimeout(() => {
+            this.feedback.visible = false;
+          }, 2500);
+        });
+    }
   }
 }
