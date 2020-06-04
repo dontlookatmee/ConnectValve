@@ -8,6 +8,7 @@
       placeholder="Subject"
       required
       minlength="3"
+      maxlength="50"
       class="form-control"
       style="margin-bottom: '10px';"
     />
@@ -21,6 +22,9 @@
         at least {{ subj.errors.minlength.requiredLength }} characters.
       </div>
     </div>
+    <div style="color: 'gray';" *ngIf="subject?.length === 50">
+      You have reached maximum characters.
+    </div>
     <textarea
       [(ngModel)]="message"
       #msg="ngModel"
@@ -28,6 +32,7 @@
       placeholder="Message"
       required
       minlength="20"
+      maxlength="500"
       class="form-control"
     ></textarea>
     <div *ngIf="msg.invalid && (msg.dirty || msg.touched)">
@@ -39,6 +44,9 @@
         {{ msg.errors.minlength.actualLength }} characters long, but it must be
         at least {{ msg.errors.minlength.requiredLength }} characters.
       </div>
+    </div>
+    <div style="color: 'gray';" *ngIf="message?.length === 500">
+      You have reached maximum characters.
     </div>
     <button [disabled]="msg.invalid" class="btn btn-primary">Send</button>
   </form>
