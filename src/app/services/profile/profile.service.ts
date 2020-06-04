@@ -84,4 +84,22 @@ export class ProfileService {
       .collection('messages')
       .add(data);
   }
+
+  getUserMessages() {
+    const userId = this.authService.getUserId();
+    return this.afs
+      .collection<User>('profiles')
+      .doc(userId)
+      .collection('messages')
+      .stateChanges()
+      .pipe(
+        map((data) => {
+          return data.map((message) => {
+            const data = message.payload.doc.data();
+            const id = message.payload.doc.id;
+            return { data, id };
+          });
+        })
+      );
+  }
 }
