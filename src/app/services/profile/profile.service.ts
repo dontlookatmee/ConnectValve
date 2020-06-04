@@ -31,6 +31,14 @@ export interface UsersMeta {
   };
 }
 
+interface Message {
+  fromUser: string;
+  fromUserAvatar: string;
+  fromUserId: string;
+  date: number;
+  message: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -67,5 +75,13 @@ export class ProfileService {
   updateUserProfile(data: {}) {
     const userId = this.authService.getUserId();
     return this.afs.collection<User>('profiles').doc(userId).update(data);
+  }
+
+  sendMessage(toUser: string, data: Message) {
+    return this.afs
+      .collection<User>('profiles')
+      .doc(toUser)
+      .collection('messages')
+      .add(data);
   }
 }
