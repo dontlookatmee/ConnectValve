@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./message-form.component.css'],
 })
 export class MessageFormComponent implements OnInit {
+  subject: string;
   message: string;
   user: User;
   userId: string;
@@ -35,12 +36,14 @@ export class MessageFormComponent implements OnInit {
       fromUserAvatar: this.user.avatar,
       fromUserId: this.user.uid,
       date: Date.now(),
+      subject: this.subject,
       message: this.message,
     };
 
     this.profileService
       .sendMessage(this.userId, data)
       .then((x) => {
+        this.subject = '';
         this.message = '';
         this.feedback = {
           visible: true,

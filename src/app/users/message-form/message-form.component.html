@@ -1,5 +1,26 @@
 <section id="contact-form">
   <form #form="ngForm" (ngSubmit)="handleMessage()">
+    <input
+      type="text"
+      [(ngModel)]="subject"
+      #subj="ngModel"
+      name="subject"
+      placeholder="Subject"
+      required
+      minlength="3"
+      class="form-control"
+      style="margin-bottom: '10px';"
+    />
+    <div *ngIf="subj.invalid && (subj.dirty || subj.touched)">
+      <div style="color: 'red';" *ngIf="subj.errors.required">
+        Subject is required.
+      </div>
+      <div style="color: 'red';" *ngIf="subj.errors.minlength">
+        Message you entered is
+        {{ subj.errors.minlength.actualLength }} characters long, but it must be
+        at least {{ subj.errors.minlength.requiredLength }} characters.
+      </div>
+    </div>
     <textarea
       [(ngModel)]="message"
       #msg="ngModel"
@@ -10,7 +31,7 @@
       class="form-control"
     ></textarea>
     <div *ngIf="msg.invalid && (msg.dirty || msg.touched)">
-      <div style="color: 'red';" *ngIf="msg.errors.require">
+      <div style="color: 'red';" *ngIf="msg.errors.required">
         Message is required.
       </div>
       <div style="color: 'red';" *ngIf="msg.errors.minlength">
