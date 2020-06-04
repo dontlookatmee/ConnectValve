@@ -43,6 +43,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./users/users.module').then((m) => UsersModule),
   },
+  {
+    path: 'inbox',
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./inbox/inbox.module').then((m) => m.InboxModule),
+  },
 ];
 
 @NgModule({
