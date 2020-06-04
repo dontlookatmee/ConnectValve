@@ -34,7 +34,7 @@
               Update
             </button>
             <button
-              *ngIf="canEditProfile"
+              *ngIf="profileOwner"
               type="button"
               class="btn btn-warning btn-sm"
               (click)="handleEditMode()"

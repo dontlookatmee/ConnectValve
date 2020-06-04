@@ -16,7 +16,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class UserProfileComponent implements OnInit {
   user: User;
   services: ServicesMeta[];
-  canEditProfile: boolean;
+  profileOwner: boolean;
   canSendMessages: boolean;
   editMode: boolean = false;
   messageMode: boolean = false;
@@ -50,7 +50,7 @@ export class UserProfileComponent implements OnInit {
       this.user = user;
 
       if (user.uid === this.authService.getUserId()) {
-        this.canEditProfile = true;
+        this.profileOwner = true;
         this.canSendMessages = false;
         this.editProfileForm.patchValue({
           avatar: user.avatar,
@@ -58,7 +58,7 @@ export class UserProfileComponent implements OnInit {
           email: user.email,
         });
       } else {
-        this.canEditProfile = false;
+        this.profileOwner = false;
         this.canSendMessages = true;
       }
     });
