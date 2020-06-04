@@ -45,7 +45,7 @@
 .container_ui__heading {
   height: 60px;
   width: 100%;
-  background: #333658;
+  background: #e38968;
 }
 .container_ui__heading .header_icon {
   float: left;
@@ -56,7 +56,7 @@
   cursor: pointer;
 }
 .container_ui__heading h1 {
-  color: #aeb1d8;
+  color: white;
   text-transform: uppercase;
   font-weight: 700;
   height: 10px;
@@ -98,13 +98,13 @@
   width: 81px;
   transition-property: width;
   transition-duration: 0.4s;
-  -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 .container_ui label:hover > .container_ui__item .face .color_bar span {
   opacity: 1;
   transition-property: opacity;
   transition-duration: 0.2s;
-  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
   transition-delay: 0.3s;
 }
 .container_ui label:hover > .container_ui__item .face .color_bar p {
@@ -117,7 +117,7 @@
   left: 380px;
   z-index: -1;
   opacity: 1;
-  -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   pointer-events: none;
 }
 .container_ui .container_ui__expand label {
