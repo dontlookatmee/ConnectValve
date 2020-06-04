@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService, User } from 'src/app/services/profile/profile.service';
 import {
   UserServicesService,
@@ -41,7 +41,8 @@ export class UserProfileComponent implements OnInit {
     private profileService: ProfileService,
     private userServices: UserServicesService,
     private authService: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +52,6 @@ export class UserProfileComponent implements OnInit {
 
       if (user.uid === this.authService.getUserId()) {
         this.profileOwner = true;
-        this.canSendMessages = false;
         this.editProfileForm.patchValue({
           avatar: user.avatar,
           description: user.description,
@@ -59,7 +59,6 @@ export class UserProfileComponent implements OnInit {
         });
       } else {
         this.profileOwner = false;
-        this.canSendMessages = true;
       }
     });
 
@@ -111,6 +110,10 @@ export class UserProfileComponent implements OnInit {
           }, 2500);
         });
     }
+  }
+
+  handleInbox() {
+    this.router.navigate(['inbox']);
   }
 
   handleMessageMode() {

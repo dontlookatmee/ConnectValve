@@ -19,12 +19,20 @@
           </div>
           <div class="profile-userbuttons">
             <button
-              *ngIf="canSendMessages"
+              *ngIf="!profileOwner"
               type="button"
               class="btn btn-danger btn-sm"
               (click)="handleMessageMode()"
             >
               {{ messageMode ? 'Cancel Message' : 'Message' }}
+            </button>
+            <button
+              *ngIf="profileOwner && !editMode"
+              type="button"
+              class="btn btn-info btn-sm"
+              (click)="handleInbox()"
+            >
+              Inbox
             </button>
             <button
               *ngIf="editMode"
