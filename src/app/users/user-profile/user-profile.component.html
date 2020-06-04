@@ -22,8 +22,9 @@
               *ngIf="canSendMessages"
               type="button"
               class="btn btn-danger btn-sm"
+              (click)="handleMessageMode()"
             >
-              Message
+              {{ messageMode ? 'Cancel Message' : 'Message' }}
             </button>
             <button
               *ngIf="editMode"
@@ -78,22 +79,25 @@
       </form>
     </div>
     <div class="col-md-9 services-container">
-      <h3>User Services</h3>
-      <div class="profile-content" *ngIf="services?.length; else noServices">
-        <app-profile-service-card
-          *ngFor="let service of services"
-          [title]="service?.data.title"
-          [price]="service?.data.price"
-          [category]="service?.data.category"
-          [description]="service?.data.description"
-          [image]="service?.data.image"
-          [id]="service?.id"
-        ></app-profile-service-card>
-      </div>
+      <div *ngIf="!messageMode" class="services">
+        <h3>User Services</h3>
+        <div class="profile-content" *ngIf="services?.length; else noServices">
+          <app-profile-service-card
+            *ngFor="let service of services"
+            [title]="service?.data.title"
+            [price]="service?.data.price"
+            [category]="service?.data.category"
+            [description]="service?.data.description"
+            [image]="service?.data.image"
+            [id]="service?.id"
+          ></app-profile-service-card>
+        </div>
 
-      <ng-template #noServices>
-        User has no services
-      </ng-template>
+        <ng-template #noServices>
+          User has no services
+        </ng-template>
+      </div>
+      <app-message-form *ngIf="messageMode"></app-message-form>
     </div>
   </div>
 </div>

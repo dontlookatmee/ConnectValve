@@ -19,6 +19,7 @@ export class UserProfileComponent implements OnInit {
   canEditProfile: boolean;
   canSendMessages: boolean;
   editMode: boolean = false;
+  messageMode: boolean = false;
   feedback: { visible: boolean; type?: string; message?: string };
 
   editProfileForm = this.fb.group({
@@ -110,5 +111,9 @@ export class UserProfileComponent implements OnInit {
           }, 2500);
         });
     }
+  }
+
+  handleMessageMode() {
+    this.messageMode = !this.messageMode;
   }
 }
