@@ -14,6 +14,7 @@ export class MessageComponent implements OnInit {
   @Input('subject') subject: string;
   @Input('message') message: string;
   @Input('index') index: number;
+  @Input('msgId') msgId: string;
 
   user: User;
 
@@ -27,5 +28,10 @@ export class MessageComponent implements OnInit {
 
   sliceText(text: string) {
     return text.length > 35 ? `${text.substr(0, 35)}...` : text;
+  }
+
+  handleDeleteMsg() {
+    console.log('message deleted');
+    this.profileService.deleteUserMsg(this.msgId);
   }
 }

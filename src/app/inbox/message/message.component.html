@@ -1,4 +1,5 @@
 <input id="message-{{ index }}" type="checkbox" />
+
 <label for="message-{{ index }}" href="#move">
   <div class="container_ui__item">
     <div class="face">
@@ -24,6 +25,9 @@
       <label for="message-{{ index }}">
         x
       </label>
+      <button (click)="handleDeleteMsg()" class="btn btn-danger btn-sm">
+        Delete
+      </button>
     </div>
     <div class="body">
       <div class="user">
