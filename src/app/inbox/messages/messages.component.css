@@ -29,22 +29,20 @@
   margin-top: 15px;
 }
 .container-msg {
-  width: 800px;
   width: 750px;
   text-align: center;
-  height: 500px;
+  height: 100%;
   position: absolute;
   left: 0;
-  right: 1170;
-  margin: auto;
-  top: 25px;
+  right: 1170px;
+  margin: 0 auto;
+  top: 62px;
   bottom: 0;
 }
 .container_ui {
   width: 350px;
-  background: white;
-  height: 486px;
-  box-shadow: 20px 20px 0px rgba(0, 0, 0, 0.16);
+  background: gainsboro;
+  height: 100%;
   transition-property: opacity, top;
   transition-duration: 0.4s;
   animation: pop 0.5s forwards;
@@ -137,6 +135,22 @@
 }
 .container_ui .container_ui__expand label:hover {
   color: #444;
+}
+
+.container_ui .container_ui__expand .btn {
+  position: absolute;
+  right: 10px;
+  top: 445px;
+  width: 70px;
+  font-size: 12px;
+  font-weight: 700;
+  background-color: #df4957;
+  color: #fff;
+  pointer-events: auto;
+}
+.container_ui .container_ui__expand .btn:hover {
+  cursor: pointer;
+  background-color: #c53e4b;
 }
 .container_ui
   input[type='checkbox']:checked
