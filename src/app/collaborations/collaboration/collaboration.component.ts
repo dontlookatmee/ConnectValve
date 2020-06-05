@@ -26,7 +26,7 @@ export class CollaborationComponent implements OnInit {
   @Input('img') img: string;
   @Input('id') id: string;
   lastRep: string;
-  repliedInt: Subscription;
+  repliedIntSub: Subscription;
 
   constructor(
     private router: Router,
@@ -36,7 +36,7 @@ export class CollaborationComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMessageTime();
-    this.repliedInt = interval(100000).subscribe((x) => {
+    this.repliedIntSub = interval(100000).subscribe((x) => {
       this.getMessageTime();
     });
   }
@@ -90,6 +90,6 @@ export class CollaborationComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.repliedInt.unsubscribe();
+    this.repliedIntSub.unsubscribe();
   }
 }

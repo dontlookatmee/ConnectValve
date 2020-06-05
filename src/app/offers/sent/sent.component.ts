@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OffersService } from 'src/app/services/offers/offers.service';
+import { Subscription } from 'rxjs';
 
 interface Offer {
   id: string;
@@ -22,11 +23,19 @@ interface Offer {
 export class SentComponent implements OnInit {
   offersSent: Offer[];
 
+  offerServiceSub: Subscription;
+
   constructor(private offersService: OffersService) {}
 
   ngOnInit(): void {
-    this.offersService.getSentOffers().subscribe((offers: Offer[]) => {
-      this.offersSent = offers;
-    });
+    this.offerServiceSub = this.offersService
+      .getSentOffers()
+      .subscribe((offers: Offer[]) => {
+        this.offersSent = offers;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.offerServiceSub.unsubscribe();
   }
 }

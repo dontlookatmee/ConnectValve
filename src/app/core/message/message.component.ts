@@ -3,6 +3,7 @@ import { CollaborationService } from 'src/app/services/collaboration/collaborati
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ProfileService, User } from 'src/app/services/profile/profile.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-message',
@@ -17,6 +18,9 @@ export class MessageComponent implements OnInit {
   fromUserName: string;
   toUserName: string;
 
+  profileServiceFromUserSub: Subscription;
+  profileServiceToUserSub: Subscription;
+
   constructor(
     private cbService: CollaborationService,
     private router: Router,
@@ -25,14 +29,16 @@ export class MessageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.profileService
+    this.profileServiceFromUserSub = this.profileService
       .getUserProfile(this.fromUser)
       .subscribe((user: User) => {
         this.fromUserName = user.name;
       });
-    this.profileService.getUserProfile(this.toUser).subscribe((user: User) => {
-      this.toUserName = user.name;
-    });
+    this.profileServiceToUserSub = this.profileService
+      .getUserProfile(this.toUser)
+      .subscribe((user: User) => {
+        this.toUserName = user.name;
+      });
   }
 
   handleJoinCb() {
@@ -40,5 +46,10 @@ export class MessageComponent implements OnInit {
     this.cbService.addUserToCollaboration(this.cbId, userId).then((x) => {
       this.router.navigate(['collaborations', this.cbId]);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.profileServiceFromUserSub.unsubscribe();
+    this.profileServiceToUserSub.unsubscribe();
   }
 }

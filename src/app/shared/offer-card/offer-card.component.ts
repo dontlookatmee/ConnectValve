@@ -3,6 +3,7 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 import { UserServicesService } from 'src/app/services/user-services/user-services.service';
 import { OffersService } from 'src/app/services/offers/offers.service';
 import { CollaborationService } from 'src/app/services/collaboration/collaboration.service';
+import { Subscription } from 'rxjs';
 
 interface User {
   avatar: string;
@@ -50,6 +51,9 @@ export class OfferCardComponent implements OnInit {
   offerServiceInfo: Service;
   feedback: { visible?: boolean; status?: string; msg?: string };
 
+  profileServiceSub: Subscription;
+  userServiceSub: Subscription;
+
   constructor(
     private profileService: ProfileService,
     private userServices: UserServicesService,
@@ -58,13 +62,13 @@ export class OfferCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.profileService
+    this.profileServiceSub = this.profileService
       .getUserProfile(this.fromUser)
       .subscribe((user: User) => {
         this.userProfile = user;
       });
 
-    this.userServices
+    this.userServiceSub = this.userServices
       .getService(this.serviceId)
       .subscribe((service: Service) => {
         this.offerServiceInfo = service;
@@ -119,5 +123,10 @@ export class OfferCardComponent implements OnInit {
     };
 
     return data;
+  }
+
+  ngOnDestroy(): void {
+    this.profileServiceSub.unsubscribe();
+    this.userServiceSub.unsubscribe();
   }
 }

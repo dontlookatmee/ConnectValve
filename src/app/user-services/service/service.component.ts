@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OffersService } from 'src/app/services/offers/offers.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { Subscription } from 'rxjs';
 
 interface Service {
   id: string;
@@ -32,6 +33,9 @@ export class ServiceComponent implements OnInit {
   canMakeOffer: boolean = false;
   offerSent: boolean = false;
 
+  userServiceSub: Subscription;
+  userAuthSub: Subscription;
+
   constructor(
     private userService: UserServicesService,
     private offerService: OffersService,
@@ -48,14 +52,16 @@ export class ServiceComponent implements OnInit {
 
   ngOnInit(): void {
     const currentPathId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.userService.getService(currentPathId).subscribe((data: Service) => {
-      this.service = data;
-    });
+    this.userServiceSub = this.userService
+      .getService(currentPathId)
+      .subscribe((data: Service) => {
+        this.service = data;
+      });
 
     // Just making 100% sure that unregistered users cannot
     // make offers even tho we have guard
     // and cannot offer own services
-    this.authService.user$.subscribe((user) => {
+    this.userAuthSub = this.authService.user$.subscribe((user) => {
       if (user && user.uid !== this.service?.data.uid) {
         this.canMakeOffer = true;
       } else {
@@ -113,5 +119,10 @@ export class ServiceComponent implements OnInit {
       this.totalPrice = Number(time) * Number(price);
     }
     return this.totalPrice;
+  }
+
+  ngOnDestroy(): void {
+    this.userServiceSub.unsubscribe();
+    this.userAuthSub.unsubscribe();
   }
 }

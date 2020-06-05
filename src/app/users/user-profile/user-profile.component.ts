@@ -7,6 +7,7 @@ import {
 } from 'src/app/services/user-services/user-services.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',
@@ -21,6 +22,9 @@ export class UserProfileComponent implements OnInit {
   editMode: boolean = false;
   messageMode: boolean = false;
   feedback: { visible: boolean; type?: string; message?: string };
+
+  userServicesSub: Subscription;
+  userProfileSub: Subscription;
 
   editProfileForm = this.fb.group({
     avatar: [
@@ -47,22 +51,24 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     const path = this.activatedRoute.snapshot.paramMap.get('id');
-    this.profileService.getUserProfile(path).subscribe((user: User) => {
-      this.user = user;
+    this.userProfileSub = this.profileService
+      .getUserProfile(path)
+      .subscribe((user: User) => {
+        this.user = user;
 
-      if (user.uid === this.authService.getUserId()) {
-        this.profileOwner = true;
-        this.editProfileForm.patchValue({
-          avatar: user.avatar,
-          description: user.description,
-          email: user.email,
-        });
-      } else {
-        this.profileOwner = false;
-      }
-    });
+        if (user.uid === this.authService.getUserId()) {
+          this.profileOwner = true;
+          this.editProfileForm.patchValue({
+            avatar: user.avatar,
+            description: user.description,
+            email: user.email,
+          });
+        } else {
+          this.profileOwner = false;
+        }
+      });
 
-    this.userServices
+    this.userServicesSub = this.userServices
       .getUserServices(path)
       .subscribe((services: ServicesMeta[]) => {
         this.services = services;
@@ -118,5 +124,10 @@ export class UserProfileComponent implements OnInit {
 
   handleMessageMode() {
     this.messageMode = !this.messageMode;
+  }
+
+  ngOnDestroy() {
+    this.userServicesSub.unsubscribe();
+    this.userProfileSub.unsubscribe();
   }
 }

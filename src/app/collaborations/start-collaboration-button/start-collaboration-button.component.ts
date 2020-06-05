@@ -17,6 +17,8 @@ export class StartCollaborationButtonComponent implements OnInit {
   canStartCb: boolean = false;
   path: string;
 
+  collaborationServiceSub: Subscription;
+
   constructor(
     private cb: CollaborationService,
     private activatedRoute: ActivatedRoute,
@@ -26,15 +28,17 @@ export class StartCollaborationButtonComponent implements OnInit {
   ngOnInit(): void {
     this.path = this.activatedRoute.snapshot.paramMap.get('id');
 
-    this.cb.getCollaboration(this.path).subscribe((cb: Collaboration) => {
-      this.collaboration = cb;
+    this.collaborationServiceSub = this.cb
+      .getCollaboration(this.path)
+      .subscribe((cb: Collaboration) => {
+        this.collaboration = cb;
 
-      if (cb.data.joinedPeople.length === 2) {
-        this.canStartCb = true;
-      } else {
-        this.canStartCb = false;
-      }
-    });
+        if (cb.data.joinedPeople.length === 2) {
+          this.canStartCb = true;
+        } else {
+          this.canStartCb = false;
+        }
+      });
   }
 
   handleStartCb() {
@@ -48,5 +52,9 @@ export class StartCollaborationButtonComponent implements OnInit {
 
   converHoursToMillsc(hours: number): number {
     return hours * 60 * 60 * 1000;
+  }
+
+  ngOnDestroy(): void {
+    this.collaborationServiceSub.unsubscribe();
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProfileService, User } from 'src/app/services/profile/profile.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-message',
@@ -18,10 +19,12 @@ export class MessageComponent implements OnInit {
 
   user: User;
 
+  userProfileSub: Subscription;
+
   constructor(private profileService: ProfileService) {}
 
   ngOnInit(): void {
-    this.profileService
+    this.userProfileSub = this.profileService
       .getUserProfile(this.userId)
       .subscribe((user: User) => (this.user = user));
   }
@@ -33,5 +36,9 @@ export class MessageComponent implements OnInit {
   handleDeleteMsg() {
     console.log('message deleted');
     this.profileService.deleteUserMsg(this.msgId);
+  }
+
+  ngOnDestroy(): void {
+    this.userProfileSub.unsubscribe();
   }
 }

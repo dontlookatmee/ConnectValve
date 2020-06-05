@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserServicesService } from '../../services/user-services/user-services.service';
+import { Subscription } from 'rxjs';
 
 interface Service {
   id: string;
@@ -20,12 +21,19 @@ interface Service {
 })
 export class HomeComponent implements OnInit {
   allServices: Service[];
+  servicesSub: Subscription;
 
   constructor(private uServices: UserServicesService) {}
 
   ngOnInit(): void {
-    this.uServices.getServices().subscribe((services: Service[]) => {
-      this.allServices = services;
-    });
+    this.servicesSub = this.uServices
+      .getServices()
+      .subscribe((services: Service[]) => {
+        this.allServices = services;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.servicesSub.unsubscribe();
   }
 }

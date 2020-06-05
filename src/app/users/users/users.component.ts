@@ -4,6 +4,7 @@ import {
   UsersMeta,
   User,
 } from 'src/app/services/profile/profile.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -13,13 +14,21 @@ import {
 export class UsersComponent implements OnInit {
   users: User[];
 
+  userProfileSub: Subscription;
+
   constructor(private profileService: ProfileService) {}
 
   ngOnInit(): void {
-    this.profileService.getUsersProfiles().subscribe((users: User[]) => {
-      this.users = users.sort((a: any, b: any) => {
-        return a.name.localeCompare(b.name);
+    this.userProfileSub = this.profileService
+      .getUsersProfiles()
+      .subscribe((users: User[]) => {
+        this.users = users.sort((a: any, b: any) => {
+          return a.name.localeCompare(b.name);
+        });
       });
-    });
+  }
+
+  ngOnDestroy() {
+    this.userProfileSub.unsubscribe();
   }
 }

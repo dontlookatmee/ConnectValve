@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { UserServicesService } from 'src/app/services/user-services/user-services.service';
+import { Subscription } from 'rxjs';
 
 interface ServicesMeta {
   id: string;
@@ -21,11 +22,19 @@ interface ServicesMeta {
 export class MyServicesComponent implements OnInit {
   myServices: ServicesMeta[];
 
+  myServicesSub: Subscription;
+
   constructor(private userServices: UserServicesService) {}
 
   ngOnInit(): void {
-    this.userServices.getMyServices().subscribe((services: ServicesMeta[]) => {
-      this.myServices = services;
-    });
+    this.myServicesSub = this.userServices
+      .getMyServices()
+      .subscribe((services: ServicesMeta[]) => {
+        this.myServices = services;
+      });
+  }
+
+  ngOnDestroy() {
+    this.myServicesSub.unsubscribe();
   }
 }

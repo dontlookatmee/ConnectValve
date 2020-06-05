@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserServicesService } from 'src/app/services/user-services/user-services.service';
+import { Subscription } from 'rxjs';
 
 interface ServicesMeta {
   id: string;
@@ -31,6 +32,8 @@ export class MyServiceComponent implements OnInit {
   editMode: boolean = false;
   service: ServicesMeta;
 
+  userServiceSub: Subscription;
+
   constructor(
     private fb: FormBuilder,
     private userServices: UserServicesService
@@ -60,15 +63,17 @@ export class MyServiceComponent implements OnInit {
       price: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
     });
 
-    this.userServices.getService(this.id).subscribe((service: ServicesMeta) => {
-      this.editForm.patchValue({
-        category: service.data.category,
-        title: service.data.title,
-        description: service.data.description,
-        image: service.data.image,
-        price: service.data.price,
+    this.userServiceSub = this.userServices
+      .getService(this.id)
+      .subscribe((service: ServicesMeta) => {
+        this.editForm.patchValue({
+          category: service.data.category,
+          title: service.data.title,
+          description: service.data.description,
+          image: service.data.image,
+          price: service.data.price,
+        });
       });
-    });
   }
 
   handleServiceEdit() {
@@ -98,5 +103,9 @@ export class MyServiceComponent implements OnInit {
 
   handleEdit() {
     this.editMode = true;
+  }
+
+  ngOnDestroy(): void {
+    this.userServiceSub.unsubscribe();
   }
 }

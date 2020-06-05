@@ -4,6 +4,7 @@ import {
   CollaborationService,
 } from 'src/app/services/collaboration/collaboration.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-messages',
@@ -12,6 +13,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class MessagesComponent implements OnInit {
   myCollaborations: Collaboration[];
+  collaboratonServiceSub: Subscription;
 
   constructor(
     public auth: AuthService,
@@ -21,12 +23,16 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit(): void {
     const userId = this.authService.getUserId();
-    this.cbService
+    this.collaboratonServiceSub = this.cbService
       .getMyCollaborations(userId)
       .subscribe((collaborations: Collaboration[]) => {
         this.myCollaborations = collaborations.filter(
           (cb: Collaboration) => cb.data.status === 'pending'
         );
       });
+  }
+
+  ngOnDestroy(): void {
+    this.collaboratonServiceSub.unsubscribe();
   }
 }

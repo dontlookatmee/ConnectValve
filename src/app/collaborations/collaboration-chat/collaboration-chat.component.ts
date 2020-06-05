@@ -32,7 +32,6 @@ export class CollaborationChatComponent implements OnInit {
   @ViewChild('msgForm') from: NgForm;
   @HostListener('window:unload', ['$event'])
   unloadHandler() {
-    this.cbOnInit.unsubscribe();
     this.cb.removeUserFromCollaboration(
       this.collaboration.id,
       this.loggedUser?.uid
@@ -40,7 +39,7 @@ export class CollaborationChatComponent implements OnInit {
   }
 
   collaboration: Collaboration;
-  cbOnInit: Subscription;
+  cbOnInitSub: Subscription;
   messages: Messages[];
   fromUser: User;
   toUser: User;
@@ -64,7 +63,7 @@ export class CollaborationChatComponent implements OnInit {
 
     const cb = this.cb.getCollaboration(path);
 
-    this.cbOnInit = cb
+    this.cbOnInitSub = cb
       .pipe(
         switchMap((cb: Collaboration) => {
           this.collaboration = cb;
@@ -78,7 +77,7 @@ export class CollaborationChatComponent implements OnInit {
           this.canSendMessage = false;
         }
 
-        this.cbOnInit = this.cb
+        this.cbOnInitSub = this.cb
           .getCollaborationMessages(cbId)
           .subscribe((messages: Messages[]) => {
             this.messages = messages;
@@ -88,7 +87,7 @@ export class CollaborationChatComponent implements OnInit {
           });
       });
 
-    this.cbOnInit = cb
+    this.cbOnInitSub = cb
       .pipe(
         take(1),
         switchMap((collaboration: Collaboration) => {
@@ -121,7 +120,7 @@ export class CollaborationChatComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.cbOnInit.unsubscribe();
+    this.cbOnInitSub.unsubscribe();
     this.cb.removeUserFromCollaboration(
       this.collaboration.id,
       this.loggedUser?.uid
