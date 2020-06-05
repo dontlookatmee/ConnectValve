@@ -102,4 +102,14 @@ export class ProfileService {
         })
       );
   }
+
+  deleteUserMsg(msgId: string) {
+    const userId = this.authService.getUserId();
+    return this.afs
+      .collection<User>('profiles')
+      .doc(userId)
+      .collection('messages')
+      .doc(msgId)
+      .delete();
+  }
 }
