@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ProfileService, User } from 'src/app/services/profile/profile.service';
 
 @Component({
   selector: 'app-message',
@@ -12,11 +13,17 @@ export class MessageComponent implements OnInit {
   @Input('date') date: number;
   @Input('subject') subject: string;
   @Input('message') message: string;
-  @Input('index') index: string;
+  @Input('index') index: number;
 
-  constructor() {}
+  user: User;
 
-  ngOnInit(): void {}
+  constructor(private profileService: ProfileService) {}
+
+  ngOnInit(): void {
+    this.profileService
+      .getUserProfile(this.userId)
+      .subscribe((user: User) => (this.user = user));
+  }
 
   sliceText(text: string) {
     return text.length > 35 ? `${text.substr(0, 35)}...` : text;
