@@ -10,7 +10,8 @@
 .navbar-brand:hover {
   color: #ce6041;
 }
-.atuhenticated {
+.atuhenticated,
+.guest {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -66,11 +67,13 @@ ul > li {
 }
 
 @media screen and (max-width: 991px) {
-  .atuhenticated {
+  .atuhenticated,
+  .guest {
     flex-direction: column;
     text-align: center;
   }
-  #logout-button {
+  #logout-button,
+  #register-button {
     width: 100px;
     margin: 0 auto;
   }
