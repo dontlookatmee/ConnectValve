@@ -12,7 +12,7 @@
       class="form-control"
       style="margin-bottom: '10px';"
     />
-    <div *ngIf="subj.invalid && (subj.dirty || subj.touched)">
+    <div *ngIf="subj.invalid && (subj.touched || subj.dirty)">
       <div style="color: 'red';" *ngIf="subj.errors.required">
         Subject is required.
       </div>
@@ -35,7 +35,7 @@
       maxlength="600"
       class="form-control"
     ></textarea>
-    <div *ngIf="msg.invalid && (msg.dirty || msg.touched)">
+    <div *ngIf="msg.invalid && (msg.touched || msg.dirty)">
       <div style="color: 'red';" *ngIf="msg.errors.required">
         Message is required.
       </div>

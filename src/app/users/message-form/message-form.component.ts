@@ -45,8 +45,7 @@ export class MessageFormComponent implements OnInit {
       this.profileService
         .sendMessage(this.userId, data)
         .then((x) => {
-          this.subject = '';
-          this.message = '';
+          form.reset();
           this.feedback = {
             visible: true,
             type: 'success',

@@ -28,9 +28,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
   
 
-**ConnectValve Tutorial Video:**
-[ConnectValve Tutorial Video](https://www.youtube.com/watch?v=YI-4ZD-qvIY&feature=youtu.be)
-
 
   
 
