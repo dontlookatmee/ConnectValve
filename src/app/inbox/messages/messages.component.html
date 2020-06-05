@@ -1,10 +1,19 @@
-<app-message
-  *ngFor="let message of messages; let i = index"
-  [fromUser]="message?.data.fromUser"
-  [fromUserAvatar]="message?.data.fromUserAvatar"
-  [fromUserId]="message?.data.fromUserId"
-  [date]="message?.data.date"
-  [subject]="message?.data.subject"
-  [message]="message?.data.message"
-  [index]="i"
-></app-message>
+<div class="container-msg">
+  <div class="container_ui">
+    <div class="container_ui__heading">
+      <h1>
+        inbox
+      </h1>
+    </div>
+    <app-message
+      *ngFor="let message of messages; let i = index"
+      [fromUser]="message?.data.fromUser"
+      [fromUserAvatar]="message?.data.fromUserAvatar"
+      [fromUserId]="message?.data.fromUserId"
+      [date]="message?.data.date"
+      [subject]="message?.data.subject"
+      [message]="message?.data.message"
+      [index]="i"
+    ></app-message>
+  </div>
+</div>
