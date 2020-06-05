@@ -19,6 +19,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 **App Collaboration Page:** 
 ![enter image description here](https://i.imgur.com/vX73U7b.png)
 
+**Enter ConnectValve for a video**
+
 ## Technologies
 
 ### Frontend
@@ -73,9 +75,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -  You can decline temporary offer
 -  You can delete permanently offer
 
--   Navbar
--   Consists of the single post that the notification is pointing to
-
 ### Received Collaborations
 
 -   You can see all received/created collaborations
@@ -84,7 +83,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   You can see collaboration status
 -   You can enter collaboration
 
-### Messages
+### Collaboration Invites
 
 -   You can see all collaborations that are pending(created, but not started yet)
 
@@ -93,11 +92,19 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 -   You can see all registered users
 -   You can see user profile
 -   You can see all user services
--   User message option stil not implemented
+-   You can update your profile
+-   You can send message to user
+
+### Inbox
+
+-  You can see all received messages
+-  You can see user status
+-  You can read message
+-  You can delete message
 
 ### Navbar
 
--   You can login/register/logout , manage services/offers/collaborations, see messages, see registered users, read FAQ
+-   You can login/register/logout ,manage services/offers/collaborations, see collaboration received, see registered users, see inbox messages, read FAQ
 
 #### You've read most of the features, go to  [ConnectValve](https://connectvalve.web.app/) and then check in real time the features that I'm explaining. You can find more detailed information on the FAQ page.
 
