@@ -34,8 +34,10 @@ export class MessageComponent implements OnInit {
   }
 
   handleDeleteMsg() {
-    console.log('message deleted');
-    this.profileService.deleteUserMsg(this.msgId);
+    const conf = confirm('Are you sure you want to delete this message ?');
+    if (conf) {
+      this.profileService.deleteUserMsg(this.msgId);
+    }
   }
 
   ngOnDestroy(): void {
