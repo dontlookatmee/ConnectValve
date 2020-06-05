@@ -43,7 +43,7 @@ export class CollaborationService {
   getMyCollaborations(id: string) {
     return this.afs
       .collectionGroup('collaborations')
-      .stateChanges()
+      .snapshotChanges()
       .pipe(
         map((data) => {
           return data.map((values) => {
