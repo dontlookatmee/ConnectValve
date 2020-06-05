@@ -91,7 +91,7 @@ export class ProfileService {
       .collection<User>('profiles')
       .doc(userId)
       .collection('messages')
-      .stateChanges()
+      .snapshotChanges()
       .pipe(
         map((data) => {
           return data.map((message) => {
