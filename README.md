@@ -14,10 +14,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Screenshots
 
 **App Home Page:** 
-![Home Page](https://i.imgur.com/OG6GVXZ.png)
+![Home Page](https://i.imgur.com/gqn784c.png)
 
 **App Collaboration Page:** 
-![enter image description here](https://i.imgur.com/vX73U7b.png)
+![App Collaboration Page](https://i.imgur.com/vX73U7b.png)
 
 **Enter ConnectValve for a video**
 
