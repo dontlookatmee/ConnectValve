@@ -14,7 +14,7 @@ export class UserCardComponent implements OnInit {
   @Input('desc') description: string;
   @Input('status') status: string;
   @Input('userId') userId: string;
-
+  @Input('votes') votes: string[];
   constructor() {}
 
   ngOnInit(): void {}

@@ -12,7 +12,7 @@ export interface User {
   last_changed: Date;
   password: string;
   services: string[];
-  votes?: [];
+  votes?: string[];
   status: string;
   uid: string;
 }
@@ -27,7 +27,7 @@ export interface UsersMeta {
     last_changed: Date;
     password: string;
     services: string[];
-    votes?: [];
+    votes?: string[];
     status: string;
     uid: string;
   };
