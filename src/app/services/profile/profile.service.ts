@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import * as firebase from 'firebase';
 import { Observable, of } from 'rxjs';
 import { switchMap, tap, map } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
@@ -113,5 +114,27 @@ export class ProfileService {
       .collection('messages')
       .doc(msgId)
       .delete();
+  }
+
+  addVote(userId: string) {
+    const regUserId = this.authService.getUserId();
+
+    this.afs
+      .collection('profiles')
+      .doc(userId)
+      .update({
+        votes: firebase.firestore.FieldValue.arrayUnion(regUserId),
+      });
+  }
+
+  removeVote(userId: string) {
+    const regUserId = this.authService.getUserId();
+
+    this.afs
+      .collection('profiles')
+      .doc(userId)
+      .update({
+        votes: firebase.firestore.FieldValue.arrayRemove(regUserId),
+      });
   }
 }
