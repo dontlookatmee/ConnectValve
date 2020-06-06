@@ -74,6 +74,7 @@ export class RegisterComponent implements OnInit {
             description: '',
             last_changed: new Date(),
             services: [],
+            votes: [],
             status: 'offline',
             uid,
           };
