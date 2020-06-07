@@ -1,10 +1,7 @@
 <div class="offer-card">
   <div class="offer-content">
     <h4>{{ offerServiceInfo?.data.title }}</h4>
-    <img
-      src="https://images.unsplash.com/photo-1497215842964-222b430dc094?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
-      alt=""
-    />
+    <img [src]="offerServiceInfo?.data.image" alt="" />
     <p>{{ offerServiceInfo?.data.description }}</p>
     <p
       [ngClass]="{
