@@ -9,9 +9,15 @@
         </small>
       </div>
       <div class="stars">
-        <span>{{ votes.length }} likes</span>
+        <span>{{ votes?.length }} likes</span>
         <span (click)="handleUserVote()">
-          <i class="fa fa-star" aria-hidden="true"></i>
+          <i
+            class="fa fa-star"
+            aria-hidden="true"
+            [ngStyle]="{
+              color: user?.votes?.includes(loggedUserId) ? '#fff' : '#dfdf03'
+            }"
+          ></i>
         </span>
       </div>
     </div>

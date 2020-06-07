@@ -43,11 +43,9 @@ export class UserCardComponent implements OnInit {
         } else if (user.votes.includes(this.loggedUserId)) {
           this.profileService.removeVote(this.userId);
           this.hasVoted = false;
-          console.log(this.hasVoted);
         } else {
           this.profileService.addVote(this.userId);
           this.hasVoted = true;
-          console.log(this.hasVoted);
         }
       });
   }
