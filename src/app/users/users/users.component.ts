@@ -22,8 +22,8 @@ export class UsersComponent implements OnInit {
     this.userProfileSub = this.profileService
       .getUsersProfiles()
       .subscribe((users: User[]) => {
-        this.users = users.sort((a: any, b: any) => {
-          return a.name.localeCompare(b.name);
+        this.users = users.sort((a: User, b: User) => {
+          return b.votes.length - a.votes.length;
         });
       });
   }
