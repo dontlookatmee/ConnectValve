@@ -1,9 +1,9 @@
-<div class="wrap">
+<div class="wrap" [style]="styles">
   <div class="search">
     <input
       type="text"
       class="searchTerm"
-      placeholder="Search by user description"
+      [placeholder]="placeholder"
       [(ngModel)]="term"
       (input)="handleTerm()"
     />
