@@ -5,6 +5,7 @@ import {
   User,
 } from 'src/app/services/profile/profile.service';
 import { Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-users',
@@ -25,6 +26,21 @@ export class UsersComponent implements OnInit {
         this.users = users.sort((a: User, b: User) => {
           return b.votes.length - a.votes.length;
         });
+      });
+  }
+
+  handleTerm(term: string) {
+    this.userProfileSub = this.profileService
+      .getUsersProfiles()
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((users: User[]) => {
+        this.users = users
+          .filter((user: User) =>
+            user.description.toLowerCase().includes(term.toLowerCase())
+          )
+          .sort((a: User, b: User) => {
+            return b.votes.length - a.votes.length;
+          });
       });
   }
 
