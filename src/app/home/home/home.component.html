@@ -23,6 +23,11 @@
       <h1>Services available</h1>
       <p>Join us and start collaboration right now.</p>
     </div>
+    <app-search
+      (termEvent)="handleSearch($event)"
+      placeholder="Search by service title"
+      styles="marginBottom: 50px"
+    ></app-search>
     <div class="service-grid-container">
       <app-service-card
         *ngFor="let service of allServices"

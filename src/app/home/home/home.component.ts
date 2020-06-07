@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserServicesService } from '../../services/user-services/user-services.service';
 import { Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 interface Service {
   id: string;
@@ -29,7 +30,26 @@ export class HomeComponent implements OnInit {
     this.servicesSub = this.uServices
       .getServices()
       .subscribe((services: Service[]) => {
-        this.allServices = services;
+        this.allServices = services.sort((a: Service, b: Service) =>
+          a.data.title.localeCompare(b.data.title)
+        );
+      });
+  }
+
+  handleSearch(term: string) {
+    this.servicesSub = this.uServices
+      .getServices()
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((services: Service[]) => {
+        this.allServices = services
+          .filter((service: Service) => {
+            return service.data?.title
+              .toLowerCase()
+              .includes(term.toLowerCase());
+          })
+          .sort((a: Service, b: Service) =>
+            a.data.title.localeCompare(b.data.title)
+          );
       });
   }
 
