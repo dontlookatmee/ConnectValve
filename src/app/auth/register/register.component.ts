@@ -81,6 +81,7 @@ export class RegisterComponent implements OnInit {
           this.profileService
             .addUserInDB(user, uid)
             .then((x) => {
+              this.profileService.updateUserProfile({ status: 'online' });
               this.router.navigate(['']);
             })
             .catch((err) => {

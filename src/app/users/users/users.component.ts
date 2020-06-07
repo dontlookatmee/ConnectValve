@@ -24,7 +24,9 @@ export class UsersComponent implements OnInit {
       .getUsersProfiles()
       .subscribe((users: User[]) => {
         this.users = users.sort((a: User, b: User) => {
-          return b.votes.length - a.votes.length;
+          return (
+            b.votes.length - a.votes.length || a.name.localeCompare(b.name)
+          );
         });
       });
   }
