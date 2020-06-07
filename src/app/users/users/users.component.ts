@@ -35,8 +35,10 @@ export class UsersComponent implements OnInit {
       .pipe(debounceTime(300), distinctUntilChanged())
       .subscribe((users: User[]) => {
         this.users = users
-          .filter((user: User) =>
-            user.description.toLowerCase().includes(term.toLowerCase())
+          .filter(
+            (user: User) =>
+              user.description.toLowerCase().includes(term.toLowerCase()) ||
+              user.name.toLowerCase().includes(term.toLowerCase())
           )
           .sort((a: User, b: User) => {
             return b.votes.length - a.votes.length;
