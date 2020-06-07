@@ -1,4 +1,8 @@
-<app-search (termEvent)="handleTerm($event)"></app-search>
+<app-search
+  (termEvent)="handleTerm($event)"
+  placeholder="Search by user description"
+  styles="marginTop: 100px; marginBottom: 50px"
+></app-search>
 <div class="grid-container">
   <app-user-card
     *ngFor="let user of users"
