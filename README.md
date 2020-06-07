@@ -1,49 +1,26 @@
-
 # ConnectValve
-
-  
-
-  
 
 ConnectValve is an extensive open-source project. The purpose of the app is to teach, learn, connect based on people needs. It is made for educational purposes only and nothing else!
 
-  
-
-  
-
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
 
-  
-
-  
-  
+**IMPORTANT!!! READ BEFORE YOU START USING THE APPLICATION**
+-  You need two registrations or a friend to test application features, since it's a collaboration app.
 
 ## Screenshots
-
-  
-
+ 
 **App Home Page:**
 
 ![Home Page](https://i.imgur.com/gqn784c.png)
 
   
-
-
-  
-
 ## Technologies
 
-  
-
 ### Frontend
-
-  
 
 - Javascript framework for building User Interfaces: `Angular`
 
 - CSS-in-JS library for handling ConnectValve's styles: `Bootstrap`
-
-  
 
 ### Backend
 
