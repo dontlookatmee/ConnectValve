@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +17,8 @@ export class NavbarComponent implements OnInit {
     this.profileService.updateUserProfile({ status: 'offline' });
   }
 
+  authService: Subscription;
+
   constructor(
     public auth: AuthService,
     private fAuth: AngularFireAuth,
@@ -23,7 +26,13 @@ export class NavbarComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService = this.auth.user$.subscribe((user) => {
+      if (user !== null && user.status !== 'online') {
+        this.profileService.updateUserProfile({ status: 'online' });
+      }
+    });
+  }
 
   handleLogOut() {
     this.profileService
@@ -37,5 +46,9 @@ export class NavbarComponent implements OnInit {
       .catch((err) => {
         alert('Something went wrong, please try again!');
       });
+  }
+
+  ngOnDestroy(): void {
+    this.authService.unsubscribe();
   }
 }
