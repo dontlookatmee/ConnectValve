@@ -22,11 +22,6 @@ interface Service {
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  @HostListener('window:beforeunload', ['$event'])
-  unloadHandler(event) {
-    this.profileService.updateUserProfile({ status: 'offline' });
-  }
-
   allServices: Service[];
   servicesSub: Subscription;
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ProfileService } from 'src/app/services/profile/profile.service';
@@ -11,6 +11,11 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  @HostListener('window:beforeunload', ['$event'])
+  unloadHandler(event) {
+    this.profileService.updateUserProfile({ status: 'offline' });
+  }
+
   constructor(
     public auth: AuthService,
     private fAuth: AngularFireAuth,
