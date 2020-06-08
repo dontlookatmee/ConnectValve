@@ -30,6 +30,8 @@ export class NavbarComponent implements OnInit {
     this.authService = this.auth.user$.subscribe((user) => {
       if (user !== null && user.status !== 'online') {
         this.profileService.updateUserProfile({ status: 'online' });
+      } else {
+        this.authService.unsubscribe();
       }
     });
   }
@@ -48,7 +50,5 @@ export class NavbarComponent implements OnInit {
       });
   }
 
-  ngOnDestroy(): void {
-    this.authService.unsubscribe();
-  }
+  ngOnDestroy(): void {}
 }
