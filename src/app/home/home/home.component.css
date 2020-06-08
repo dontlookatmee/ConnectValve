@@ -56,6 +56,9 @@
   margin: 0 auto;
   padding-bottom: 25px;
 }
+.jumbotron {
+  padding-top: 10rem;
+}
 
 @media screen and (max-width: 1140px) {
   .jumbotron {
