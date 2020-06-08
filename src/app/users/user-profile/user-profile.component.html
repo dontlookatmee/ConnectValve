@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row profile">
-    <div class="col-md-3">
+    <div class="col-lg-3">
       <form [formGroup]="editProfileForm" (ngSubmit)="handleProfileUpdate()">
         <div class="profile-sidebar">
           <div class="profile-userpic">
@@ -86,7 +86,7 @@
         </div>
       </form>
     </div>
-    <div class="col-md-9 services-container">
+    <div class="col-lg-9 services-container">
       <div *ngIf="!messageMode" class="services">
         <h3>User Services</h3>
         <div class="profile-content" *ngIf="services?.length; else noServices">

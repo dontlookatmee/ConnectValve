@@ -182,3 +182,15 @@ ul {
 .services {
   margin: 0 auto;
 }
+
+@media screen and (max-width: 766px) {
+  .profile-content {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 376px) {
+  .profile-content {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}

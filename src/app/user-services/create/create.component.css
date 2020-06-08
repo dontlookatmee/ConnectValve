@@ -1,7 +1,7 @@
 .main-container {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 50%;
   margin: 0 auto;
   margin-top: 50px;
 }
@@ -30,7 +30,23 @@ h3 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
-  width: 22%;
+  width: 100%;
+}
+
+.buttons .btn-primary {
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 1140px) {
+  .main-container {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 960px) {
+  .main-container {
+    width: 80%;
+  }
+}
+@media (max-width: 576px) {
 }

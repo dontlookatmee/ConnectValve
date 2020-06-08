@@ -1,6 +1,5 @@
 <input id="message-{{ index }}" type="checkbox" />
-
-<label for="message-{{ index }}" href="#move">
+<label class="msg-label" for="message-{{ index }}" href="#move">
   <div class="container_ui__item">
     <div class="face">
       <img [src]="avatar" />
@@ -20,7 +19,7 @@
     <h4>{{ sliceText(message) }}</h4>
   </div>
   <div class="container_ui__expand" id="close">
-    <div class="heading">
+    <div class="heading" [ngClass]="{ two: index % 2 !== 0 }">
       <div class="heading_head"></div>
       <label for="message-{{ index }}">
         x

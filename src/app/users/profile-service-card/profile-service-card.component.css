@@ -64,3 +64,19 @@ li:hover {
   align-items: center;
   width: 30%;
 }
+
+@media screen and (max-width: 1140px) {
+}
+@media screen and (max-width: 766px) {
+  li > div {
+    margin: 0 auto;
+  }
+  .content {
+    text-align: center;
+  }
+  .buttons button {
+    margin: 0 auto;
+  }
+}
+@media (max-width: 576px) {
+}

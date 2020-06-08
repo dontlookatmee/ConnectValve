@@ -384,3 +384,26 @@ input[type='checkbox']:checked + label > .container_ui__expand a {
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 766px) {
+  input[type='checkbox']:checked + label > .container_ui__expand {
+    z-index: 5;
+    position: unset;
+  }
+  .msg-label {
+    display: flex;
+    flex-direction: column;
+    overflow: unset;
+  }
+  .container_ui__expand .heading {
+    height: 65px;
+  }
+  .container_ui__expand .heading label {
+    position: unset;
+    color: white;
+    width: 100%;
+  }
+  .container_ui__expand .heading button {
+    position: unset;
+  }
+}

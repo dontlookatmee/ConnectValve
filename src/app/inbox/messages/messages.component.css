@@ -1,5 +1,5 @@
 .container-msg {
-  width: 750px;
+  width: 100%;
   text-align: center;
   height: 100%;
   position: absolute;
@@ -96,4 +96,15 @@
   border-radius: 1px;
   clear: both;
   background: rgba(0, 0, 0, 0.26);
+}
+@media screen and (max-width: 766px) {
+  .container-msg {
+    display: flex;
+    flex-direction: column;
+    position: unset;
+    height: 535px;
+  }
+  .container_ui {
+    width: 100%;
+  }
 }

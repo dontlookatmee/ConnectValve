@@ -13,7 +13,17 @@
 }
 
 @media screen and (max-width: 830px) {
+}
+
+@media screen and (max-width: 1140px) {
+  ul {
+    padding: 0.5rem;
+  }
+}
+@media screen and (max-width: 960px) {
   .main-container {
     height: auto;
   }
+}
+@media (max-width: 576px) {
 }

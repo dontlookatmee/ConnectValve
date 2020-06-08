@@ -31,6 +31,19 @@
 }
 
 .wrap {
-  width: 30%;
+  width: 32%;
   margin: 0 auto;
+}
+
+@media screen and (max-width: 1140px) {
+  .wrap {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 960px) {
+}
+@media (max-width: 576px) {
+  .wrap {
+    width: 80%;
+  }
 }
