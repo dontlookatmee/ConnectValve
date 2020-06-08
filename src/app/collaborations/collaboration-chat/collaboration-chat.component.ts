@@ -33,13 +33,14 @@ export class CollaborationChatComponent implements OnInit {
   @HostListener('window:unload', ['$event'])
   unloadHandler() {
     this.cb.removeUserFromCollaboration(
-      this.collaboration.id,
+      this.collaboration?.id,
       this.loggedUser?.uid
     );
   }
 
   collaboration: Collaboration;
   cbOnInitSub: Subscription;
+  profileServiceSub: Subscription;
   messages: Messages[];
   fromUser: User;
   toUser: User;
@@ -57,7 +58,6 @@ export class CollaborationChatComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('cb chat cp ngoninit');
     const path = this.activatedRouter.snapshot.paramMap.get('id');
     const userId = this.authService.getUserId();
 
@@ -110,21 +110,16 @@ export class CollaborationChatComponent implements OnInit {
         });
       });
 
-    this.profileService.getUserProfile(userId).subscribe((user: User) => {
-      this.loggedUser = user;
-    });
+    this.profileServiceSub = this.profileService
+      .getUserProfile(userId)
+      .subscribe((user: User) => {
+        this.loggedUser = user;
+        this.cb.addUserToCollaboration(this.collaboration?.id, user.uid);
+      });
   }
 
   ngAfterViewInit() {
     this.scrollToBottom();
-  }
-
-  ngOnDestroy() {
-    this.cbOnInitSub.unsubscribe();
-    this.cb.removeUserFromCollaboration(
-      this.collaboration.id,
-      this.loggedUser?.uid
-    );
   }
 
   handleSendMessage(msgForm: any) {
@@ -146,5 +141,18 @@ export class CollaborationChatComponent implements OnInit {
     } catch (err) {
       console.log(err);
     }
+  }
+
+  checkIfUserOnline(user: string) {
+    return this.collaboration?.data.joinedPeople.includes(user) ? true : false;
+  }
+
+  ngOnDestroy() {
+    this.cbOnInitSub.unsubscribe();
+    this.profileServiceSub.unsubscribe();
+    this.cb.removeUserFromCollaboration(
+      this.collaboration.id,
+      this.loggedUser?.uid
+    );
   }
 }
