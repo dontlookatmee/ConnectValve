@@ -139,3 +139,16 @@
 
   margin-top: 30px;
 }
+
+@media screen and (max-width: 1140px) {
+  .main-container {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 960px) {
+  .main-container {
+    flex-direction: column;
+  }
+}
+@media (max-width: 576px) {
+}
