@@ -2,7 +2,10 @@
 <label class="msg-label" for="message-{{ index }}" href="#move">
   <div class="container_ui__item">
     <div class="face">
-      <img [src]="avatar" />
+      <img
+        [src]="avatar"
+        onerror="this.src='../../../assets/error/broken-image.jpg'"
+      />
       <div
         class="color_bar"
         [ngClass]="{ one: index % 2 === 0, two: index % 2 !== 0 }"
