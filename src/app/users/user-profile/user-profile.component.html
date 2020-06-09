@@ -4,7 +4,12 @@
       <form [formGroup]="editProfileForm" (ngSubmit)="handleProfileUpdate()">
         <div class="profile-sidebar">
           <div class="profile-userpic">
-            <img [src]="user?.avatar" class="img-responsive" alt="" />
+            <img
+              [src]="user?.avatar"
+              class="img-responsive"
+              alt=""
+              onerror="this.src='../../../assets/error/broken-image.jpg'"
+            />
             <app-input
               *ngIf="editMode"
               [control]="editProfileForm.get('avatar')"

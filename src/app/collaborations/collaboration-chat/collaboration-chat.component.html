@@ -3,7 +3,11 @@
     <div class="people-list" id="people-list">
       <ul class="list">
         <li class="clearfix">
-          <img [src]="toUser?.avatar" alt="avatar" />
+          <img
+            [src]="toUser?.avatar"
+            alt="avatar"
+            onerror="this.src='../../../assets/error/broken-image.jpg'"
+          />
           <div class="about">
             <div class="name">{{ toUser?.name }}</div>
             <div class="status">
@@ -20,7 +24,11 @@
         </li>
 
         <li class="clearfix">
-          <img [src]="fromUser?.avatar" alt="avatar" />
+          <img
+            [src]="fromUser?.avatar"
+            alt="avatar"
+            onerror="this.src='../../../assets/error/broken-image.jpg'"
+          />
           <div class="about">
             <div class="name">{{ fromUser?.name }}</div>
             <div class="status">
