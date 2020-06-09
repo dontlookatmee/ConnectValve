@@ -23,7 +23,12 @@
     </div>
     <div class="card-body profileBody">
       <div class="profilePic">
-        <img class="avatar" [src]="avatar" [alt]="name" />
+        <img
+          class="avatar"
+          [src]="avatar"
+          [alt]="name"
+          onerror="this.src='../../../assets/error/broken-image.jpg'"
+        />
       </div>
       <div class="profileInfo">
         <p>Description: {{ description }}</p>
