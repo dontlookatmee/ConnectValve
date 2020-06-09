@@ -32,3 +32,16 @@ form {
   color: #ce6041;
   cursor: pointer;
 }
+
+@media screen and (max-width: 1140px) {
+  form {
+    width: 55%;
+  }
+}
+@media screen and (max-width: 960px) {
+}
+@media (max-width: 576px) {
+  form {
+    width: 80%;
+  }
+}
