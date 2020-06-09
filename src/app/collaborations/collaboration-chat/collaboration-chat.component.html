@@ -50,7 +50,11 @@
       <div class="chat-header clearfix">
         <div class="header-content">
           <div class="header-user">
-            <img [src]="loggedUser?.avatar" alt="avatar" />
+            <img
+              [src]="loggedUser?.avatar"
+              alt="avatar"
+              onerror="this.src='../../../assets/error/broken-image.jpg'"
+            />
 
             <div class="chat-about">
               <div class="chat-with">{{ loggedUser?.name }}</div>
