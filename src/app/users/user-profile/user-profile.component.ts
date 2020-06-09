@@ -22,6 +22,7 @@ export class UserProfileComponent implements OnInit {
   editMode: boolean = false;
   messageMode: boolean = false;
   feedback: { visible: boolean; type?: string; message?: string };
+  isDataLoaded: boolean = false;
 
   userServicesSub: Subscription;
   userProfileSub: Subscription;
@@ -55,7 +56,7 @@ export class UserProfileComponent implements OnInit {
       .getUserProfile(path)
       .subscribe((user: User) => {
         this.user = user;
-
+        this.isDataLoaded = true;
         if (user.uid === this.authService.getUserId()) {
           this.profileOwner = true;
           this.editProfileForm.patchValue({

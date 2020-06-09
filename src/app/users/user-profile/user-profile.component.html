@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="isDataLoaded" class="container">
   <div class="row profile">
     <div class="col-lg-3">
       <form [formGroup]="editProfileForm" (ngSubmit)="handleProfileUpdate()">
@@ -115,3 +115,4 @@
   [message]="feedback?.message"
   [type]="feedback?.type"
 ></app-small-popup>
+<app-spinner *ngIf="!isDataLoaded"></app-spinner>

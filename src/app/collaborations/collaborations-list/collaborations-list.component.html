@@ -1,4 +1,4 @@
-<div class="main-container">
+<div *ngIf="isDataLoaded" class="main-container">
   <h3>Collaborations</h3>
   <div class="content">
     <ul>
@@ -13,3 +13,5 @@
     </ul>
   </div>
 </div>
+
+<app-spinner *ngIf="!isDataLoaded"></app-spinner>

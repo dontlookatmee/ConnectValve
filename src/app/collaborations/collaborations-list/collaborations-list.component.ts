@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class CollaborationsListComponent implements OnInit {
   myCollaborations: Collaboration[];
-
+  isDataLoaded: boolean = false;
   collaborationServiceSub: Subscription;
 
   constructor(
@@ -24,6 +24,7 @@ export class CollaborationsListComponent implements OnInit {
       .getMyCollaborations(userId)
       .subscribe((collaborations: Collaboration[]) => {
         this.myCollaborations = collaborations;
+        this.isDataLoaded = true;
       });
   }
 

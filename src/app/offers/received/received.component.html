@@ -1,5 +1,5 @@
 <h1>Received Offers</h1>
-<div class="main-container">
+<div *ngIf="isDataLoaded" class="main-container">
   <app-offer-card
     *ngFor="let offer of offersReceived"
     [note]="offer?.data.note"
@@ -13,3 +13,5 @@
     [isReceiver]="true"
   ></app-offer-card>
 </div>
+
+<app-spinner *ngIf="!isDataLoaded"></app-spinner>

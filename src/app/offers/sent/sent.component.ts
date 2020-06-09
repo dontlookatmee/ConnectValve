@@ -22,6 +22,7 @@ interface Offer {
 })
 export class SentComponent implements OnInit {
   offersSent: Offer[];
+  isDataLoaded: boolean = false;
 
   offerServiceSub: Subscription;
 
@@ -32,6 +33,7 @@ export class SentComponent implements OnInit {
       .getSentOffers()
       .subscribe((offers: Offer[]) => {
         this.offersSent = offers;
+        this.isDataLoaded = true;
       });
   }
 

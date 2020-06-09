@@ -21,6 +21,7 @@ interface ServicesMeta {
 })
 export class MyServicesComponent implements OnInit {
   myServices: ServicesMeta[];
+  isDataLoaded: boolean = false;
 
   myServicesSub: Subscription;
 
@@ -31,6 +32,7 @@ export class MyServicesComponent implements OnInit {
       .getMyServices()
       .subscribe((services: ServicesMeta[]) => {
         this.myServices = services;
+        this.isDataLoaded = true;
       });
   }
 

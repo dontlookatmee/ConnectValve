@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { SmallPopupComponent } from './small-popup/small-popup.component';
 import { OfferCardComponent } from './offer-card/offer-card.component';
 import { SearchComponent } from './search/search.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SearchComponent } from './search/search.component';
     SmallPopupComponent,
     OfferCardComponent,
     SearchComponent,
+    SpinnerComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule, FormsModule],
   exports: [
@@ -30,6 +32,7 @@ import { SearchComponent } from './search/search.component';
     SmallPopupComponent,
     OfferCardComponent,
     SearchComponent,
+    SpinnerComponent,
   ],
 })
 export class SharedModule {}

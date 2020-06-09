@@ -48,6 +48,7 @@ export class CollaborationChatComponent implements OnInit {
   userOnline: boolean;
   userMessage: string;
   canSendMessage: boolean = true;
+  isDataLoaded: boolean = false;
 
   constructor(
     private activatedRouter: ActivatedRoute,
@@ -60,13 +61,13 @@ export class CollaborationChatComponent implements OnInit {
   ngOnInit(): void {
     const path = this.activatedRouter.snapshot.paramMap.get('id');
     const userId = this.authService.getUserId();
-
     const cb = this.cb.getCollaboration(path);
 
     this.cbOnInitSub = cb
       .pipe(
         switchMap((cb: Collaboration) => {
           this.collaboration = cb;
+          this.isDataLoaded = true;
           return of(cb.id);
         })
       )

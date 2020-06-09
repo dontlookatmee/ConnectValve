@@ -1,4 +1,4 @@
-<div class="container-msg">
+<div *ngIf="isDataLoaded" class="container-msg">
   <div class="container_ui">
     <div class="container_ui__heading">
       <h1>
@@ -18,3 +18,4 @@
     ></app-message>
   </div>
 </div>
+<app-spinner *ngIf="!isDataLoaded"></app-spinner>

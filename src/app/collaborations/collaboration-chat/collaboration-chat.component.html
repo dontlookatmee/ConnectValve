@@ -1,4 +1,4 @@
-<div class="main-container">
+<div *ngIf="isDataLoaded" class="main-container">
   <div class="container clearfix">
     <div class="people-list" id="people-list">
       <ul class="list">
@@ -119,3 +119,4 @@
   </div>
   <!-- end container -->
 </div>
+<app-spinner *ngIf="!isDataLoaded"></app-spinner>

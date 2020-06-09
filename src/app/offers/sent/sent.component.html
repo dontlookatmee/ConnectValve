@@ -1,5 +1,5 @@
 <h1>Sent Offers</h1>
-<div class="main-container">
+<div *ngIf="isDataLoaded" class="main-container">
   <app-offer-card
     *ngFor="let offer of offersSent"
     [collaboration]="offer?.data.collaborationCreated"
@@ -16,3 +16,4 @@
     ></app-offer-card
   >
 </div>
+<app-spinner *ngIf="!isDataLoaded"></app-spinner>

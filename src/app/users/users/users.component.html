@@ -3,7 +3,7 @@
   placeholder="Search by user name or description"
   styles="marginTop: 100px; marginBottom: 50px"
 ></app-search>
-<div class="grid-container">
+<div *ngIf="isDataLoaded" class="grid-container">
   <app-user-card
     *ngFor="let user of users"
     [name]="user?.name"
@@ -14,3 +14,4 @@
     [votes]="user?.votes"
   ></app-user-card>
 </div>
+<app-spinner *ngIf="!isDataLoaded"></app-spinner>

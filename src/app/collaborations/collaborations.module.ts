@@ -9,6 +9,7 @@ import { CollaborationChatComponent } from './collaboration-chat/collaboration-c
 import { ChatMessageComponent } from './chat-message/chat-message.component';
 import { StartCollaborationButtonComponent } from './start-collaboration-button/start-collaboration-button.component';
 import { TimerComponent } from './timer/timer.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,11 @@ import { TimerComponent } from './timer/timer.component';
     StartCollaborationButtonComponent,
     TimerComponent,
   ],
-  imports: [CommonModule, CollaborationsRoutingModule, FormsModule],
+  imports: [
+    CommonModule,
+    CollaborationsRoutingModule,
+    FormsModule,
+    SharedModule,
+  ],
 })
 export class CollaborationsModule {}

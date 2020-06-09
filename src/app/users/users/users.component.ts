@@ -14,6 +14,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 })
 export class UsersComponent implements OnInit {
   users: User[];
+  isDataLoaded: boolean = false;
 
   userProfileSub: Subscription;
 
@@ -28,6 +29,8 @@ export class UsersComponent implements OnInit {
             b.votes.length - a.votes.length || a.name.localeCompare(b.name)
           );
         });
+
+        this.isDataLoaded = true;
       });
   }
 

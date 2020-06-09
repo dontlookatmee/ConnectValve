@@ -23,7 +23,7 @@ interface Offer {
 })
 export class ReceivedComponent implements OnInit {
   offersReceived: Offer[];
-
+  isDataLoaded: boolean = false;
   offerServiceSub: Subscription;
 
   constructor(private offersService: OffersService) {}
@@ -33,6 +33,7 @@ export class ReceivedComponent implements OnInit {
       .getReceivedOffers()
       .subscribe((offer: Offer[]) => {
         this.offersReceived = offer;
+        this.isDataLoaded = true;
       });
   }
 

@@ -21,6 +21,7 @@ interface Messages {
 })
 export class MessagesComponent implements OnInit {
   messages: Messages[];
+  isDataLoaded: boolean = false;
 
   profileServiceSub: Subscription;
 
@@ -31,6 +32,7 @@ export class MessagesComponent implements OnInit {
       .getUserMessages()
       .subscribe((messages: Messages[]) => {
         this.messages = messages.sort((a, b) => b.data.date - a.data.date);
+        this.isDataLoaded = true;
       });
   }
 
