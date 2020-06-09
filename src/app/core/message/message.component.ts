@@ -29,13 +29,14 @@ export class MessageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const userId = this.authService.getUserId();
     this.profileServiceFromUserSub = this.profileService
       .getUserProfile(this.fromUser)
       .subscribe((user: User) => {
         this.fromUserName = user.name;
       });
     this.profileServiceToUserSub = this.profileService
-      .getUserProfile(this.toUser)
+      .getUserProfile(userId)
       .subscribe((user: User) => {
         this.toUserName = user.name;
       });
