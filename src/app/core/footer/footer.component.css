@@ -1,0 +1,45 @@
+.footer {
+  background-color: #0077b5;
+}
+.info-text {
+  color: white;
+}
+.info-text span {
+  color: #ff9974;
+  font-weight: bold;
+}
+.info-text span:hover {
+  color: #e48765;
+  font-weight: bold;
+  cursor: pointer;
+}
+.text-uppercase a {
+  color: white;
+}
+
+.footer-copyright {
+  color: white;
+  background-color: #006297;
+}
+
+.footer-copyright a {
+  color: #ff9974;
+}
+.socials {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 10%;
+  margin: 0 auto;
+}
+
+.socials a i {
+  color: #ff9974;
+  font-size: 1.5rem;
+}
+
+.socials a i:hover {
+  color: #e48765;
+  cursor: pointer;
+}
