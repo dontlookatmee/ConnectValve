@@ -123,17 +123,21 @@ export class CollaborationChatComponent implements OnInit {
     this.scrollToBottom();
   }
 
-  handleSendMessage(msgForm: any) {
+  handleSendMessage(msgForm: NgForm) {
     const cbId = this.collaboration.id;
     const msg = {
       name: this.loggedUser.name,
       message: this.userMessage,
       date: Date.now(),
     };
-    this.cb.addCollaborationMessage(cbId, msg).then((x) => {
-      this.scrollToBottom();
-      msgForm.reset();
-    });
+
+    if (this.userMessage?.length > 1 && this.userMessage.trim() !== '') {
+      console.log(msgForm.valid);
+      this.cb.addCollaborationMessage(cbId, msg).then((x) => {
+        this.scrollToBottom();
+        msgForm.reset();
+      });
+    }
   }
 
   scrollToBottom(): void {

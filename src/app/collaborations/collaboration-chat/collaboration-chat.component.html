@@ -99,24 +99,33 @@
       <div class="chat-message clearfix">
         <form #msgForm="ngForm" (ngSubmit)="handleSendMessage(msgForm)">
           <textarea
-            (keyup.enter)="handleSendMessage(msgForm)"
             name="message-to-send"
             id="message-to-send"
             placeholder="Type your message"
             rows="3"
+            (keyup.enter)="handleSendMessage(msgForm)"
             [(ngModel)]="userMessage"
             #message="ngModel"
             required
+            minlength="1"
+            maxlength="300"
             [disabled]="!canSendMessage"
+            appEmptyStringValidator
           ></textarea>
-          <div
-            *ngIf="
-              message.errors?.required && (message.touched || message.dirty)
-            "
-            style="color: 'red'; margin-bottom: '10px';"
+          <ng-container
+            *ngIf="message.errors && (message.touched || message.dirty)"
           >
-            Value is required.
-          </div>
+            <div
+              *ngIf="message.errors?.required"
+              style="color: 'red'; margin-bottom: '10px';"
+            >
+              Value is required.
+            </div>
+            <div *ngIf="message.errors?.appEmptyStringValidator">
+              Can't send empty string.
+            </div>
+          </ng-container>
+          {{ message?.errors | json }}
           <button
             class="btn btn-primary"
             [disabled]="!(msgForm.valid && canSendMessage)"
