@@ -99,6 +99,7 @@
       <div class="chat-message clearfix">
         <form #msgForm="ngForm" (ngSubmit)="handleSendMessage(msgForm)">
           <textarea
+            (keyup.enter)="handleSendMessage(msgForm)"
             name="message-to-send"
             id="message-to-send"
             placeholder="Type your message"
