@@ -11,6 +11,7 @@ import { SmallPopupComponent } from './small-popup/small-popup.component';
 import { OfferCardComponent } from './offer-card/offer-card.component';
 import { SearchComponent } from './search/search.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { EmptyStringValidatorDirective } from './empty-string-validator/empty-string-validator.directive';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     OfferCardComponent,
     SearchComponent,
     SpinnerComponent,
+    EmptyStringValidatorDirective,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule, FormsModule],
   exports: [

@@ -132,7 +132,6 @@ export class CollaborationChatComponent implements OnInit {
     };
 
     if (this.userMessage?.length > 1 && this.userMessage.trim() !== '') {
-      console.log(msgForm.valid);
       this.cb.addCollaborationMessage(cbId, msg).then((x) => {
         this.scrollToBottom();
         msgForm.reset();
