@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { UsersModule } from './users/users.module';
+import { AboutModule } from './about/about.module';
 
 const routes: Routes = [
   {
@@ -48,6 +49,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('./inbox/inbox.module').then((m) => m.InboxModule),
+  },
+  {
+    path: 'about',
+    loadChildren: () => import('./about/about.module').then((m) => AboutModule),
   },
 ];
 
