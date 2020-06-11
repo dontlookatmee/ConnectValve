@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, Host } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-root',
@@ -6,11 +6,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  @HostListener('window:beforeunload')
-  handleUnload() {
-    this.afAuth.signOut();
-  }
-
   constructor(private afAuth: AngularFireAuth) {}
 
   ngOnInit(): void {}
